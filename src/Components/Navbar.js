@@ -15,6 +15,36 @@ import projectsIcon from "../Icons/projectsIcon.svg";
 import skillsIcon from "../Icons/skillsIcon.svg";
 import homeIcon from "../Icons/meIcon.svg";
 
+export const menuItems = [
+  {
+    icon: projectsIcon,
+    title: "Projects",
+    text: "PROJECTS",
+    link: "projects",
+    fromDashboard: false,
+  },
+  {
+    icon: skillsIcon,
+    title: "Skills",
+    text: "SKILLS",
+    link: "skills",
+    fromDashboard: false,
+  },
+  {
+    icon: contactIcon,
+    title: "Contact",
+    text: "CONTACT",
+    link: "contact",
+    fromDashboard: false,
+  },
+  {
+    icon: homeIcon,
+    title: "Home",
+    text: "DIANA GUNEY",
+    link: "dianaguney",
+    fromDashboard: true,
+  },
+];
 export default function Navbar({ toggle, tranSwipe, tranSmooth, preview }) {
   //STATES
   const [icon, setIcon] = useState("");
@@ -22,36 +52,6 @@ export default function Navbar({ toggle, tranSwipe, tranSmooth, preview }) {
 
   //VARIABLES
   const location = useLocation();
-  const menuItems = [
-    {
-      icon: projectsIcon,
-      title: "Projects",
-      text: "PROJECTS",
-      link: "projects",
-      fromDashboard: false,
-    },
-    {
-      icon: skillsIcon,
-      title: "Skills",
-      text: "SKILLS",
-      link: "skills",
-      fromDashboard: false,
-    },
-    {
-      icon: contactIcon,
-      title: "Contact",
-      text: "CONTACT",
-      link: "contact",
-      fromDashboard: false,
-    },
-    {
-      icon: homeIcon,
-      title: "Home",
-      text: "DIANA GUNEY",
-      link: "dianaguney",
-      fromDashboard: true,
-    },
-  ];
 
   const filteredItems = menuItems.filter(
     (item) => location.pathname === `/${item.link}`
@@ -143,11 +143,7 @@ export default function Navbar({ toggle, tranSwipe, tranSmooth, preview }) {
           transition={tranSwipe(1)}
         >
           <MenuIcon toggle={{ menuOpen, setMenuOpen }} />
-          <MenuTitle
-            title={mainTitle}
-            items={menuItems}
-            tranSwipe={tranSwipe}
-          />
+          <MenuTitle title={mainTitle} tranSwipe={tranSwipe} />
           {icon}
         </motion.div>
         <motion.div className="menu-items" variants={menuVariants}>

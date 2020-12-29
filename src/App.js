@@ -55,7 +55,7 @@ function App() {
                     path="/dianaguney"
                     render={() =>
                       isDesktop ? (
-                        <HomeDesktop />
+                        <HomeDesktop transition={{ tranSwipe, tranSmooth }} />
                       ) : (
                         <Home
                           toggle={{ menuOpen, setMenuOpen }}

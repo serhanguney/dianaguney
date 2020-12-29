@@ -3,7 +3,7 @@ import React, { useState } from "react";
 //ADDITIONAOLS
 import { motion } from "framer-motion";
 
-export default function MenuTitle({ title, items, tranSwipe }) {
+export default function MenuTitle({ title, tranSwipe }) {
   const [length, setLength] = useState(title);
   const parent = {
     initial: { y: 0, transition: { staggerChildren: 0.008 } },

@@ -6,10 +6,10 @@ import ptFourth from "../Images/paperTubes/4.jpg";
 import ptFifth from "../Images/paperTubes/5.jpg";
 import ptSixth from "../Images/paperTubes/6.jpg";
 import ptSeventh from "../Images/paperTubes/7.jpg";
-import ptEight from "../Images/paperTubes/7.jpg";
-import ptNinth from "../Images/paperTubes/7.jpg";
-import ptTenth from "../Images/paperTubes/7.jpg";
-import ptEleventh from "../Images/paperTubes/7.jpg";
+import ptEight from "../Images/paperTubes/8.jpg";
+import ptNinth from "../Images/paperTubes/9.jpg";
+import ptTenth from "../Images/paperTubes/10.jpg";
+import ptEleventh from "../Images/paperTubes/11.jpg";
 
 //BORING ARCH
 import baFirst from "../Images/boringArch/1.jpg";
@@ -48,14 +48,14 @@ import bSixth from "../Images/balconies/6.jpg";
 
 //FURNITURE
 import fFirst from "../Images/furniture/1.jpg";
-import fSecond from "../Images/furniture/1.jpg";
-import fThird from "../Images/furniture/1.jpg";
-import fFourth from "../Images/furniture/1.jpg";
-import fFifth from "../Images/furniture/1.jpg";
-import fSixth from "../Images/furniture/1.jpg";
-import fSeventh from "../Images/furniture/1.jpg";
-import fEighth from "../Images/furniture/1.jpg";
-import fNinth from "../Images/furniture/1.jpg";
+import fSecond from "../Images/furniture/2.jpg";
+import fThird from "../Images/furniture/3.jpg";
+import fFourth from "../Images/furniture/4.jpg";
+import fFifth from "../Images/furniture/5.jpg";
+import fSixth from "../Images/furniture/6.jpg";
+import fSeventh from "../Images/furniture/7.jpg";
+import fEighth from "../Images/furniture/8.jpg";
+import fNinth from "../Images/furniture/9.jpg";
 
 //LIVING ON EDGE
 import loeFirst from "../Images/livingOnEdge/1.jpg";
