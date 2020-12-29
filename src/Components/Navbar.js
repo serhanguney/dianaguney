@@ -95,7 +95,7 @@ export default function Navbar({ toggle, tranSwipe, tranSmooth, preview }) {
     const item = menuItems.filter(
       (item) => `/${item.link}` === location.pathname
     );
-    if (location.pathname === "/") {
+    if (location.pathname === "/dianaguney") {
       setIcon(<Signature tranSwipe={tranSwipe} tranSmooth={tranSmooth} />);
       navbarColor.start({ backgroundColor: "#ffffff" });
     } else {
