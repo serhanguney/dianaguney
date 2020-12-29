@@ -1,0 +1,7 @@
+<svg width="93" height="200" viewBox="0 0 93 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Phone">
+<rect id="Device" x="0.5" y="0.5" width="91.1429" height="199" rx="14.5" stroke="#6E6E6E"/>
+<line id="Bottom" x1="28" y1="193.5" x2="64" y2="193.5" stroke="#6E6E6E"/>
+<path id="Top" d="M21.5189 0.5H70.4811C70.2257 3.85622 67.4216 6.5 64 6.5H28C24.5784 6.5 21.7743 3.85622 21.5189 0.5Z" fill="#6E6E6E" stroke="#6E6E6E"/>
+</g>
+</svg>
