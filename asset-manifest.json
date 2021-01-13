@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/dianaguney/static/css/main.f756f734.chunk.css",
-    "main.js": "/dianaguney/static/js/main.934b7423.chunk.js",
-    "main.js.map": "/dianaguney/static/js/main.934b7423.chunk.js.map",
+    "main.css": "/dianaguney/static/css/main.528aae7c.chunk.css",
+    "main.js": "/dianaguney/static/js/main.fd79d3d0.chunk.js",
+    "main.js.map": "/dianaguney/static/js/main.fd79d3d0.chunk.js.map",
     "runtime-main.js": "/dianaguney/static/js/runtime-main.0ee28901.js",
     "runtime-main.js.map": "/dianaguney/static/js/runtime-main.0ee28901.js.map",
     "static/js/2.45452fc9.chunk.js": "/dianaguney/static/js/2.45452fc9.chunk.js",
     "static/js/2.45452fc9.chunk.js.map": "/dianaguney/static/js/2.45452fc9.chunk.js.map",
     "index.html": "/dianaguney/index.html",
-    "static/css/main.f756f734.chunk.css.map": "/dianaguney/static/css/main.f756f734.chunk.css.map",
+    "static/css/main.528aae7c.chunk.css.map": "/dianaguney/static/css/main.528aae7c.chunk.css.map",
     "static/js/2.45452fc9.chunk.js.LICENSE.txt": "/dianaguney/static/js/2.45452fc9.chunk.js.LICENSE.txt",
     "static/media/1.0eefb0fd.jpg": "/dianaguney/static/media/1.0eefb0fd.jpg",
     "static/media/1.12c1f2d0.jpg": "/dianaguney/static/media/1.12c1f2d0.jpg",
@@ -80,7 +80,7 @@
   "entrypoints": [
     "static/js/runtime-main.0ee28901.js",
     "static/js/2.45452fc9.chunk.js",
-    "static/css/main.f756f734.chunk.css",
-    "static/js/main.934b7423.chunk.js"
+    "static/css/main.528aae7c.chunk.css",
+    "static/js/main.fd79d3d0.chunk.js"
   ]
 }
