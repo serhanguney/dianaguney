@@ -14,14 +14,31 @@ export default function ProjectsDesktop({ transition }) {
   ];
 
   //block is for selecting the current slider type from the available types.
-  const [block, setBlock] = useState({
-    size: window.innerWidth,
-    width: `${100 / 6}%`,
-    count: 6,
-  });
+  const [block, setBlock] = useState({});
   const [images, setImages] = useState([]);
 
   useEffect(() => {
+    //set the block type on load
+    if (window.innerWidth > 1100) {
+      setBlock({
+        size: window.innerWidth,
+        width: `${100 / 6}%`,
+        count: 6,
+      });
+    } else if (window.innerWidth < 1100 && window.innerWidth > 800) {
+      setBlock({
+        size: window.innerWidth,
+        width: `${100 / 5}%`,
+        count: 5,
+      });
+    } else if (window.innerWidth < 800) {
+      setBlock({
+        size: window.innerWidth,
+        width: `${100 / 4}%`,
+        count: 4,
+      });
+    }
+    //setting the block type on resize
     window.addEventListener("resize", () => {
       const filteredBlock = [];
       windowBlocks.map((item) => {
@@ -37,7 +54,6 @@ export default function ProjectsDesktop({ transition }) {
       // console.log("filteredBlock , smallest", [filteredBlock, smallest]);
       setBlock(smallest);
     });
-
     return () => {
       window.removeEventListener("resize", () => {
         const filteredBlock = [];
@@ -57,12 +73,11 @@ export default function ProjectsDesktop({ transition }) {
   }, []);
   //setting the image count using the current block
   useEffect(() => {
-    const imageCount = [];
-
-    for (let i = 0; i < block.count; i++) {
-      imageCount.push(<div className="slider-image"></div>);
-    }
-    setImages(imageCount);
+    // const imageCount = [];
+    // for (let i = 0; i < block.count; i++) {
+    //   imageCount.push(<div className="slider-image"></div>);
+    // }
+    // setImages(imageCount);
   }, [block]);
 
   return (

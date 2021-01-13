@@ -15,7 +15,11 @@ import {
   useElementScroll,
 } from "framer-motion";
 
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+import {
+  clearAllBodyScrollLocks,
+  disableBodyScroll,
+  enableBodyScroll,
+} from "body-scroll-lock";
 
 export default function Preview({
   state,
@@ -24,6 +28,8 @@ export default function Preview({
   toggle,
   toggleHide,
   scroll,
+  enableReference,
+  disableReference,
 }) {
   //STATES
   const refContainer = useRef(null);
@@ -66,15 +72,27 @@ export default function Preview({
   }, [element]);
 
   // freeze body scroll in preview mode
-  let targetElement = document.querySelector("html");
+  // let targetElement = document.querySelector("html");
   useEffect(() => {
-    preview
-      ? targetElement.classList.add("no-scroll")
-      : targetElement.classList.remove("no-scroll");
+    if (element.active) {
+      disableReference(refSlider.current);
+    } else {
+      enableReference(refSlider.current);
+    }
+
     // preview
-    //   ? disableBodyScroll(refContainer.current)
-    //   : enableBodyScroll(refContainer.current);
-  });
+    // ? targetElement.classList.add("no-scroll")
+    // : targetElement.classList.remove("no-scroll");
+    // element.active
+    // ? disableBodyScroll(refSlider.current)
+    // : enableBodyScroll(refSlider.current);
+    // if (element.active) {
+    // console.log("disable scroll");
+    // disableBodyScroll(refSlider.current);
+    // } else {
+    // clearAllBodyScrollLocks();
+    // }
+  }, [preview]);
 
   //HANDLER FUNCTIONS
 
@@ -204,7 +222,6 @@ export default function Preview({
           </motion.button>
         </motion.div>
       </motion.div>
-
       <motion.div key={index} className="project-slider" layout>
         <motion.div
           ref={refSlider}

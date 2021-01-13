@@ -11,6 +11,11 @@ import { motion, useAnimation, useCycle, useMotionValue } from "framer-motion";
 
 //PROJECTS
 import { projects } from "../Projects/Projects";
+import {
+  clearAllBodyScrollLocks,
+  disableBodyScroll,
+  enableBodyScroll,
+} from "body-scroll-lock";
 
 export default function Projects({ toggle, transition }) {
   //STATES
@@ -43,19 +48,34 @@ export default function Projects({ toggle, transition }) {
   //this will be used to animate the scrolling of the window when element is active
   const scroll = useMotionValue(0);
   function setScroll() {
+    console.log("scrolled");
     scroll.set(window.scrollY);
   }
-  function setTouch(e) {
-    e.preventDefault();
-  }
+
+  const disablePreviewScroll = (reference) => {
+    if (reference) {
+      console.log("reference", reference);
+      // disableBodyScroll(reference);
+    }
+  };
+
+  const enablePreviewScroll = (reference) => {
+    if (reference) {
+      console.log("reference", reference);
+    }
+  };
+  console.log("function", disablePreviewScroll);
   //we set the scroll motionvalue to window.scrollY so it doesn't scroll from the top everytime.
   useEffect(() => {
+    let targetElement = document.querySelector("html");
     if (!preview) {
       window.addEventListener("scroll", setScroll);
-      window.removeEventListener("touchmove", setTouch, { passive: false });
+      enablePreviewScroll();
+      targetElement.classList.remove("no-scroll");
     } else {
+      targetElement.classList.add("no-scroll");
       window.removeEventListener("scroll", setScroll);
-      window.addEventListener("touchmove", setTouch, { passive: false });
+      disablePreviewScroll();
     }
 
     return () => {
@@ -113,6 +133,8 @@ export default function Projects({ toggle, transition }) {
             toggleHide={{ hide, cycleHide }}
             tranSwipe={tranSwipe}
             scroll={scroll}
+            disableReference={disablePreviewScroll}
+            enableReference={enablePreviewScroll}
           />
         ))}
       </motion.div>

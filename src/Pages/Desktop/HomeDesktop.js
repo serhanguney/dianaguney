@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import NavbarDesktop from "../../Components/Desktop/NavbarDesktop";
@@ -11,7 +11,12 @@ export default function HomeDesktop({ transition }) {
   const hover = useAnimation();
 
   return (
-    <div className="home-page">
+    <motion.div
+      className="home-page"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
       <div className="navbar-container">
         <NavbarDesktop tranSmooth={tranSmooth} tranSwipe={tranSwipe} />
       </div>
@@ -87,6 +92,7 @@ export default function HomeDesktop({ transition }) {
                   (photo, index) =>
                     index < 9 && (
                       <motion.div
+                        key={index}
                         className="image-container"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -101,6 +107,6 @@ export default function HomeDesktop({ transition }) {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

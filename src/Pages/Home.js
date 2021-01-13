@@ -49,14 +49,28 @@ export default function Home({ toggle, transition }) {
   function setTouch(e) {
     e.preventDefault();
   }
+  const disablePreviewScroll = (reference) => {
+    if (reference) {
+      console.log("reference", reference);
+      // disableBodyScroll(reference);
+    }
+  };
+
+  const enablePreviewScroll = (reference) => {
+    if (reference) {
+      console.log("reference", reference);
+    }
+  };
   //we set the scroll motionvalue to window.scrollY so it doesn't scroll from the top everytime.
   useEffect(() => {
     if (!preview) {
       window.addEventListener("scroll", setScroll);
-      window.removeEventListener("touchmove", setTouch, { passive: false });
+      enablePreviewScroll();
+      // window.removeEventListener("touchmove", setTouch, { passive: false });
     } else {
       window.removeEventListener("scroll", setScroll);
-      window.addEventListener("touchmove", setTouch, { passive: false });
+      disablePreviewScroll();
+      // window.addEventListener("touchmove", setTouch, { passive: false });
     }
 
     return () => {
@@ -134,6 +148,8 @@ export default function Home({ toggle, transition }) {
                   toggleHide={{ hide, cycleHide }}
                   tranSwipe={tranSwipe}
                   scroll={scroll}
+                  enableReference={enablePreviewScroll}
+                  disableReference={disablePreviewScroll}
                 />
               )
           )}
