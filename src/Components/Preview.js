@@ -72,7 +72,7 @@ export default function Preview({
   }, [element]);
 
   // freeze body scroll in preview mode
-  // let targetElement = document.querySelector("html");
+
   useEffect(() => {
     if (element.active) {
       disableReference(refSlider.current);

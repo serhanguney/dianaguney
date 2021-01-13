@@ -930,7 +930,7 @@ svg {
 }
 //ADDITIONALS
 .no-scroll {
-  overflow: hidden;
+  overflow: hidden !important;
 }
 .scroll {
   overflow: auto;

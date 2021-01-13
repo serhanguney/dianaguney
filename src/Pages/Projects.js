@@ -54,17 +54,15 @@ export default function Projects({ toggle, transition }) {
 
   const disablePreviewScroll = (reference) => {
     if (reference) {
-      console.log("reference", reference);
       // disableBodyScroll(reference);
     }
   };
 
   const enablePreviewScroll = (reference) => {
     if (reference) {
-      console.log("reference", reference);
     }
   };
-  console.log("function", disablePreviewScroll);
+
   //we set the scroll motionvalue to window.scrollY so it doesn't scroll from the top everytime.
   useEffect(() => {
     let targetElement = document.querySelector("html");

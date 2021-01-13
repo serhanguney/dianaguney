@@ -22,9 +22,9 @@ export default function Skills({ toggle, transition }) {
       list: [
         { name: "Rhino 3D", advanced: true },
         { name: "Sketch-up 3D", advanced: false },
-        { name: "Microstation", advanced: false },
-        { name: "3D point cloud", advanced: false },
-        { name: "Physical Modelling", advanced: false },
+        { name: "Microstation", advanced: true },
+        { name: "3D point cloud", advanced: true },
+        { name: "Physical Modelling", advanced: true },
       ],
     },
     {
