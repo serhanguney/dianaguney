@@ -6,19 +6,21 @@ import { Link } from "react-router-dom";
 import homeCover from "../Images/balconies/1.jpg";
 import sign from "../SVGs/Signature.svg";
 import ArrowDown from "../Components/ArrowDown";
+import ArrowRight from "../Components/ArrowRight";
+import projectsIcon from "../Icons/projectsIcon.svg";
 
 //COMPONENTS
 import Navbar from "../Components/Navbar";
 import Preview from "../Components/Preview";
 
 //ADDITIONAL
-import { motion, useAnimation, useCycle } from "framer-motion";
+import { motion, useAnimation, useCycle, useMotionValue } from "framer-motion";
 import { projects } from "../Projects/Projects";
 
 export default function Home({ toggle, transition }) {
   //STATES
   const { menuOpen, setMenuOpen } = toggle;
-  // const previews = [1, 2, 3];
+
   const [elements, setElements] = useState(projects);
   const [preview, setPreview] = useState(false);
 
@@ -38,7 +40,29 @@ export default function Home({ toggle, transition }) {
     }
   );
 
-  //VARIANTS
+  //ANIMATION
+  //this will be used to animate the scrolling of the window when element is active
+  const scroll = useMotionValue(0);
+  function setScroll() {
+    scroll.set(window.scrollY);
+  }
+  function setTouch(e) {
+    e.preventDefault();
+  }
+  //we set the scroll motionvalue to window.scrollY so it doesn't scroll from the top everytime.
+  useEffect(() => {
+    if (!preview) {
+      window.addEventListener("scroll", setScroll);
+      window.removeEventListener("touchmove", setTouch, { passive: false });
+    } else {
+      window.removeEventListener("scroll", setScroll);
+      window.addEventListener("touchmove", setTouch, { passive: false });
+    }
+
+    return () => {
+      window.removeEventListener("scroll", setScroll);
+    };
+  }, [preview]);
 
   //PAGE-IN ANIMATION
   const c = useAnimation();
@@ -78,7 +102,7 @@ export default function Home({ toggle, transition }) {
           <div className="overlay"></div>
           <img src={homeCover} alt="Cover" />
         </div>
-        <div className="introduction-section">
+        <motion.div className="introduction-section" animate={hide}>
           <h1>About Me</h1>
           <h2 style={{ fontSize: "14px" }}>
             I am a passionate designer with love for story telling through
@@ -97,7 +121,7 @@ export default function Home({ toggle, transition }) {
             <p>scroll for projects</p>
             <ArrowDown />
           </div>
-        </div>
+        </motion.div>
         <div className="home-projects-section">
           {elements.map(
             (element, index) =>
@@ -109,13 +133,20 @@ export default function Home({ toggle, transition }) {
                   toggle={{ preview, setPreview }}
                   toggleHide={{ hide, cycleHide }}
                   tranSwipe={tranSwipe}
+                  scroll={scroll}
                 />
               )
           )}
+          <img
+            className="projects-icon"
+            src={projectsIcon}
+            alt="projects-icon"
+          />
           <Link to={{ pathname: "/projects", state: true }}>
             <motion.button className="link-button" whileTap={{ scale: 0.9 }}>
               <span>Go to Projects</span>
             </motion.button>
+            <ArrowRight />
           </Link>
         </div>
         <div className="footer"></div>

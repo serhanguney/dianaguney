@@ -7,7 +7,8 @@ import Home from "./Pages/Home";
 import Projects from "./Pages/Projects";
 import Skills from "./Pages/Skills";
 import Contact from "./Pages/Contact";
-import HomeDesktop from "./Pages/HomeDesktop";
+import HomeDesktop from "./Pages/Desktop/HomeDesktop";
+import ProjectsDesktop from "./Pages/Desktop/ProjectsDesktop";
 //COMPONENTs
 import Landscape from "./Components/Landscape";
 
@@ -17,9 +18,13 @@ import { AnimatePresence } from "framer-motion";
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [landscape, setLandscape] = useState(
-    window.innerWidth > 500 && window.innerWidth < 900
+    window.innerWidth > 500 &&
+      window.innerWidth < 900 &&
+      window.innerHeight < 500
   );
-  const [isDesktop, setDesktop] = useState(window.innerWidth > 900);
+  const [isDesktop, setDesktop] = useState(
+    window.innerWidth > 500 && window.innerHeight > 500
+  );
   const tranSwipe = (duration) => {
     return { duration: duration, ease: [0.6, 0.01, -0.05, 0.9] };
   };
@@ -29,13 +34,21 @@ function App() {
 
   useEffect(() => {
     window.addEventListener("resize", () => {
-      setLandscape(window.innerWidth > 500 && window.innerWidth < 900);
-      setDesktop(window.innerWidth > 900);
+      setLandscape(
+        window.innerWidth > 500 &&
+          window.innerWidth < 900 &&
+          window.innerHeight < 500
+      );
+      setDesktop(window.innerWidth > 500 && window.innerHeight > 500);
     });
     return () => {
       window.removeEventListener("resize", () => {
-        setLandscape(window.innerWidth > 500 && window.innerWidth < 900);
-        setDesktop(window.innerWidth > 900);
+        setLandscape(
+          window.innerWidth > 500 &&
+            window.innerWidth < 900 &&
+            window.innerHeight < 500
+        );
+        setDesktop(window.innerWidth > 500 && window.innerHeight > 500);
       });
     };
   });
@@ -45,14 +58,14 @@ function App() {
       {landscape ? (
         <Landscape />
       ) : (
-        <Router>
+        <Router basename="/dianaguney">
           <Route
             render={({ location }) => (
               <AnimatePresence exitBeforeEnter>
                 <Switch location={location} key={location.pathname}>
                   <Route
                     exact
-                    path="/dianaguney"
+                    path="/"
                     render={() =>
                       isDesktop ? (
                         <HomeDesktop transition={{ tranSwipe, tranSmooth }} />
@@ -67,12 +80,18 @@ function App() {
                   <Route
                     exact
                     path="/projects"
-                    render={() => (
-                      <Projects
-                        toggle={{ menuOpen, setMenuOpen }}
-                        transition={{ tranSwipe, tranSmooth }}
-                      />
-                    )}
+                    render={() =>
+                      isDesktop ? (
+                        <ProjectsDesktop
+                          transition={{ tranSwipe, tranSmooth }}
+                        />
+                      ) : (
+                        <Projects
+                          toggle={{ menuOpen, setMenuOpen }}
+                          transition={{ tranSwipe, tranSmooth }}
+                        />
+                      )
+                    }
                   />
                   <Route
                     exact

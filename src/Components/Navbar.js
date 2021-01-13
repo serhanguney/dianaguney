@@ -41,7 +41,7 @@ export const menuItems = [
     icon: homeIcon,
     title: "Home",
     text: "DIANA GUNEY",
-    link: "dianaguney",
+    link: "",
     fromDashboard: true,
   },
 ];
@@ -117,11 +117,7 @@ export default function Navbar({ toggle, tranSwipe, tranSmooth, preview }) {
   // useEffect(() => console.log(preview), [preview]);
 
   return (
-    <motion.div
-      className="navbar-container"
-      initial={{ y: 0 }}
-      transition={tranSwipe(0.8)}
-    >
+    <motion.div className="navbar-container">
       <motion.div
         className="background freeze"
         initial="initial"

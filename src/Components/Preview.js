@@ -12,6 +12,7 @@ import {
   useMotionValue,
   useTransform,
   AnimatePresence,
+  useElementScroll,
 } from "framer-motion";
 
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
@@ -22,52 +23,57 @@ export default function Preview({
   tranSwipe,
   toggle,
   toggleHide,
+  scroll,
 }) {
   //STATES
   const refContainer = useRef(null);
+  const refSlider = useRef(null);
   const { element, elements, setElements } = state;
   const { preview, setPreview } = toggle;
   const { hide, cycleHide } = toggleHide;
 
   //ANIMATIONS
+
+  //t is used to animate towards preview mode
   const t = useMotionValue(0);
 
   const height = useTransform(t, [0, 500], [420, window.innerHeight]);
-
-  const enlargeWidth = useTransform(t, [0, 500], [270, 560]);
+  const enlargeWidth = useTransform(t, [0, 500], ["70%", "130%"]);
   const fadeOut = useTransform(t, [0, 500], [1, 0]);
   const slideOut = useTransform(t, [0, 500], [0, 30]);
   const slideUp = useTransform(t, [0, 500], [0, -100]);
-
   const tDelay = useMotionValue(0);
   const delaySlideIn = useTransform(tDelay, [0, 500], [25, 0]);
   const delayFadeIn = useTransform(tDelay, [0, 500], [0, 1]);
 
-  //this will be used to animate the description in delay, when element is active
+  //d animates the description part in preview
   const d = useMotionValue(0);
 
   const dExpand = useTransform(d, [0, 500], [0, -350]);
   const dFadeIn = useTransform(d, [0, 500], [0, 1]);
   const dFadeOut = useTransform(d, [0, 500], [1, 0]);
   const dSlide = useTransform(d, [0, 500], ["0%", "-100%"]);
-  // const dSlideOut = useTransform(d, [0, 500], ["0%", "-100%"]);
 
-  //this will be used to animate the scrolling of the window when element is active
-  const scroll = useMotionValue(0);
+  //trigger animation and handlescroll in preview
 
   useEffect(() => {
-    window.addEventListener("scroll", () => scroll.set(window.scrollY));
-  }, []);
+    if (!element.active) {
+      animate(t, 0, { delay: 0.5, ...tranSwipe(0.8) });
+      animate(tDelay, 0, tranSwipe(0.8));
+    } else {
+      handleScroll();
+    }
+  }, [element]);
 
-  // control body scroll in preview mode
-  // let targetElement = document.querySelector("html");
+  // freeze body scroll in preview mode
+  let targetElement = document.querySelector("html");
   useEffect(() => {
-    // preview
-    // ? targetElement.classList.add("no-scroll")
-    // : targetElement.classList.remove("no-scroll");
     preview
-      ? disableBodyScroll(refContainer.current)
-      : enableBodyScroll(refContainer.current);
+      ? targetElement.classList.add("no-scroll")
+      : targetElement.classList.remove("no-scroll");
+    // preview
+    //   ? disableBodyScroll(refContainer.current)
+    //   : enableBodyScroll(refContainer.current);
   });
 
   //HANDLER FUNCTIONS
@@ -92,7 +98,7 @@ export default function Preview({
 
     setElements(array);
 
-    //preview is required for the page elements outisde element.map().
+    //preview is required for the page elements outisde element.map(); like navbar.
     //We can't send the element.active information simply because these elements are outside the map loop.
     setPreview(true);
     cycleHide();
@@ -118,39 +124,35 @@ export default function Preview({
   }
 
   function handleScroll() {
+    const unsubscribe = scroll.onChange((value) => {
+      window.scrollTo({
+        top: value,
+      });
+    });
+
+    //when pressed see more handles the scroll so that the element is in the middle of the screen
+    //triggers the rest of the animations.
     if (refContainer.current) {
       if (element.active) {
         let container = refContainer.current.getBoundingClientRect();
-        const total = container.top + window.scrollY;
-
-        animate(scroll, total, { ...tranSwipe(1.2) });
+        const total = container.top + window.scrollY - window.innerHeight / 6;
+        animate(scroll, total, {
+          ...tranSwipe(1.2),
+          onComplete: () => {
+            animateElement();
+            unsubscribe();
+          },
+        });
       }
     }
   }
-  useEffect(() => {
-    if (!element.active) {
-      return;
-    } else {
-      scroll.onChange((value) => {
-        window.scrollTo({
-          top: value,
-        });
-      });
-    }
-  }, [element]);
-  useEffect(() => {
-    if (element.active) {
-      animate(t, 500, tranSwipe(0.8));
-      animate(tDelay, 500, {
-        delay: 0.5,
-        ...tranSwipe(0.8),
-        onComplete: () => handleScroll(),
-      });
-    } else {
-      animate(t, 0, { delay: 0.5, ...tranSwipe(0.8) });
-      animate(tDelay, 0, tranSwipe(0.8));
-    }
-  }, [element]);
+  function animateElement() {
+    animate(t, 500, tranSwipe(0.8));
+    animate(tDelay, 500, {
+      delay: 0.5,
+      ...tranSwipe(0.8),
+    });
+  }
 
   return (
     <motion.div
@@ -170,11 +172,11 @@ export default function Preview({
             : { opacity: 0, transition: { delay: 0.5, ...tranSwipe(0.8) } }
         }
       ></motion.div>
-      <div className="text-container">
+      <motion.div className="text-container">
         <h1>{element.title}</h1>
         <p>{element.text}</p>
-      </div>
-      <div className="button-section">
+      </motion.div>
+      <motion.div className="button-section">
         <motion.div
           className="button-container"
           style={{ x: slideOut, opacity: fadeOut }}
@@ -201,9 +203,11 @@ export default function Preview({
             <span>Go back</span>
           </motion.button>
         </motion.div>
-      </div>
+      </motion.div>
+
       <motion.div key={index} className="project-slider" layout>
         <motion.div
+          ref={refSlider}
           className="slider-container"
           transition={tranSwipe(0.8)}
           layout
@@ -214,19 +218,21 @@ export default function Preview({
               className="image-container"
               transition={tranSwipe(0.8)}
               style={{ width: enlargeWidth }}
-              initial={{ borderRadius: 20 }}
               layout
             >
-              <motion.img
-                src={photo}
-                alt={i}
-                transition={tranSwipe(0.8)}
-                layout
-              />
+              <div className="image-layout">
+                <motion.img
+                  src={photo}
+                  alt={i}
+                  transition={tranSwipe(0.8)}
+                  layout
+                />
+              </div>
             </motion.div>
           ))}
         </motion.div>
       </motion.div>
+
       <motion.div
         className="description-background"
         style={{ opacity: dFadeIn }}
@@ -239,7 +245,7 @@ export default function Preview({
             animate={{
               x: 0,
               opacity: 1,
-              transition: { delay: 1, ...tranSwipe(0.8) },
+              transition: { delay: 1.5, ...tranSwipe(0.8) },
             }}
             exit={{ x: 30, opacity: 0, height: 0, transition: tranSwipe(0.6) }}
             style={{ y: dExpand }}
@@ -262,7 +268,6 @@ export default function Preview({
                       d.current === 0
                         ? animate(d, 500, { ...tranSwipe(0.6) })
                         : animate(d, 0, { ...tranSwipe(0.6) });
-                      console.log(d.get());
                     }}
                   >
                     <span style={{ fontSize: "16px" }}>Press for more</span>
@@ -279,7 +284,6 @@ export default function Preview({
                       d.current === 0
                         ? animate(d, 500, { ...tranSwipe(0.6) })
                         : animate(d, 0, { ...tranSwipe(0.6) });
-                      console.log(d.get());
                     }}
                   >
                     <span style={{ fontSize: "16px" }}>Press for less</span>

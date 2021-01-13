@@ -3,8 +3,11 @@ import React, { useEffect, useState } from "react";
 //PAGES
 import Navbar from "../Components/Navbar";
 import Preview from "../Components/Preview";
+//IMAGES
+import ArrowDown from "../Components/ArrowDown";
+import pageCover from "../Images/furniture/ProjectsCover.jpg";
 //ADDITIONALS
-import { motion, useAnimation, useCycle } from "framer-motion";
+import { motion, useAnimation, useCycle, useMotionValue } from "framer-motion";
 
 //PROJECTS
 import { projects } from "../Projects/Projects";
@@ -29,13 +32,36 @@ export default function Projects({ toggle, transition }) {
       transition: tranSwipe(0.8),
     }
   );
-
+  //start from the top of the page
   useEffect(() => {
     const scroll = window.scrollY;
     if (scroll !== 0) {
       window.scrollTo(0, 0);
     }
   }, []);
+
+  //this will be used to animate the scrolling of the window when element is active
+  const scroll = useMotionValue(0);
+  function setScroll() {
+    scroll.set(window.scrollY);
+  }
+  function setTouch(e) {
+    e.preventDefault();
+  }
+  //we set the scroll motionvalue to window.scrollY so it doesn't scroll from the top everytime.
+  useEffect(() => {
+    if (!preview) {
+      window.addEventListener("scroll", setScroll);
+      window.removeEventListener("touchmove", setTouch, { passive: false });
+    } else {
+      window.removeEventListener("scroll", setScroll);
+      window.addEventListener("touchmove", setTouch, { passive: false });
+    }
+
+    return () => {
+      window.removeEventListener("scroll", setScroll);
+    };
+  }, [preview]);
   //PAGE-IN ANIMATION
   const c = useAnimation();
   useEffect(() => {
@@ -64,6 +90,20 @@ export default function Projects({ toggle, transition }) {
       />
 
       <motion.div className="projects-content">
+        <div className="intro-to-projects">
+          <p>
+            Below you'll find the projects I did throughout my education in
+            architecture. The projects are sorted out by priority.
+          </p>
+
+          <div className="image-container">
+            <img src={pageCover} />
+            <div className="scroll-container">
+              <p>scroll for projects</p>
+              <ArrowDown color="white" />
+            </div>
+          </div>
+        </div>
         {elements.map((element, index) => (
           <Preview
             key={index}
@@ -72,6 +112,7 @@ export default function Projects({ toggle, transition }) {
             index={index}
             toggleHide={{ hide, cycleHide }}
             tranSwipe={tranSwipe}
+            scroll={scroll}
           />
         ))}
       </motion.div>
