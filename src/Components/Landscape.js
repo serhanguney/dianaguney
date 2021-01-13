@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { motion } from "framer-motion";
 import Phone from "./Phone";
@@ -9,6 +9,14 @@ export default function Landscape() {
   const icon = {
     boxShadow: "4px 4px 16px rgba(0,0,0,0.3)",
   };
+  useEffect(() => {
+    const targetElement = document.querySelector(".landscape-text");
+    targetElement.scrollIntoView({ behavior: "smooth" });
+    window.scrollTo({
+      top: "40px",
+      behavior: "smooth",
+    });
+  }, []);
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -24,7 +32,13 @@ export default function Landscape() {
         </p>
         <h2>Thank you :)</h2>
       </div>
-      <Phone />
+      <div className="landscape-visual">
+        <div className="phone-container">
+          <div className="phone">
+            <Phone />
+          </div>
+        </div>
+      </div>
     </motion.div>
   );
 }

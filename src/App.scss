@@ -906,26 +906,53 @@ svg {
 }
 
 .landscape {
+  position: absolute;
   width: 100vw;
-  height: 100vh;
+  height: 80vh;
+  margin: auto;
   display: flex;
+  transform: translateY(-50%);
+  top: 50%;
 
   .landscape-text {
-    width: 50%;
+    width: 60%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     text-align: center;
-    margin: 40px auto;
+    // margin: 40px auto;
+    align-items: center;
+    justify-content: center;
     * {
-      width: 100%;
+      width: 90%;
       margin: 10px auto;
       display: inline-block;
     }
   }
-  svg {
-    margin: 40px auto;
-    width: 8%;
-    height: 40%;
+  .landscape-visual {
+    position: relative;
+    width: 40%;
+    height: 100%;
+    margin: auto;
+    .phone-container {
+      position: relative;
+      padding-top: 80%;
+      width: 100%;
+      height: 0;
+      .phone {
+        position: absolute;
+        right: 0;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        svg {
+          width: 30%;
+          height: auto;
+        }
+      }
+    }
   }
 }
 //ADDITIONALS
