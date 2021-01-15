@@ -867,23 +867,60 @@ svg {
       margin: 1.25% 0;
       width: 100%;
       .slider-container {
+        position: relative;
         display: flex;
-        width: 90%;
-        margin: 0 auto;
-        // overflow: hidden;
+        a {
+          position: absolute;
+          text-decoration: none;
+          width: 5%;
+          padding: 2.5% 0;
+          z-index: 2;
+          font-size: 2rem;
+          text-align: center;
+          line-height: 77px;
+          cursor: pointer;
+          font-family: "Red Rose Regular";
+
+          &:nth-of-type(1) {
+            background: linear-gradient(
+              to left,
+              rgba(255, 255, 255, 0),
+              rgba(255, 255, 255, 1)
+            );
+            top: 0;
+            bottom: 0;
+            left: 0;
+          }
+          &:nth-of-type(2) {
+            background: linear-gradient(
+              to right,
+              rgba(255, 255, 255, 0),
+              rgba(255, 255, 255, 1)
+            );
+            top: 0;
+            bottom: 0;
+            right: 0;
+          }
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+            // box-shadow: 4px 0 12px rgba(255, 255, 255, 0.7);
+          }
+        }
         .slider-mask {
-          // align-self: flex-start;
           flex-shrink: 0;
-          display: flex;
-          // justify-content: center;
-          width: 100%;
+          display: inline-block;
+          width: 90%;
+          &:nth-of-type(1) {
+            padding-left: 5%;
+          }
           .card {
             position: relative;
-            flex-shrink: 0;
-            margin: 0 10px;
+            box-sizing: border-box;
+            display: inline-block;
+            padding: 0 0.5%;
             .slider-image-container {
               position: relative;
-              width: 100%;
+
               height: 0;
               padding-top: calc(2 / 3 * 100%);
               overflow: hidden;
@@ -896,6 +933,7 @@ svg {
                 bottom: 0;
                 right: 0;
                 width: 100%;
+                cursor: pointer;
               }
             }
           }
@@ -920,7 +958,6 @@ svg {
     display: flex;
     flex-direction: column;
     text-align: center;
-    // margin: 40px auto;
     align-items: center;
     justify-content: center;
     * {

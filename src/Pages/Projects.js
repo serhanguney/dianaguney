@@ -54,12 +54,13 @@ export default function Projects({ toggle, transition }) {
 
   const disablePreviewScroll = (reference) => {
     if (reference) {
-      // disableBodyScroll(reference);
+      disableBodyScroll(reference);
     }
   };
 
   const enablePreviewScroll = (reference) => {
     if (reference) {
+      enableBodyScroll(reference);
     }
   };
 
@@ -111,7 +112,7 @@ export default function Projects({ toggle, transition }) {
         <div className="intro-to-projects">
           <p>
             Below you'll find the projects I did throughout my education in
-            architecture. The projects are sorted out by priority.
+            architecture.
           </p>
 
           <div className="image-container">

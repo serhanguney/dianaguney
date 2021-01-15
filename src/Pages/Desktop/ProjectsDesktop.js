@@ -15,7 +15,6 @@ export default function ProjectsDesktop({ transition }) {
 
   //block is for selecting the current slider type from the available types.
   const [block, setBlock] = useState({});
-  const [images, setImages] = useState([]);
 
   useEffect(() => {
     //set the block type on load
@@ -72,13 +71,6 @@ export default function ProjectsDesktop({ transition }) {
     };
   }, []);
   //setting the image count using the current block
-  useEffect(() => {
-    // const imageCount = [];
-    // for (let i = 0; i < block.count; i++) {
-    //   imageCount.push(<div className="slider-image"></div>);
-    // }
-    // setImages(imageCount);
-  }, [block]);
 
   return (
     <div className="projects">
@@ -91,22 +83,6 @@ export default function ProjectsDesktop({ transition }) {
           block={block}
         />
       ))}
-
-      {/* <div className="slider-mask">
-        {images.map((item, index) => (
-          <div
-            className="slider-image-container"
-            style={{ width: block.width }}
-            key={index}
-          >
-            {item}
-          </div>
-        ))}
-      </div> */}
     </div>
-    // <Project>
-    //   <Slider>
-    //   </Slider>
-    // </Project>
   );
 }
