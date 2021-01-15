@@ -23,7 +23,7 @@ export default function Slider({ tranSwipe, project, block }) {
   // useEffect(() => console.log(sliderCount), [sliderCount]);
   return (
     <div className="project-container">
-      <Modal modalObject={{ modal, setModal }}></Modal>
+      <Modal modalObject={{ modal, setModal }} tranSwipe={tranSwipe}></Modal>
       <h1>{project.title}</h1>
       <p>{project.text}</p>
       <div className="slider-container">
