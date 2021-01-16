@@ -1,60 +1,94 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import ModalImage from "./ModalImage";
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useTransform,
+  animate,
+} from "framer-motion";
 
-import { motion, AnimatePresence } from "framer-motion";
+import clamp from "lodash-es/clamp";
 
 export default function Modal({ modalObject, tranSwipe }) {
   const { modal, setModal } = modalObject;
-  useEffect(() => modal.element && console.log("modal", modal), [modal]);
+  // useEffect(() => modal.element && console.log("modal", modal), [modal]);
+  //VARIANTS
   const containerVariants = {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
     exit: { opacity: 0 },
   };
-  const imageVariants = {
-    initial: { opacity: 0, rotateY: 20 },
-    animate: {
-      opacity: 1,
-      rotateY: 0,
-      transition: { ...tranSwipe(1), delay: 0.4 },
-    },
-    exit: { opacity: 0, rotateY: 20 },
-  };
+
   const bgVariants = {
-    initial: { opacity: 0 },
+    initial: { opacity: 0, transition: { delay: 0.4 } },
     animate: { opacity: 1 },
     exit: { opacity: 0, transition: { delay: 0.4 } },
   };
+  const imageContainer = {
+    initial: { opacity: 1, transition: { staggerChildren: 1 } },
+    animate: { opacity: 1, transition: { staggerChildren: 1 } },
+  };
+  //SLIDER
+
+  const [slideIndex, setSlideIndex] = useState(modal.index && modal.index);
+
+  // useEffect(() => console.log("parent", slideIndex), []);
+
   return (
-    <AnimatePresence>
-      {modal.active && (
-        <motion.div
-          className="modal"
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          variants={containerVariants}
-        >
-          <motion.div className="background" variants={bgVariants}></motion.div>
-          <div className="content-container">
-            <div className="visual-content">
-              <button
-                onClick={() => setModal({ active: false, element: null })}
-              >
-                X
-              </button>
-              <div className="slider">
-                <motion.div
-                  className="image-container"
-                  variants={imageVariants}
-                >
-                  <img src={modal.element.photos[modal.index]} />
-                </motion.div>
-              </div>
-            </div>
-            <div className="text-content"></div>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <motion.div
+      className="modal"
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={containerVariants}
+    >
+      <motion.div
+        className="background"
+        variants={bgVariants}
+        exit="exit"
+      ></motion.div>
+      <div className="content-container">
+        <div className="visual-content">
+          <motion.div
+            className="modal-slider"
+            initial="initial"
+            animate="animate"
+            variants={imageContainer}
+            inherit={false}
+          >
+            {modal.element.photos.map((item, index) => (
+              <ModalImage
+                key={index}
+                i={index}
+                slideIndex={slideIndex}
+                modal={modal}
+                photo={item}
+                tranSwipe={tranSwipe}
+              />
+            ))}
+          </motion.div>
+        </div>
+        <div className="function-container">
+          <a
+            onClick={() =>
+              setSlideIndex(
+                clamp(slideIndex + 1, 0, modal.element.photos.length - 1)
+              )
+            }
+          >{`<`}</a>
+          <a
+            onClick={() =>
+              setSlideIndex(
+                clamp(slideIndex - 1, 0, modal.element.photos.length - 1)
+              )
+            }
+          >{`>`}</a>
+          <button onClick={() => setModal({ active: false, element: null })}>
+            x
+          </button>
+        </div>
+      </div>
+    </motion.div>
   );
 }
