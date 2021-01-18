@@ -17,6 +17,7 @@ export default function ProjectsDesktop({ transition }) {
   const [block, setBlock] = useState({});
 
   useEffect(() => {
+    console.log("you're in projects page");
     //set the block type on load
     if (window.innerWidth > 1100) {
       setBlock({

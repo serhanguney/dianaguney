@@ -9,6 +9,8 @@ import Skills from "./Pages/Skills";
 import Contact from "./Pages/Contact";
 import HomeDesktop from "./Pages/Desktop/HomeDesktop";
 import ProjectsDesktop from "./Pages/Desktop/ProjectsDesktop";
+import SkillsDesktop from "./Pages/Desktop/SkillsDesktop";
+import ContactDesktop from "./Pages/Desktop/ContactDesktop";
 //COMPONENTs
 import Landscape from "./Components/Landscape";
 
@@ -96,22 +98,32 @@ function App() {
                   <Route
                     exact
                     path="/skills"
-                    render={() => (
-                      <Skills
-                        toggle={{ menuOpen, setMenuOpen }}
-                        transition={{ tranSwipe, tranSmooth }}
-                      />
-                    )}
+                    render={() =>
+                      isDesktop ? (
+                        <SkillsDesktop tranSwipe={tranSwipe} />
+                      ) : (
+                        <Skills
+                          toggle={{ menuOpen, setMenuOpen }}
+                          transition={{ tranSwipe, tranSmooth }}
+                        />
+                      )
+                    }
                   />
                   <Route
                     exact
                     path="/contact"
-                    render={() => (
-                      <Contact
-                        toggle={{ menuOpen, setMenuOpen }}
-                        transition={{ tranSwipe, tranSmooth }}
-                      />
-                    )}
+                    render={() =>
+                      isDesktop ? (
+                        <ContactDesktop
+                          transition={{ tranSmooth, tranSwipe }}
+                        />
+                      ) : (
+                        <Contact
+                          toggle={{ menuOpen, setMenuOpen }}
+                          transition={{ tranSwipe, tranSmooth }}
+                        />
+                      )
+                    }
                   />
                 </Switch>
               </AnimatePresence>

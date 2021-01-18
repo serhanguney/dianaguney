@@ -8,34 +8,33 @@ import checkIcon from "../SVGs/CheckIcon.svg";
 //ADDITIONALS
 import { motion, useAnimation } from "framer-motion";
 
+export const skills = [
+  {
+    title: "2D Modeling",
+    list: [{ name: "AutoCad 2D", advanced: true }],
+  },
+  {
+    title: "3D Modeling",
+    list: [
+      { name: "Rhino 3D", advanced: true },
+      { name: "Sketch-up 3D", advanced: false },
+      { name: "Microstation", advanced: true },
+      { name: "3D point cloud", advanced: true },
+      { name: "Physical Modelling", advanced: true },
+    ],
+  },
+  {
+    title: "Editing",
+    list: [
+      { name: "Photoshop CS6", advanced: true },
+      { name: "Indesign CS6", advanced: true },
+      { name: "Illustrator CS6", advanced: true },
+    ],
+  },
+];
 export default function Skills({ toggle, transition }) {
   const { menuOpen, setMenuOpen } = toggle;
   const { tranSwipe, tranSmooth } = transition;
-
-  const skills = [
-    {
-      title: "2D Modeling",
-      list: [{ name: "AutoCad 2D", advanced: true }],
-    },
-    {
-      title: "3D Modeling",
-      list: [
-        { name: "Rhino 3D", advanced: true },
-        { name: "Sketch-up 3D", advanced: false },
-        { name: "Microstation", advanced: true },
-        { name: "3D point cloud", advanced: true },
-        { name: "Physical Modelling", advanced: true },
-      ],
-    },
-    {
-      title: "Editing",
-      list: [
-        { name: "Photoshop CS6", advanced: true },
-        { name: "Indesign CS6", advanced: true },
-        { name: "Illustrator CS6", advanced: true },
-      ],
-    },
-  ];
 
   //PAGE-IN ANIMATION
   const c = useAnimation();

@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import Modal from "./Modal";
 import {
   AnimatePresence,
@@ -32,10 +34,11 @@ export default function Slider({ tranSwipe, project, block }) {
   const width = useRef(0);
 
   useEffect(() => {
-    window.addEventListener("load", function select() {
-      setLoad(true);
-    });
+    // window.addEventListener("load", function loadPage() {
+    //   console.log("welcome");
 
+    // });
+    setLoad(true);
     if (block.count) {
       //set the image block thresholds for how many slider-masks we'll have
       const division = project.photos.reduce((thresholds, photo, index) => {
@@ -48,24 +51,22 @@ export default function Slider({ tranSwipe, project, block }) {
 
       setSliderCount(division);
     }
-    return () => {
-      window.removeEventListener("load", function select() {
-        setLoad(true);
-      });
-    };
   }, [block]);
 
   useEffect(() => {
     //set width of slider mask
-    if (load) {
+    if (load && sliderCount.length > 0) {
       const target = document.getElementById(`${project.title}-slider`);
       const children = Array.from(target.querySelectorAll(".slider-mask"));
       slideLimit.current = children.length;
+      console.log("you're in Slider component", [target, children]);
       width.current =
         children[0].getBoundingClientRect().width - window.innerWidth * 0.05;
       // console.log("padding", window.innerWidth * 0.05);
+    } else {
+      return;
     }
-  }, [load]);
+  }, [load, sliderCount]);
 
   // useEffect(() => slide.onChange((value) => console.log(value)), [slide]);
 
@@ -91,14 +92,6 @@ export default function Slider({ tranSwipe, project, block }) {
       maskIndex.current < slideLimit.current
     ) {
       setProgress(true);
-      // console.log("slideaway", [slide.current, fallback.current]);
-      // console.log("slideaway", [maskIndex.current, slideLimit.current]);
-      // console.log("slide,width,direction", [
-      //   slide.current,
-      //   width.current,
-      //   direction,
-      // ]);
-
       //delta is the difference we set later on in winkAnimate with fallback
       const delta = direction > 0 ? -50 : 50;
       animate(
@@ -221,6 +214,7 @@ export default function Slider({ tranSwipe, project, block }) {
                         >
                           <img
                             className="slider-image"
+                            effect="blur"
                             src={photo}
                             alt={index}
                           />

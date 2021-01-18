@@ -14,9 +14,8 @@ export default function NavbarDesktop({ tranSwipe, tranSmooth }) {
   const [icon, setIcon] = useState(null);
 
   //TITLE MATCH - we'll send the page title to MenuTitle component to animate it.
-  const filteredItems = menuItems.filter(
-    (item) => location.pathname === `/${item.link}`
-  );
+  const filteredItems = menuItems.filter((item) => `/${item.link}` === "/");
+  console.log(filteredItems);
   const mainTitle = filteredItems[0].text.split("");
 
   //ICON MATCH - we'll use location to do the icon matchin via useEffect
@@ -37,18 +36,23 @@ export default function NavbarDesktop({ tranSwipe, tranSmooth }) {
   return (
     <div className="navbar-desktop">
       <div className="menu-icon">{icon}</div>
-      <div className="menu-title">
-        {<MenuTitle title={mainTitle} tranSwipe={tranSwipe} />}
-      </div>
+      <Link to={{ pathname: "/", state: false }}>
+        <div className="menu-title">
+          {<MenuTitle title={mainTitle} tranSwipe={tranSwipe} />}
+        </div>
+      </Link>
       <div className="menu-items">
-        {menuItems.map((item, index) => (
-          <Link
-            key={index}
-            to={{ pathname: item.link, state: item.fromDashboard }}
-          >
-            <h2>{item.text}</h2>
-          </Link>
-        ))}
+        {menuItems.map(
+          (item, index) =>
+            item.title !== "Home" && (
+              <Link
+                key={index}
+                to={{ pathname: `/${item.link}`, state: item.fromDashboard }}
+              >
+                <h2>{item.text}</h2>
+              </Link>
+            )
+        )}
       </div>
     </div>
   );

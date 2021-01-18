@@ -13,6 +13,7 @@ import clamp from "lodash-es/clamp";
 export default function Modal({ modalObject, tranSwipe }) {
   const { modal, setModal } = modalObject;
   // useEffect(() => modal.element && console.log("modal", modal), [modal]);
+  const direction = useRef(0);
   //VARIANTS
   const containerVariants = {
     initial: { opacity: 0 },
@@ -65,25 +66,28 @@ export default function Modal({ modalObject, tranSwipe }) {
                 modal={modal}
                 photo={item}
                 tranSwipe={tranSwipe}
+                direction={direction}
               />
             ))}
           </motion.div>
         </div>
         <div className="function-container">
-          <a
-            onClick={() =>
+          <motion.a
+            onClick={() => {
               setSlideIndex(
                 clamp(slideIndex + 1, 0, modal.element.photos.length - 1)
-              )
-            }
-          >{`<`}</a>
-          <a
-            onClick={() =>
+              );
+              direction.current = -1;
+            }}
+          >{`<`}</motion.a>
+          <motion.a
+            onClick={() => {
               setSlideIndex(
                 clamp(slideIndex - 1, 0, modal.element.photos.length - 1)
-              )
-            }
-          >{`>`}</a>
+              );
+              direction.current = 1;
+            }}
+          >{`>`}</motion.a>
           <button onClick={() => setModal({ active: false, element: null })}>
             x
           </button>
