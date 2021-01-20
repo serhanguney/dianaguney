@@ -1,15 +1,17 @@
 {
   "files": {
-    "main.css": "/dianaguney/static/css/main.4e69ebae.chunk.css",
-    "main.js": "/dianaguney/static/js/main.8aad1271.chunk.js",
-    "main.js.map": "/dianaguney/static/js/main.8aad1271.chunk.js.map",
+    "main.css": "/dianaguney/static/css/main.9ebb7878.chunk.css",
+    "main.js": "/dianaguney/static/js/main.a30b5062.chunk.js",
+    "main.js.map": "/dianaguney/static/js/main.a30b5062.chunk.js.map",
     "runtime-main.js": "/dianaguney/static/js/runtime-main.0ee28901.js",
     "runtime-main.js.map": "/dianaguney/static/js/runtime-main.0ee28901.js.map",
-    "static/js/2.45452fc9.chunk.js": "/dianaguney/static/js/2.45452fc9.chunk.js",
-    "static/js/2.45452fc9.chunk.js.map": "/dianaguney/static/js/2.45452fc9.chunk.js.map",
+    "static/css/2.6ef2fac9.chunk.css": "/dianaguney/static/css/2.6ef2fac9.chunk.css",
+    "static/js/2.a8ac138e.chunk.js": "/dianaguney/static/js/2.a8ac138e.chunk.js",
+    "static/js/2.a8ac138e.chunk.js.map": "/dianaguney/static/js/2.a8ac138e.chunk.js.map",
     "index.html": "/dianaguney/index.html",
-    "static/css/main.4e69ebae.chunk.css.map": "/dianaguney/static/css/main.4e69ebae.chunk.css.map",
-    "static/js/2.45452fc9.chunk.js.LICENSE.txt": "/dianaguney/static/js/2.45452fc9.chunk.js.LICENSE.txt",
+    "static/css/2.6ef2fac9.chunk.css.map": "/dianaguney/static/css/2.6ef2fac9.chunk.css.map",
+    "static/css/main.9ebb7878.chunk.css.map": "/dianaguney/static/css/main.9ebb7878.chunk.css.map",
+    "static/js/2.a8ac138e.chunk.js.LICENSE.txt": "/dianaguney/static/js/2.a8ac138e.chunk.js.LICENSE.txt",
     "static/media/1.0eefb0fd.jpg": "/dianaguney/static/media/1.0eefb0fd.jpg",
     "static/media/1.12c1f2d0.jpg": "/dianaguney/static/media/1.12c1f2d0.jpg",
     "static/media/1.2a49edef.jpg": "/dianaguney/static/media/1.2a49edef.jpg",
@@ -68,6 +70,7 @@
     "static/media/9.25641022.jpg": "/dianaguney/static/media/9.25641022.jpg",
     "static/media/CheckIcon.8f41f104.svg": "/dianaguney/static/media/CheckIcon.8f41f104.svg",
     "static/media/ContactCover.bcaf9beb.jpg": "/dianaguney/static/media/ContactCover.bcaf9beb.jpg",
+    "static/media/InfoIcon.82e6bdc6.svg": "/dianaguney/static/media/InfoIcon.82e6bdc6.svg",
     "static/media/ProjectsCover.cb032996.jpg": "/dianaguney/static/media/ProjectsCover.cb032996.jpg",
     "static/media/App.scss": "/dianaguney/static/media/RedRose-Regular.0f7e104b.woff",
     "static/media/Signature.8b1b3ab8.svg": "/dianaguney/static/media/Signature.8b1b3ab8.svg",
@@ -79,8 +82,9 @@
   },
   "entrypoints": [
     "static/js/runtime-main.0ee28901.js",
-    "static/js/2.45452fc9.chunk.js",
-    "static/css/main.4e69ebae.chunk.css",
-    "static/js/main.8aad1271.chunk.js"
+    "static/css/2.6ef2fac9.chunk.css",
+    "static/js/2.a8ac138e.chunk.js",
+    "static/css/main.9ebb7878.chunk.css",
+    "static/js/main.a30b5062.chunk.js"
   ]
 }
