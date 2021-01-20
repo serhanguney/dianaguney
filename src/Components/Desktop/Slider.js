@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import ArrowUp from "../ArrowUp";
+import ArrowDown from "../ArrowDown";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import Modal from "./Modal";
 import {
@@ -8,6 +9,7 @@ import {
   motion,
   useMotionValue,
   animate,
+  useTransform,
 } from "framer-motion";
 import { clamp } from "lodash-es";
 
@@ -23,6 +25,9 @@ export default function Slider({ tranSwipe, project, block }) {
 
   const slide = useMotionValue(0);
 
+  //paragraph animations
+  const paragraph = useMotionValue(0);
+  const pDown = useTransform(paragraph, [0, 100], ["100%", "0%"]);
   //slideLimit and maskIndex is required to set limits to user swipes
   const slideLimit = useRef(0);
   const maskIndex = useRef(0);
@@ -59,7 +64,6 @@ export default function Slider({ tranSwipe, project, block }) {
       const target = document.getElementById(`${project.title}-slider`);
       const children = Array.from(target.querySelectorAll(".slider-mask"));
       slideLimit.current = children.length;
-      console.log("you're in Slider component", [target, children]);
       width.current =
         children[0].getBoundingClientRect().width - window.innerWidth * 0.05;
       // console.log("padding", window.innerWidth * 0.05);
@@ -104,7 +108,6 @@ export default function Slider({ tranSwipe, project, block }) {
         duration: 0.3,
       });
       maskIndex.current = slideLimit.current - 1;
-      // console.log("you're at limit", maskIndex);
     }
   }
 
@@ -153,20 +156,90 @@ export default function Slider({ tranSwipe, project, block }) {
   return (
     <>
       {load && (
-        <div className="project-container">
-          <AnimatePresence exitBeforeEnter>
+        <motion.div
+          className="project-container"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, transition: tranSwipe(0.8) }}
+          exit={{ opacity: 0, transition: { delay: 1 } }}
+        >
+          <AnimatePresence>
             {modal.active && (
-              <Modal
-                modalObject={{ modal, setModal }}
-                tranSwipe={tranSwipe}
-              ></Modal>
+              <Modal modalObject={{ modal, setModal }} tranSwipe={tranSwipe} />
             )}
           </AnimatePresence>
+          <motion.div
+            className="button-container"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { delay: 2, ...tranSwipe(1) } }}
+            exit={{ opacity: 0, transition: { delay: 0.2 } }}
+          >
+            <ArrowUp />
+            <button onClick={() => animate(paragraph, 100, tranSwipe(1))}>
+              Read more
+            </button>
+          </motion.div>
+          <motion.div
+            className="paragraph-container"
+            initial={{ y: window.innerHeight }}
+            style={{ y: pDown }}
+          >
+            <div className="button-container">
+              <ArrowDown />
+              <button onClick={() => animate(paragraph, 0, tranSwipe(1))}>
+                Read less
+              </button>
+            </div>
+            <h2>Description</h2>
+            <p>{project.paragraph}</p>
+          </motion.div>
+
           <div className="text-container">
-            <h1>{project.title}</h1>
-            <p>{project.text}</p>
+            <div className="introduction">
+              <span>
+                <motion.h1
+                  initial={{ y: "100%" }}
+                  animate={{
+                    y: "0%",
+                    transition: { delay: 1.2, ...tranSwipe(1) },
+                  }}
+                  exit={{
+                    y: "-100%",
+                    transition: { delay: 0.2, ...tranSwipe(0.8) },
+                  }}
+                >
+                  {project.title}
+                </motion.h1>
+              </span>
+              <span>
+                <motion.p
+                  initial={{ y: "100%" }}
+                  animate={{
+                    y: "0%",
+                    transition: { delay: 1.4, ...tranSwipe(1) },
+                  }}
+                  exit={{ y: "-100%", transition: tranSwipe(0.8) }}
+                >
+                  {project.text}
+                </motion.p>
+              </span>
+              {/* <p>{project.paragraph}</p> */}
+            </div>
           </div>
-          <div className="slider-container" id={`${project.title}-slider`}>
+          <motion.div
+            className="slider-container"
+            id={`${project.title}-slider`}
+            initial={{ y: "10%", opacity: 0 }}
+            animate={{
+              y: "0%",
+              opacity: 1,
+              transition: { delay: 1.6, ...tranSwipe(1) },
+            }}
+            exit={{
+              y: "-10%",
+              opacity: 0,
+              transition: { delay: 0.2, ...tranSwipe(1) },
+            }}
+          >
             {sliderCount.length > 1 && (
               <>
                 <a
@@ -224,8 +297,8 @@ export default function Slider({ tranSwipe, project, block }) {
                 )}
               </motion.div>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
     </>
   );

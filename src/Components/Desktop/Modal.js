@@ -1,12 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import ModalImage from "./ModalImage";
-import {
-  motion,
-  AnimatePresence,
-  useMotionValue,
-  useTransform,
-  animate,
-} from "framer-motion";
+import { motion } from "framer-motion";
 
 import clamp from "lodash-es/clamp";
 
@@ -44,11 +38,7 @@ export default function Modal({ modalObject, tranSwipe }) {
       exit="exit"
       variants={containerVariants}
     >
-      <motion.div
-        className="background"
-        variants={bgVariants}
-        exit="exit"
-      ></motion.div>
+      <motion.div className="background" variants={bgVariants}></motion.div>
       <div className="content-container">
         <div className="visual-content">
           <motion.div

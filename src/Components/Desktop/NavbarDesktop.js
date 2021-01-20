@@ -4,6 +4,7 @@ import { useLocation, Link } from "react-router-dom";
 import { menuItems } from "../Navbar";
 import Signature from "../Signature";
 import MenuTitle from "../MenuTitle";
+import { motion } from "framer-motion";
 
 export default function NavbarDesktop({ tranSwipe, tranSmooth }) {
   //define location to anticipate user's paths based on which page he is coming from.
@@ -25,17 +26,31 @@ export default function NavbarDesktop({ tranSwipe, tranSmooth }) {
     );
 
     //since the icon of the homepage is the only animatable icon we'll have to do an if conditional
-    if (item[0].title === "Home") {
-      setIcon(<Signature tranSmooth={tranSmooth} tranSwipe={tranSwipe} />);
-    } else {
-      setIcon(<img src={item[0].icon} alt={item[0].title} />);
-    }
+    // if (item[0].title === "Home") {
+    //   setIcon(<Signature tranSmooth={tranSmooth} tranSwipe={tranSwipe} />);
+    // } else {
+    setIcon(<img src={item[0].icon} alt={item[0].title} />);
+    // }
     console.log("item", [item, location.pathname]);
   }, []);
 
   return (
-    <div className="navbar-desktop">
-      <div className="menu-icon">{icon}</div>
+    <motion.div
+      className="navbar-desktop"
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 1 }}
+    >
+      <span className="icon-container">
+        <motion.div
+          className="menu-icon"
+          initial={{ y: "100%", opacity: 0 }}
+          animate={{ y: "0%", opacity: 1 }}
+          exit={{ y: "-100%", opacity: 0 }}
+          transition={tranSwipe(0.8)}
+        >
+          {icon}
+        </motion.div>
+      </span>
       <Link to={{ pathname: "/", state: false }}>
         <div className="menu-title">
           {<MenuTitle title={mainTitle} tranSwipe={tranSwipe} />}
@@ -54,6 +69,6 @@ export default function NavbarDesktop({ tranSwipe, tranSmooth }) {
             )
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }

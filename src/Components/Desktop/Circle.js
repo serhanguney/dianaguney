@@ -116,7 +116,11 @@ export default function Circle({
                   <p>{contact.phone}</p>
                 </div>
               </div>
-              <Signature tranSwipe={tranSwipe} tranSmooth={tranSmooth} />
+              <Signature
+                delay={2}
+                tranSwipe={tranSwipe}
+                tranSmooth={tranSmooth}
+              />
             </>
           )}
         </div>

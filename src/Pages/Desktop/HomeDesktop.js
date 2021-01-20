@@ -5,61 +5,101 @@ import NavbarDesktop from "../../Components/Desktop/NavbarDesktop";
 import Circle from "../../Components/Desktop/Circle";
 import { projects } from "../../Projects/Projects";
 
-import { motion, useAnimation } from "framer-motion";
+import { motion, useAnimation, useIsPresent } from "framer-motion";
 
 export default function HomeDesktop({ transition }) {
   const { tranSwipe, tranSmooth } = transition;
   const hover = useAnimation();
+  const isPresent = useIsPresent();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    window.addEventListener("load", () =>
-      setTimeout(() => setIsLoaded(true), [1000])
+    isPresent && setIsLoaded(true);
+  }, []);
+  const text = [
+    "My background is in Architecture and design and I have a major interest for film and set design.",
+    "Combining digital media and physcial modeling I love to come up with new designs, scenes and stories",
+    "to tell.I Have a record of working with model making, graphical and technical presentations,",
+    "conceptual design and art, sketches and drawings.",
+  ];
+  const variantParent = {
+    initial: { opacity: 1 },
+    animate: { opacity: 1 },
+    exit: { opacity: 1 },
+  };
+  const variantChild = {
+    initial: { y: "-100%" },
+    animate: (i) => ({
+      y: "0%",
+      transition: { delay: i * 0.02, ...tranSwipe(1) },
+    }),
+    exit: { y: "-100%", transition: tranSwipe(1) },
+  };
+
+  useEffect(() => {
+    console.log("youre in ");
+    setTimeout(
+      () =>
+        hover.start({
+          opacity: 1,
+          x: -2,
+          y: 3,
+          rotateZ: -3,
+          scale: 1.05,
+          transition: { duration: 0.5 },
+        }),
+      3000
     );
-    return () => {
-      window.removeEventListener("load", () =>
-        setTimeout(() => setIsLoaded(true), [1000])
-      );
-    };
   }, []);
   return (
     <>
       {isLoaded && (
-        <motion.div
-          className="home-page"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
+        <div className="home-page">
           <div className="navbar-container">
             <NavbarDesktop tranSmooth={tranSmooth} tranSwipe={tranSwipe} />
           </div>
-          <div className="content">
+          <motion.div
+            className="content"
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={variantParent}
+            transition={{ duration: 1 }}
+          >
             <div className="text-column">
               <div className="text-container">
-                <h1>
-                  Archituecture <br></br>
-                  {"&"} Illustrations
-                </h1>
-                <h2>
-                  I am a passionate designer with love for story telling through
-                  architecture and cinema.
-                </h2>
-                <p>
-                  My background is in Architecture and design and I have a major
-                  interest for film and set design. Combining digital media and
-                  physcial modeling I love to come up with new designs, scenes
-                  and stories to tell.I Have a record of working with model
-                  making, graphical and technical presentations, conceptual
-                  design and art, sketches and drawings.
-                </p>
+                <div className="animation-container">
+                  <motion.h1 variants={variantChild}>
+                    Archituecture <br></br>
+                  </motion.h1>
+                </div>
+                <div className="animation-container">
+                  <motion.h1 custom={0} variants={variantChild}>
+                    {"&"} Illustrations
+                  </motion.h1>
+                </div>
+                <div className="animation-container">
+                  <motion.h2 custom={1} variants={variantChild}>
+                    I am a passionate designer with love for story telling
+                    through architecture and cinema.
+                  </motion.h2>
+                </div>
+                {text.map((item, index) => (
+                  <div className="animation-container">
+                    <motion.p custom={index} variants={variantChild}>
+                      {item}
+                    </motion.p>
+                  </div>
+                ))}
               </div>
               <motion.div className="button-container">
                 <motion.div
                   className="button"
                   whileHover={() =>
+                    isPresent &&
                     hover.start({ x: 0, y: 0, rotateZ: 0, scale: 1 })
                   }
                   onHoverEnd={() =>
+                    isPresent &&
                     hover.start({
                       x: -2,
                       y: 3,
@@ -67,6 +107,16 @@ export default function HomeDesktop({ transition }) {
                       scale: 1.05,
                     })
                   }
+                  initial={{
+                    opacity: 0,
+                    scale: 0.4,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    scale: 1,
+                    transition: { delay: 0.2, ...tranSwipe(1) },
+                  }}
+                  exit={{ scale: 0.4, opacity: 0 }}
                 >
                   <Link to={{ pathname: "/projects", state: false }}>
                     <button>
@@ -77,20 +127,40 @@ export default function HomeDesktop({ transition }) {
                 <motion.div
                   className="shadow"
                   initial={{
-                    x: -2,
-                    y: 3,
-                    rotateZ: -3,
-                    scale: 1.05,
+                    x: 0,
+                    y: 0,
+                    rotateZ: 0,
+                    scale: 1,
+                    opacity: 0,
                   }}
+                  exit={{ opacity: 0 }}
+                  // transition={{ delay: 0.2, ...tranSwipe(1) }}
                   animate={hover}
                 ></motion.div>
               </motion.div>
             </div>
-            <div className="visual-column">
+            <motion.div
+              className="visual-column"
+              initial={{ x: 200, scale: 0.7, opacity: 0, y: -50 }}
+              animate={{
+                x: 0,
+                scale: 1,
+                opacity: 1,
+                y: 0,
+                transition: tranSwipe(1),
+              }}
+              exit={{
+                x: 1000,
+                scale: 0.4,
+                opacity: 0,
+                y: -50,
+                transition: { delay: 0.2, ...tranSwipe(2) },
+              }}
+            >
               <Circle projects={projects} />
-            </div>
-          </div>
-        </motion.div>
+            </motion.div>
+          </motion.div>
+        </div>
       )}
     </>
   );
