@@ -39,10 +39,6 @@ export default function Slider({ tranSwipe, project, block }) {
   const width = useRef(0);
 
   useEffect(() => {
-    // window.addEventListener("load", function loadPage() {
-    //   console.log("welcome");
-
-    // });
     setLoad(true);
     if (block.count) {
       //set the image block thresholds for how many slider-masks we'll have
@@ -52,7 +48,6 @@ export default function Slider({ tranSwipe, project, block }) {
         }
         return thresholds;
       }, []);
-      // console.log("divide by", [division, project.photos.length]);
 
       setSliderCount(division);
     }
@@ -66,14 +61,19 @@ export default function Slider({ tranSwipe, project, block }) {
       slideLimit.current = children.length;
       width.current =
         children[0].getBoundingClientRect().width - window.innerWidth * 0.05;
-      // console.log("padding", window.innerWidth * 0.05);
     } else {
       return;
     }
   }, [load, sliderCount]);
 
-  // useEffect(() => slide.onChange((value) => console.log(value)), [slide]);
-
+  useEffect(() => {
+    const target = document.querySelector("html");
+    if (modal.active) {
+      target.classList.add("no-scroll");
+    } else {
+      target.classList.remove("no-scroll");
+    }
+  }, [modal]);
   function slideAway(direction) {
     //animate the slider mask slidings within set limitations
     //using maskIndex I set the limits for the user's swipe actions
@@ -82,7 +82,6 @@ export default function Slider({ tranSwipe, project, block }) {
       maskIndex.current - direction,
       slideLimit.current
     );
-    // console.log("maskindex,slidelimit", maskIndex.current, slideLimit.current);
 
     if (maskIndex.current < 0) {
       //this is for when you reach zero limit where there is nothing to show
@@ -126,7 +125,6 @@ export default function Slider({ tranSwipe, project, block }) {
             damping: 20,
           });
         } else {
-          // console.log(fallback.current);
           animate(slide, fallback.current, {
             type: "spring",
             stiffness: 250,
@@ -136,14 +134,13 @@ export default function Slider({ tranSwipe, project, block }) {
       } else {
         if (enter > 0) {
           fallback.current = slide.current;
-          // console.log("mouseenter", fallback.current);
+
           animate(slide, fallback.current + 50, {
             type: "spring",
             stiffness: 250,
             damping: 20,
           });
         } else {
-          // console.log("mouseleave", fallback.current);
           animate(slide, fallback.current, {
             type: "spring",
             stiffness: 250,
@@ -222,7 +219,6 @@ export default function Slider({ tranSwipe, project, block }) {
                   {project.text}
                 </motion.p>
               </span>
-              {/* <p>{project.paragraph}</p> */}
             </div>
           </div>
           <motion.div

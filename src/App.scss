@@ -836,7 +836,7 @@ svg {
               width: 30%;
               padding-top: 20%;
               margin: 10px;
-              border-radius: 20px;
+              border-radius: 5px;
               box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.3);
               overflow: hidden;
               img {
@@ -928,12 +928,13 @@ svg {
           left: 0;
           width: 100%;
           height: 100%;
-          background: linear-gradient(
-            to bottom,
-            $brand-color,
-            #fff8f081,
-            $brand-color
-          );
+          // background: linear-gradient(
+          //   to bottom,
+          //   $brand-color,
+          //   #fff8f081,
+          //   $brand-color
+          // );
+          background-color: #fff8f0f3;
           pointer-events: none;
           z-index: 3;
         }
@@ -958,7 +959,7 @@ svg {
                 width: 100%;
                 overflow: hidden;
                 padding-top: calc(9 / 13 * 100%);
-                border-radius: 10px;
+                border-radius: 5px;
                 height: 0;
                 z-index: 4;
                 box-shadow: 8px 8px 36px rgba(0, 0, 0, 0.4);
@@ -978,8 +979,9 @@ svg {
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 10%;
             z-index: 4;
-            margin: 50px auto;
+            margin: auto auto 0 auto;
             a {
               width: 100px;
               z-index: 5;
@@ -1034,7 +1036,6 @@ svg {
         width: 100%;
         height: 100%;
         background-color: #fff8f0ee;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -1130,7 +1131,7 @@ svg {
               height: 0;
               padding-top: calc(2 / 3 * 100%);
               overflow: hidden;
-              border-radius: 10px;
+              border-radius: 5px;
               box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
               .slider-image {
                 position: absolute;
