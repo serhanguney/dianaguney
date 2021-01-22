@@ -9,7 +9,7 @@ import { projects } from "../../Projects/Projects";
 import { motion, useAnimation, useIsPresent } from "framer-motion";
 
 //IMAGES
-import metaCover from "../Images/episodesOfFeelings/0.jpeg";
+import metaCover from "../../Images/episodesOfFeelings/0.jpeg";
 
 export default function HomeDesktop({ transition }) {
   const { tranSwipe, tranSmooth } = transition;
