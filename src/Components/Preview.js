@@ -12,7 +12,6 @@ import {
   useMotionValue,
   useTransform,
   AnimatePresence,
-  useElementScroll,
 } from "framer-motion";
 
 import {
@@ -60,40 +59,6 @@ export default function Preview({
   const dFadeOut = useTransform(d, [0, 500], [1, 0]);
   const dSlide = useTransform(d, [0, 500], ["0%", "-100%"]);
 
-  //trigger animation and handlescroll in preview
-
-  useEffect(() => {
-    if (!element.active) {
-      animate(t, 0, { delay: 0.5, ...tranSwipe(0.8) });
-      animate(tDelay, 0, tranSwipe(0.8));
-    } else {
-      handleScroll();
-    }
-  }, [element]);
-
-  // freeze body scroll in preview mode
-
-  useEffect(() => {
-    if (element.active) {
-      disableReference(refSlider.current);
-    } else {
-      enableReference(refSlider.current);
-    }
-
-    // preview
-    // ? targetElement.classList.add("no-scroll")
-    // : targetElement.classList.remove("no-scroll");
-    // element.active
-    // ? disableBodyScroll(refSlider.current)
-    // : enableBodyScroll(refSlider.current);
-    // if (element.active) {
-    // console.log("disable scroll");
-    // disableBodyScroll(refSlider.current);
-    // } else {
-    // clearAllBodyScrollLocks();
-    // }
-  }, [preview]);
-
   //HANDLER FUNCTIONS
 
   function handleOpen(index) {
@@ -140,6 +105,16 @@ export default function Preview({
       navbar.classList.remove("behind");
     }, 1500);
   }
+  //trigger animation and handlescroll in preview
+
+  useEffect(() => {
+    if (!element.active) {
+      animate(t, 0, { delay: 0.5, ...tranSwipe(0.8) });
+      animate(tDelay, 0, tranSwipe(0.8));
+    } else {
+      handleScroll();
+    }
+  }, [element]);
 
   function handleScroll() {
     const unsubscribe = scroll.onChange((value) => {
@@ -200,7 +175,10 @@ export default function Preview({
           style={{ x: slideOut, opacity: fadeOut }}
         >
           <motion.button
-            onClick={() => handleOpen(index)}
+            onClick={() => {
+              handleOpen(index);
+              disableReference(refSlider.current);
+            }}
             className="primary-button"
           >
             <span>See more</span>
@@ -215,7 +193,10 @@ export default function Preview({
         >
           <ArrowLeft />
           <motion.button
-            onClick={() => handleClose(index)}
+            onClick={() => {
+              handleClose(index);
+              enableReference(refSlider.current);
+            }}
             className="primary-button"
           >
             <span>Go back</span>

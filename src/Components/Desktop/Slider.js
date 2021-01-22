@@ -96,58 +96,13 @@ export default function Slider({ tranSwipe, project, block }) {
     ) {
       setProgress(true);
       //delta is the difference we set later on in winkAnimate with fallback
-      const delta = direction > 0 ? -50 : 50;
-      animate(
-        slide,
-        slide.current + delta + width.current * direction,
-        tranSwipe(0.8)
-      );
+
+      animate(slide, slide.current + width.current * direction, tranSwipe(0.8));
     } else if (maskIndex.current === slideLimit.current) {
       animate(slide, [slide.current, slide.current - 10, slide.current], {
         duration: 0.3,
       });
       maskIndex.current = slideLimit.current - 1;
-    }
-  }
-
-  //winkAnimate is to tell the user that he reached the swipe limit
-  function winkAnimate(direction, enter) {
-    //based on direction and hover state of user I set the appropriate direction for the fallback animation
-    //I needed fallback reference here to save the initial slide.current so I can come back to it
-    if (!progress) {
-      if (direction < 0) {
-        if (enter > 0) {
-          //fallback is required here to enable comeback to previous slide.current state
-          fallback.current = slide.current;
-          animate(slide, fallback.current - 50, {
-            type: "spring",
-            stiffness: 250,
-            damping: 20,
-          });
-        } else {
-          animate(slide, fallback.current, {
-            type: "spring",
-            stiffness: 250,
-            damping: 20,
-          });
-        }
-      } else {
-        if (enter > 0) {
-          fallback.current = slide.current;
-
-          animate(slide, fallback.current + 50, {
-            type: "spring",
-            stiffness: 250,
-            damping: 20,
-          });
-        } else {
-          animate(slide, fallback.current, {
-            type: "spring",
-            stiffness: 250,
-            damping: 20,
-          });
-        }
-      }
     }
   }
   return (
@@ -238,29 +193,16 @@ export default function Slider({ tranSwipe, project, block }) {
           >
             {sliderCount.length > 1 && (
               <>
-                <a
-                  onClick={() => slideAway(-1)}
-                  onMouseEnter={() => winkAnimate(-1, 1)}
-                  onMouseLeave={() => {
-                    winkAnimate(-1, -1);
-                    setProgress(false);
-                  }}
-                >{`<`}</a>
-                <a
-                  onClick={() => slideAway(1)}
-                  onMouseEnter={() => winkAnimate(1, 1)}
-                  onMouseLeave={() => {
-                    winkAnimate(1, -1);
-                    setProgress(false);
-                  }}
-                >{`>`}</a>
+                <a onClick={() => slideAway(1)}>{`<`}</a>
+                <a onClick={() => slideAway(-1)}>{`>`}</a>
               </>
             )}
             {sliderCount.map((slider, i) => (
               <motion.div key={i} className="slider-mask" style={{ x: slide }}>
                 {project.photos.map(
                   (photo, index) =>
-                    index < block.count && (
+                    index < block.count + slider &&
+                    index > slider - 1 && (
                       <div
                         key={index}
                         className="card"

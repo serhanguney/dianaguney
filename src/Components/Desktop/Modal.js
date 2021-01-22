@@ -65,17 +65,17 @@ export default function Modal({ modalObject, tranSwipe }) {
           <motion.a
             onClick={() => {
               setSlideIndex(
-                clamp(slideIndex + 1, 0, modal.element.photos.length - 1)
+                clamp(slideIndex - 1, 0, modal.element.photos.length - 1)
               );
-              direction.current = -1;
+              direction.current = 1;
             }}
           >{`<`}</motion.a>
           <motion.a
             onClick={() => {
               setSlideIndex(
-                clamp(slideIndex - 1, 0, modal.element.photos.length - 1)
+                clamp(slideIndex + 1, 0, modal.element.photos.length - 1)
               );
-              direction.current = 1;
+              direction.current = -1;
             }}
           >{`>`}</motion.a>
           <button onClick={() => setModal({ active: false, element: null })}>

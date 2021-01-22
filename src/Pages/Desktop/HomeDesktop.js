@@ -16,9 +16,9 @@ export default function HomeDesktop({ transition }) {
     isPresent && setIsLoaded(true);
   }, []);
   const text = [
-    "My background is in Architecture and design and I have a major interest for film and set design.",
+    "My background is in architecture and design and I have a major interest for film and set design.",
     "Combining digital media and physcial modeling I love to come up with new designs, scenes and stories",
-    "to tell.I Have a record of working with model making, graphical and technical presentations,",
+    "to tell. I Have a record of working with model making, graphical and technical presentations,",
     "conceptual design and art, sketches and drawings.",
   ];
   const variantParent = {
@@ -69,7 +69,7 @@ export default function HomeDesktop({ transition }) {
               <div className="text-container">
                 <div className="animation-container">
                   <motion.h1 variants={variantChild}>
-                    Archituecture <br></br>
+                    Architecture <br></br>
                   </motion.h1>
                 </div>
                 <div className="animation-container">
@@ -134,7 +134,6 @@ export default function HomeDesktop({ transition }) {
                     opacity: 0,
                   }}
                   exit={{ opacity: 0 }}
-                  // transition={{ delay: 0.2, ...tranSwipe(1) }}
                   animate={hover}
                 ></motion.div>
               </motion.div>

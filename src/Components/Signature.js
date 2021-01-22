@@ -21,7 +21,7 @@ export default function Signature({ tranSwipe, tranSmooth, delay }) {
             pathLength: 1,
             transition: { delay: delay && delay, ...tranSmooth(3) },
           }}
-          exit={{ pathLength: 0, transition: tranSmooth(2) }}
+          exit={{ pathLength: 0, transition: tranSmooth(0.8) }}
           stroke-width="0.6"
         />
       </svg>

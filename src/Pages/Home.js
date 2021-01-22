@@ -116,7 +116,8 @@ export default function Home({ toggle, transition }) {
           <img src={homeCover} alt="Cover" />
         </div>
         <motion.div className="introduction-section" animate={hide}>
-          <h1>About Me</h1>
+          <h1>Architecture</h1>
+          <h1>{`&`} Illustrations</h1>
           <h2 style={{ fontSize: "14px" }}>
             I am a passionate designer with love for story telling through
             architecture and cinema.

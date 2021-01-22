@@ -103,10 +103,12 @@ export default function Circle({
             <>
               <div className="contact-content">
                 <h1>Contact Me</h1>
+
                 <p>
                   Thank you for taking the time to browse through what I’ve been
                   doing. You can reach me using the contact information below.
                 </p>
+                <h2>Contact Information</h2>
                 <div>
                   <img src={contact.emailIcon} alt="email" />
                   <p>{contact.email}</p>

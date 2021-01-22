@@ -48,19 +48,20 @@ export default function Projects({ toggle, transition }) {
   //this will be used to animate the scrolling of the window when element is active
   const scroll = useMotionValue(0);
   function setScroll() {
-    console.log("scrolled");
     scroll.set(window.scrollY);
   }
 
   const disablePreviewScroll = (reference) => {
     if (reference) {
-      disableBodyScroll(reference);
+      // disableBodyScroll(reference);
+      console.log("disable reference", reference);
     }
   };
 
   const enablePreviewScroll = (reference) => {
     if (reference) {
-      enableBodyScroll(reference);
+      console.log("enable reference", reference);
+      // enableBodyScroll(reference);
     }
   };
 
@@ -109,7 +110,7 @@ export default function Projects({ toggle, transition }) {
       />
 
       <motion.div className="projects-content">
-        <div className="intro-to-projects">
+        <motion.div className="intro-to-projects" animate={hide}>
           <p>
             Below you'll find the projects I did throughout my education in
             architecture.
@@ -122,7 +123,7 @@ export default function Projects({ toggle, transition }) {
               <ArrowDown color="white" />
             </div>
           </div>
-        </div>
+        </motion.div>
         {elements.map((element, index) => (
           <Preview
             key={index}
