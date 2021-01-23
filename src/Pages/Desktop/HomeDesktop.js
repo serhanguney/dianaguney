@@ -92,10 +92,10 @@ export default function HomeDesktop({ transition }) {
                   </motion.h1>
                 </div>
                 <div className="animation-container">
-                  <motion.h2 custom={1} variants={variantChild}>
+                  <motion.h3 custom={1} variants={variantChild}>
                     I am a passionate designer with love for story telling
                     through architecture and cinema.
-                  </motion.h2>
+                  </motion.h3>
                 </div>
                 {text.map((item, index) => (
                   <div className="animation-container">

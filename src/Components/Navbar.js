@@ -156,7 +156,7 @@ export default function Navbar({ toggle, tranSwipe, tranSmooth, preview }) {
                 <div className="menu-item">
                   <img src={item.icon} alt={item.title} />
                 </div>
-                <h2>{item.title}</h2>
+                <h4>{item.title}</h4>
               </motion.div>
             </Link>
           ))}

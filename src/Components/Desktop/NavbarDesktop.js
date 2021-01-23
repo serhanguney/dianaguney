@@ -53,7 +53,7 @@ export default function NavbarDesktop({ tranSwipe, tranSmooth }) {
       </span>
       <Link to={{ pathname: "/", state: false }}>
         <div className="menu-title">
-          {<MenuTitle title={mainTitle} tranSwipe={tranSwipe} />}
+          <h2>DIANA GUNEY</h2>
         </div>
       </Link>
       <div className="menu-items">
@@ -64,7 +64,7 @@ export default function NavbarDesktop({ tranSwipe, tranSmooth }) {
                 key={index}
                 to={{ pathname: `/${item.link}`, state: item.fromDashboard }}
               >
-                <h2>{item.text}</h2>
+                <h3>{item.text}</h3>
               </Link>
             )
         )}

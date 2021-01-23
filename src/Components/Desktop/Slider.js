@@ -148,7 +148,7 @@ export default function Slider({ tranSwipe, project, block }) {
           <div className="text-container">
             <div className="introduction">
               <span>
-                <motion.h1
+                <motion.h2
                   initial={{ y: "100%" }}
                   animate={{
                     y: "0%",
@@ -160,7 +160,7 @@ export default function Slider({ tranSwipe, project, block }) {
                   }}
                 >
                   {project.title}
-                </motion.h1>
+                </motion.h2>
               </span>
               <span>
                 <motion.p

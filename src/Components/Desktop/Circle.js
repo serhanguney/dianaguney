@@ -74,7 +74,9 @@ export default function Circle({
                             {skill.list.map((item, i) => (
                               <li>
                                 <img src={checkIcon} alt="check-icon" />
-                                <p>{item.name}</p>
+                                <p>
+                                  <nobr>{item.name}</nobr>
+                                </p>
                                 <AdvancedIcon advanced={item.advanced} />
                               </li>
                             ))}
@@ -108,7 +110,7 @@ export default function Circle({
                   Thank you for taking the time to browse through what I’ve been
                   doing. You can reach me using the contact information below.
                 </p>
-                <h2>Contact Information</h2>
+                <h3>Contact Information</h3>
                 <div>
                   <img src={contact.emailIcon} alt="email" />
                   <p>{contact.email}</p>

@@ -166,7 +166,7 @@ export default function Preview({
         }
       ></motion.div>
       <motion.div className="text-container">
-        <h1>{element.title}</h1>
+        <h2>{element.title}</h2>
         <p>{element.text}</p>
       </motion.div>
       <motion.div className="button-section">
@@ -254,7 +254,7 @@ export default function Preview({
               style={{ opacity: dFadeOut }}
             ></motion.div>
             <div className="description-title">
-              <h2>Description</h2>
+              <h3>Description</h3>
               <div className="info-container">
                 <motion.div
                   className="button-container"

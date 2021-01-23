@@ -128,10 +128,10 @@ export default function Home({ toggle, transition }) {
         <motion.div className="introduction-section" animate={hide}>
           <h1>Architecture</h1>
           <h1>{`&`} Illustrations</h1>
-          <h2 style={{ fontSize: "14px" }}>
+          <h4>
             I am a passionate designer with love for story telling through
             architecture and cinema.
-          </h2>
+          </h4>
           <p>
             My background is in Architecture and design and I have a major
             interest for film and set design. Combining digital media and

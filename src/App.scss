@@ -31,12 +31,22 @@ body {
 
 h1 {
   font-family: "Red Rose Regular";
-  font-size: 24px;
+  // font-size: 24px;
   font-weight: 400;
 }
 h2 {
   font-family: "Red Rose Regular";
-  font-size: 18px;
+  // font-size: 18px;
+  font-weight: 400;
+}
+h3 {
+  font-family: "Red Rose Regular";
+  // font-size: 18px;
+  font-weight: 400;
+}
+h4 {
+  font-family: "Red Rose Regular";
+  // font-size: 18px;
   font-weight: 400;
 }
 p,
@@ -77,8 +87,225 @@ svg {
     bottom: 0;
   }
 }
+//FONTS
+@media (min-width: 501px) and (max-width: 1100px) {
+  h1 {
+    font-size: 74px;
+  }
+  h2 {
+    font-size: 30px;
+  }
+  h3 {
+    font-size: 26px;
+  }
+  h4 {
+    line-height: 1.6;
+  }
+  p {
+    line-height: 1.6;
+    font-size: 18px;
+    span {
+      font-size: 18px;
+    }
+  }
+  .navbar-desktop {
+    h3 {
+      font-size: 22px;
+    }
+    .icon-container {
+      width: 8% !important;
+    }
+    .menu-title {
+      margin: auto 0 !important;
+    }
+  }
+  .home-page {
+    .visual-column {
+      display: none !important;
+    }
+    .text-column {
+      width: 100% !important;
+      .text-container {
+        margin: 100px 0 0 0 !important;
+        padding: 0 50px;
+        box-sizing: border-box;
+        text-align: center;
+      }
+    }
+  }
 
-@media (max-width: 500px) {
+  .skills {
+    .skills-content {
+      flex-direction: column;
+      .text-content {
+        margin: 0 !important;
+        padding: 30px 20px;
+        width: 100% !important;
+        box-sizing: border-box;
+        text-align: center;
+        h1 {
+          margin: 0 !important;
+        }
+      }
+      .visual-content {
+        width: 74% !important;
+        min-width: 90vw !important;
+        margin: 0 auto !important;
+        height: auto !important;
+        .column {
+          width: 40%;
+        }
+      }
+    }
+  }
+  .contact {
+    .visual-column {
+      width: 74% !important;
+      min-width: 90vw !important;
+      margin: 50px auto !important;
+      height: auto !important;
+      .signature-section {
+        width: 10% !important;
+      }
+    }
+  }
+}
+@media (min-width: 1101px) {
+  h1 {
+    font-size: 54px;
+  }
+  h2 {
+    font-size: 26px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  h4 {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  p {
+    line-height: 1.6;
+  }
+}
+@media (min-width: 1700px) {
+  h1 {
+    font-size: 74px;
+  }
+  h2 {
+    font-size: 36px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  h4 {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  p {
+    font-size: 18px;
+    line-height: 1.6;
+    span {
+      font-size: 18px;
+    }
+  }
+  button {
+    span {
+      font-size: 16px;
+    }
+  }
+  .skills {
+    .skills-content {
+      .level-icon {
+        min-width: 15px !important;
+        svg {
+          width: 100% !important;
+          height: auto !important;
+        }
+      }
+      .column {
+        img {
+          min-height: 15px;
+        }
+      }
+      .info-row {
+        img {
+          min-height: 50px;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 2000px) {
+  h1 {
+    font-size: 94px;
+  }
+  h2 {
+    font-size: 40px;
+  }
+  h3 {
+    font-size: 28px;
+  }
+  h4 {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  p {
+    font-size: 22px;
+    line-height: 1.6;
+    span {
+      font-size: 18px;
+    }
+  }
+  button {
+    span {
+      font-size: 20px;
+    }
+  }
+  .home-page {
+    .button-container {
+      min-height: 70px !important;
+    }
+  }
+  .skills {
+    .skills-content {
+      .level-icon {
+        min-width: 20px !important;
+        svg {
+          width: 100% !important;
+          height: auto !important;
+        }
+      }
+      .column {
+        img {
+          min-height: 20px;
+        }
+      }
+      .info-row {
+        img {
+          min-height: 50px;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 501px) {
+  h1 {
+    font-size: 38px;
+  }
+  h2 {
+    font-size: 28px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  h4 {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  p {
+    line-height: 1.6;
+  }
   //NAVBAR SECTION
   .navbar-container {
     width: 100%;
@@ -211,7 +438,7 @@ svg {
             height: auto;
             margin: auto;
           }
-          h2 {
+          h4 {
             margin: 0 0 0 25px;
           }
         }
@@ -219,6 +446,7 @@ svg {
     }
   }
   //HOME PAGE
+
   .home-page {
     display: flex;
     flex-direction: column;
@@ -287,9 +515,8 @@ svg {
         width: 100%;
         height: 80vh;
         text-align: center;
-        margin-top: 50px;
+        margin: 50px 0;
         h1 {
-          font-size: 34px;
           &:nth-of-type(1) {
             margin: 30px 0 0 0;
           }
@@ -300,7 +527,6 @@ svg {
         h2,
         p {
           margin: 20px 15px;
-          line-height: 1.6;
         }
         img {
           width: 25vw;
@@ -323,7 +549,6 @@ svg {
         padding-top: 50px;
         .projects-icon {
           width: 60px;
-
           margin: 100px auto 20px auto;
         }
         a {
@@ -473,7 +698,6 @@ svg {
         min-height: 50px;
         flex-shrink: 0;
         h2 {
-          font-size: 20px;
           margin: 0 15px 0 0;
           align-self: flex-start;
         }
@@ -519,7 +743,6 @@ svg {
         flex-shrink: 0;
         margin: 15px 0 0 0;
         p {
-          line-height: 1.6;
           margin: 0;
         }
       }
@@ -597,6 +820,7 @@ svg {
       .skills-text {
         margin: 22px;
         text-align: center;
+
         span {
           font-family: "Red Rose Regular";
         }
@@ -626,9 +850,6 @@ svg {
           width: 70%;
           .skill-container {
             margin: 10px 0;
-            h2 {
-              font-size: 24px;
-            }
             .skill-list-container {
               .skill-row {
                 display: flex;
@@ -662,9 +883,6 @@ svg {
       height: 70%;
       .text-aligner {
         margin: 40px 0 40px 0;
-        p {
-          line-height: 1.6;
-        }
       }
       .signature {
         margin: 100px 0 40px 0;
@@ -741,17 +959,14 @@ svg {
               margin-top: 20px;
             }
             h1 {
-              font-size: 48px;
               margin-top: 0;
             }
-            h2 {
+            h3 {
               margin-top: 0;
               margin-bottom: 0;
             }
           }
-
           p {
-            line-height: 1.6;
             margin: 0;
           }
         }
@@ -759,7 +974,7 @@ svg {
       .button-container {
         margin: 10% auto;
         width: 34%;
-        height: 55px;
+        min-height: 55px;
         min-width: 120px;
         position: relative;
         .button {
@@ -854,7 +1069,6 @@ svg {
                 left: 0;
                 right: 0;
                 bottom: 0;
-
                 object-fit: cover;
               }
             }
@@ -896,12 +1110,6 @@ svg {
 
     .menu-title {
       margin: 20px 20px;
-      .title-container {
-        span {
-          font-family: "Red Rose Regular";
-          font-size: 30px;
-        }
-      }
     }
     .menu-items {
       display: flex;
@@ -950,7 +1158,6 @@ svg {
             display: flex;
             height: 80%;
             position: relative;
-
             .modal-slider {
               position: relative;
               width: 60%;
@@ -1047,10 +1254,8 @@ svg {
         z-index: 5;
         h2 {
           margin: 50px 0 30px 0;
-          font-size: 32px;
         }
         p {
-          line-height: 1.6;
           margin: 0 50px;
         }
       }
@@ -1064,7 +1269,7 @@ svg {
             display: block;
             overflow: hidden;
             margin: 10px 0;
-            h1 {
+            h2 {
               margin: 0;
             }
             p {
@@ -1128,7 +1333,6 @@ svg {
             padding: 0 0.5%;
             .slider-image-container {
               position: relative;
-
               height: 0;
               padding-top: calc(2 / 3 * 100%);
               overflow: hidden;
@@ -1157,18 +1361,13 @@ svg {
       height: 90%;
       .text-content {
         width: 40%;
-        margin: 150px 0 auto 50px;
+        margin: 150px 0 auto 5%;
         .animation-container {
           display: inline-block;
           overflow: hidden;
           margin: 5px 0;
         }
-        h1 {
-          font-size: 60px;
-          margin: 0;
-        }
         p {
-          line-height: 1.6;
           margin: 0;
           span {
             font-family: "Red Rose Regular";
@@ -1226,7 +1425,7 @@ svg {
                 margin: 30px 0 0 0;
                 display: flex;
                 flex-wrap: wrap;
-                justify-content: center;
+                justify-content: space-around;
                 .column {
                   margin: 0 20px;
                   width: 30%;
@@ -1247,9 +1446,10 @@ svg {
                       display: flex;
                       align-items: center;
                       img {
-                        margin: 0 20px;
+                        margin: 0 20px 0 0;
                       }
                       p {
+                        display: inline;
                         margin: 5px 0;
                       }
                       .level-icon {
@@ -1329,7 +1529,6 @@ svg {
             margin: auto;
             display: flex;
             flex-direction: column;
-            // justify-content: center;
             align-items: center;
             height: 100%;
             width: 100%;
@@ -1341,15 +1540,13 @@ svg {
               margin-top: 5%;
 
               h1 {
-                font-size: 46px;
                 margin: 10% 0 10% 0;
               }
               p {
                 text-align: center;
                 margin: 5px auto;
-                line-height: 1.6;
               }
-              h2 {
+              h3 {
                 margin-top: 6%;
               }
               div {
