@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import NavbarDesktop from "../../Components/Desktop/NavbarDesktop";
 import Circle from "../../Components/Desktop/Circle";
 import { projects } from "../../Projects/Projects";
-import { Helmet } from "react-helmet";
-import metaCover from "../../Images/episodesOfFeelings/0.jpeg";
+// import { Helmet } from "react-helmet";
+// import metaCover from "../../Images/episodesOfFeelings/0.jpeg";
 
 import { motion, useAnimation, useIsPresent } from "framer-motion";
 
@@ -53,14 +53,6 @@ export default function HomeDesktop({ transition }) {
   }, []);
   return (
     <>
-      <Helmet>
-        <title>Diana Guney - Home</title>
-        <meta
-          name="description"
-          content="My portfolio website wehre you can browse through my projects of architecture."
-        />
-        <meta property="og:image" content={metaCover} />
-      </Helmet>
       {isLoaded && (
         <div className="home-page">
           <div className="navbar-container">
