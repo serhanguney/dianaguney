@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
 
 import NavbarDesktop from "../../Components/Desktop/NavbarDesktop";
 import Circle from "../../Components/Desktop/Circle";
 import { projects } from "../../Projects/Projects";
+import { Helmet } from "react-helmet";
+import metaCover from "../../Images/episodesOfFeelings/0.jpeg";
 
 import { motion, useAnimation, useIsPresent } from "framer-motion";
-
-//IMAGES
-import metaCover from "../../Images/episodesOfFeelings/0.jpeg";
 
 export default function HomeDesktop({ transition }) {
   const { tranSwipe, tranSmooth } = transition;
@@ -40,7 +38,6 @@ export default function HomeDesktop({ transition }) {
   };
 
   useEffect(() => {
-    console.log("youre in ");
     setTimeout(
       () =>
         hover.start({
@@ -51,23 +48,21 @@ export default function HomeDesktop({ transition }) {
           scale: 1.05,
           transition: { duration: 0.5 },
         }),
-      3000
+      2000
     );
   }, []);
   return (
     <>
+      <Helmet>
+        <title>Diana Guney - Home</title>
+        <meta
+          name="description"
+          content="My portfolio website wehre you can browse through my projects of architecture."
+        />
+        <meta property="og:image" content={metaCover} />
+      </Helmet>
       {isLoaded && (
         <div className="home-page">
-          <Helmet>
-            <title>Diana Guney - Home</title>
-            <meta
-              name="description"
-              content={
-                "A portfolio website where you can browse through my projects of architecture."
-              }
-            />
-            <meta name="og:image" content={metaCover} />
-          </Helmet>
           <div className="navbar-container">
             <NavbarDesktop tranSmooth={tranSmooth} tranSwipe={tranSwipe} />
           </div>

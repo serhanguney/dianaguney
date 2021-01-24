@@ -89,7 +89,6 @@ export default function Slider({ tranSwipe, project, block }) {
         duration: 0.3,
       });
       maskIndex.current = 0;
-      // console.log("you're at zero", [maskIndex.current, direction]);
     } else if (
       maskIndex.current > -1 &&
       maskIndex.current < slideLimit.current

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
 
 //IMAGES
 import homeCover from "../Images/balconies/1.jpg";
@@ -9,7 +8,6 @@ import sign from "../SVGs/Signature.svg";
 import ArrowDown from "../Components/ArrowDown";
 import ArrowRight from "../Components/ArrowRight";
 import projectsIcon from "../Icons/projectsIcon.svg";
-import metaCover from "../Images/episodesOfFeelings/0.jpeg";
 
 //COMPONENTS
 import Navbar from "../Components/Navbar";
@@ -96,14 +94,6 @@ export default function Home({ toggle, transition }) {
   }, []);
   return (
     <motion.div className="home-page" transition={tranSwipe(1)}>
-      <Helmet>
-        <title>Diana Guney - Home</title>
-        <meta
-          name="description"
-          content="A portfolio website where you can browse through my projects of architecture."
-        />
-        <meta name="og:image" content={metaCover} />
-      </Helmet>
       <motion.div
         className="page-transition-element"
         initial={location.state ? { width: "100%" } : ""}
@@ -136,7 +126,7 @@ export default function Home({ toggle, transition }) {
             My background is in Architecture and design and I have a major
             interest for film and set design. Combining digital media and
             physcial modeling I love to come up with new designs, scenes and
-            stories to tell.I Have a record of working with model making,
+            stories to tell. I Have a record of working with model making,
             graphical and technical presentations, conceptual design and art,
             sketches and drawings.
           </p>

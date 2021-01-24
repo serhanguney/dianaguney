@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 
 import { menuItems } from "../Navbar";
-import Signature from "../Signature";
-import MenuTitle from "../MenuTitle";
 import { motion } from "framer-motion";
 
 export default function NavbarDesktop({ tranSwipe, tranSmooth }) {
@@ -16,7 +14,6 @@ export default function NavbarDesktop({ tranSwipe, tranSmooth }) {
 
   //TITLE MATCH - we'll send the page title to MenuTitle component to animate it.
   const filteredItems = menuItems.filter((item) => `/${item.link}` === "/");
-  console.log(filteredItems);
   const mainTitle = filteredItems[0].text.split("");
 
   //ICON MATCH - we'll use location to do the icon matchin via useEffect
@@ -24,14 +21,7 @@ export default function NavbarDesktop({ tranSwipe, tranSmooth }) {
     const item = menuItems.filter(
       (item) => `/${item.link}` === location.pathname
     );
-
-    //since the icon of the homepage is the only animatable icon we'll have to do an if conditional
-    // if (item[0].title === "Home") {
-    //   setIcon(<Signature tranSmooth={tranSmooth} tranSwipe={tranSwipe} />);
-    // } else {
     setIcon(<img src={item[0].icon} alt={item[0].title} />);
-    // }
-    console.log("item", [item, location.pathname]);
   }, []);
 
   return (

@@ -6,7 +6,6 @@ import clamp from "lodash-es/clamp";
 
 export default function Modal({ modalObject, tranSwipe }) {
   const { modal, setModal } = modalObject;
-  // useEffect(() => modal.element && console.log("modal", modal), [modal]);
   const direction = useRef(0);
   //VARIANTS
   const containerVariants = {
@@ -27,9 +26,6 @@ export default function Modal({ modalObject, tranSwipe }) {
   //SLIDER
 
   const [slideIndex, setSlideIndex] = useState(modal.index && modal.index);
-
-  // useEffect(() => console.log("parent", slideIndex), []);
-
   return (
     <motion.div
       className="modal"

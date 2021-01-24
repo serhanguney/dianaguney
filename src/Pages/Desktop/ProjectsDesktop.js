@@ -50,7 +50,6 @@ export default function ProjectsDesktop({ transition }) {
         (min, item) => (min.size < item.size ? min : item),
         filteredBlock[0]
       );
-      // console.log("filteredBlock , smallest", [filteredBlock, smallest]);
       setBlock(smallest);
     });
     return () => {
