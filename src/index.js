@@ -1,9 +1,9 @@
 import React from "react";
-// import ReactDOM from "react-dom";
+import ReactDOM from "react-dom";
 import App from "./App";
-import { render } from "react-snapshot";
+// import { render } from "react-snapshot";
 
-render(
+ReactDOM.render(
   <App />,
 
   document.getElementById("root")
