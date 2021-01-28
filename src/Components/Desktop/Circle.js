@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 
 import { motion } from "framer-motion";
 import infoIcon from "../../SVGs/InfoIcon.svg";
@@ -12,6 +12,22 @@ export default function Circle({
   tranSwipe,
   tranSmooth,
 }) {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const ref = useRef();
+
+  function handleImageChange() {
+    setIsLoaded(handleImageLoad);
+  }
+  function handleImageLoad() {
+    const arr = ref.current.querySelectorAll("img");
+    for (const img of arr) {
+      if (!img.complete) {
+        return false;
+      }
+      return true;
+    }
+  }
+
   return (
     <div className="circle-container">
       <motion.div
@@ -26,7 +42,7 @@ export default function Circle({
         }}
       ></motion.div>
       <div className="circle-2">
-        <div className="circle-2-interior">
+        <div ref={ref} className="circle-2-interior">
           {projects &&
             projects[0].photos.map(
               (photo, index) =>
@@ -34,11 +50,13 @@ export default function Circle({
                   <motion.div
                     key={index}
                     className="image-container"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2 * index }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={
+                      isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                    }
+                    transition={{ delay: 0.1 * index }}
                   >
-                    <img src={photo} alt={index} />
+                    <img src={photo} alt={index} onLoad={handleImageChange} />
                   </motion.div>
                 )
             )}

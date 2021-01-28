@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 
 import ArrowUp from "../ArrowUp";
 import ArrowDown from "../ArrowDown";
-import "react-lazy-load-image-component/src/effects/blur.css";
 import Modal from "./Modal";
 import {
   AnimatePresence,
