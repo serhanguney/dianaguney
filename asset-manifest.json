@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/dianaguney/static/css/main.e9362535.chunk.css",
-    "main.js": "/dianaguney/static/js/main.d7eb86e4.chunk.js",
-    "main.js.map": "/dianaguney/static/js/main.d7eb86e4.chunk.js.map",
+    "main.css": "/dianaguney/static/css/main.0b8273b7.chunk.css",
+    "main.js": "/dianaguney/static/js/main.b284a2f3.chunk.js",
+    "main.js.map": "/dianaguney/static/js/main.b284a2f3.chunk.js.map",
     "runtime-main.js": "/dianaguney/static/js/runtime-main.0ee28901.js",
     "runtime-main.js.map": "/dianaguney/static/js/runtime-main.0ee28901.js.map",
-    "static/js/2.4de041ef.chunk.js": "/dianaguney/static/js/2.4de041ef.chunk.js",
-    "static/js/2.4de041ef.chunk.js.map": "/dianaguney/static/js/2.4de041ef.chunk.js.map",
+    "static/js/2.42fa01e4.chunk.js": "/dianaguney/static/js/2.42fa01e4.chunk.js",
+    "static/js/2.42fa01e4.chunk.js.map": "/dianaguney/static/js/2.42fa01e4.chunk.js.map",
     "index.html": "/dianaguney/index.html",
-    "static/css/main.e9362535.chunk.css.map": "/dianaguney/static/css/main.e9362535.chunk.css.map",
-    "static/js/2.4de041ef.chunk.js.LICENSE.txt": "/dianaguney/static/js/2.4de041ef.chunk.js.LICENSE.txt",
+    "static/css/main.0b8273b7.chunk.css.map": "/dianaguney/static/css/main.0b8273b7.chunk.css.map",
+    "static/js/2.42fa01e4.chunk.js.LICENSE.txt": "/dianaguney/static/js/2.42fa01e4.chunk.js.LICENSE.txt",
     "static/media/0.421a4a0d.jpeg": "/dianaguney/static/media/0.421a4a0d.jpeg",
     "static/media/1.05a25d40.jpg": "/dianaguney/static/media/1.05a25d40.jpg",
     "static/media/1.3aad37cb.jpeg": "/dianaguney/static/media/1.3aad37cb.jpeg",
@@ -144,8 +144,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.0ee28901.js",
-    "static/js/2.4de041ef.chunk.js",
-    "static/css/main.e9362535.chunk.css",
-    "static/js/main.d7eb86e4.chunk.js"
+    "static/js/2.42fa01e4.chunk.js",
+    "static/css/main.0b8273b7.chunk.css",
+    "static/js/main.b284a2f3.chunk.js"
   ]
 }
