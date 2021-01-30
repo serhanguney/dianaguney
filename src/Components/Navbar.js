@@ -13,9 +13,16 @@ import { motion, useAnimation } from "framer-motion";
 import contactIcon from "../Icons/contactIcon.svg";
 import projectsIcon from "../Icons/projectsIcon.svg";
 import skillsIcon from "../Icons/skillsIcon.svg";
-import homeIcon from "../Icons/meIcon.svg";
+import homeIcon from "../SVGs/Signature.svg";
 
 export const menuItems = [
+  {
+    icon: homeIcon,
+    title: "Home",
+    text: "DIANA GUNEY",
+    link: "",
+    fromDashboard: true,
+  },
   {
     icon: projectsIcon,
     title: "Projects",
@@ -36,13 +43,6 @@ export const menuItems = [
     text: "CONTACT",
     link: "contact",
     fromDashboard: false,
-  },
-  {
-    icon: homeIcon,
-    title: "Home",
-    text: "DIANA GUNEY",
-    link: "",
-    fromDashboard: true,
   },
 ];
 export default function Navbar({ toggle, tranSwipe, tranSmooth, preview }) {

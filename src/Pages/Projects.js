@@ -11,11 +11,6 @@ import { motion, useAnimation, useCycle, useMotionValue } from "framer-motion";
 
 //PROJECTS
 import { projects } from "../Projects/Projects";
-import {
-  clearAllBodyScrollLocks,
-  disableBodyScroll,
-  enableBodyScroll,
-} from "body-scroll-lock";
 
 export default function Projects({ toggle, transition }) {
   //STATES
@@ -51,31 +46,15 @@ export default function Projects({ toggle, transition }) {
     scroll.set(window.scrollY);
   }
 
-  const disablePreviewScroll = (reference) => {
-    if (reference) {
-      // disableBodyScroll(reference);
-      console.log("disable reference", reference);
-    }
-  };
-
-  const enablePreviewScroll = (reference) => {
-    if (reference) {
-      console.log("enable reference", reference);
-      // enableBodyScroll(reference);
-    }
-  };
-
   //we set the scroll motionvalue to window.scrollY so it doesn't scroll from the top everytime.
   useEffect(() => {
     let targetElement = document.querySelector("html");
     if (!preview) {
       window.addEventListener("scroll", setScroll);
-      enablePreviewScroll();
       targetElement.classList.remove("no-scroll");
     } else {
       targetElement.classList.add("no-scroll");
       window.removeEventListener("scroll", setScroll);
-      disablePreviewScroll();
     }
 
     return () => {
@@ -133,8 +112,6 @@ export default function Projects({ toggle, transition }) {
             toggleHide={{ hide, cycleHide }}
             tranSwipe={tranSwipe}
             scroll={scroll}
-            disableReference={disablePreviewScroll}
-            enableReference={enablePreviewScroll}
           />
         ))}
       </motion.div>

@@ -62,7 +62,7 @@ function App() {
       {landscape ? (
         <Landscape />
       ) : (
-        <Router basename="/dianaguney">
+        <Router basename="/">
           <Route
             render={({ location }) => (
               <AnimatePresence exitBeforeEnter>

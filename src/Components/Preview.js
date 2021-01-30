@@ -14,12 +14,6 @@ import {
   AnimatePresence,
 } from "framer-motion";
 
-import {
-  clearAllBodyScrollLocks,
-  disableBodyScroll,
-  enableBodyScroll,
-} from "body-scroll-lock";
-
 export default function Preview({
   state,
   index,
@@ -27,8 +21,6 @@ export default function Preview({
   toggle,
   toggleHide,
   scroll,
-  enableReference,
-  disableReference,
 }) {
   //STATES
   const refContainer = useRef(null);
@@ -42,8 +34,13 @@ export default function Preview({
   //t is used to animate towards preview mode
   const t = useMotionValue(0);
 
-  const height = useTransform(t, [0, 500], [420, window.innerHeight]);
-  const enlargeWidth = useTransform(t, [0, 500], ["70%", "130%"]);
+  const height = useTransform(
+    t,
+    [0, 500],
+    [window.innerWidth < 425 ? 420 : 480, window.innerHeight]
+  );
+  const sliderHeight = useTransform(t, [0, 500], ["70%", "59%"]);
+  const enlargeWidth = useTransform(t, [0, 500], ["70%", "125%"]);
   const fadeOut = useTransform(t, [0, 500], [1, 0]);
   const slideOut = useTransform(t, [0, 500], [0, 30]);
   const slideUp = useTransform(t, [0, 500], [0, -100]);
@@ -177,7 +174,6 @@ export default function Preview({
           <motion.button
             onClick={() => {
               handleOpen(index);
-              disableReference(refSlider.current);
             }}
             className="primary-button"
           >
@@ -195,7 +191,6 @@ export default function Preview({
           <motion.button
             onClick={() => {
               handleClose(index);
-              enableReference(refSlider.current);
             }}
             className="primary-button"
           >
@@ -203,7 +198,12 @@ export default function Preview({
           </motion.button>
         </motion.div>
       </motion.div>
-      <motion.div key={index} className="project-slider" layout>
+      <motion.div
+        key={index}
+        className="project-slider"
+        style={{ height: sliderHeight }}
+        layout
+      >
         <motion.div
           ref={refSlider}
           className="slider-container"

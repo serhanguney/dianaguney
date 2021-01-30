@@ -46,29 +46,17 @@ export default function Home({ toggle, transition }) {
   function setScroll() {
     scroll.set(window.scrollY);
   }
-  const disablePreviewScroll = (reference) => {
-    if (reference) {
-      console.log("reference", reference);
-      // disableBodyScroll(reference);
-    }
-  };
-
-  const enablePreviewScroll = (reference) => {
-    if (reference) {
-      console.log("reference", reference);
-    }
-  };
   //we set the scroll motionvalue to window.scrollY so it doesn't scroll from the top everytime.
   useEffect(() => {
     let targetElement = document.querySelector("html");
 
     if (!preview) {
       window.addEventListener("scroll", setScroll);
-      enablePreviewScroll();
+
       targetElement.classList.remove("no-scroll");
     } else {
       window.removeEventListener("scroll", setScroll);
-      disablePreviewScroll();
+
       targetElement.classList.add("no-scroll");
     }
 
@@ -148,8 +136,6 @@ export default function Home({ toggle, transition }) {
                   toggleHide={{ hide, cycleHide }}
                   tranSwipe={tranSwipe}
                   scroll={scroll}
-                  enableReference={enablePreviewScroll}
-                  disableReference={disablePreviewScroll}
                 />
               )
           )}
