@@ -25,12 +25,12 @@ export default function Landscape() {
       className="landscape"
     >
       <div className="landscape-text">
-        <h1>Move to Portrait Mode please</h1>
+        <h3>Move to Portrait Mode please</h3>
         <p>
           This is a portrait-only website. I'd kindly like to ask you to use my
           website in portrait mode please.
         </p>
-        <h2>Thank you :)</h2>
+        <h3>Thank you :)</h3>
       </div>
       <div className="landscape-visual">
         <div className="phone-container">

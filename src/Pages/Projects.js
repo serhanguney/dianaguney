@@ -5,7 +5,7 @@ import Navbar from "../Components/Navbar";
 import Preview from "../Components/Preview";
 //IMAGES
 import ArrowDown from "../Components/ArrowDown";
-import pageCover from "../Images/furniture/ProjectsCover.jpg";
+import pageCover from "../Images/ProjectsCover.jpg";
 //ADDITIONALS
 import { motion, useAnimation, useCycle, useMotionValue } from "framer-motion";
 
@@ -90,17 +90,17 @@ export default function Projects({ toggle, transition }) {
 
       <motion.div className="projects-content">
         <motion.div className="intro-to-projects" animate={hide}>
+          <div className="image-container">
+            <img src={pageCover} />
+          </div>
           <p>
             Below you'll find the projects I did throughout my education in
             architecture.
           </p>
 
-          <div className="image-container">
-            <img src={pageCover} />
-            <div className="scroll-container">
-              <p>scroll for projects</p>
-              <ArrowDown color="white" />
-            </div>
+          <div className="scroll-container">
+            <p>scroll for projects</p>
+            <ArrowDown />
           </div>
         </motion.div>
         {elements.map((element, index) => (

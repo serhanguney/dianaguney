@@ -81,6 +81,7 @@ import frFourth from "../Images/frames/4.jpg";
 import frFifth from "../Images/frames/5.jpg";
 import frSixth from "../Images/frames/6.jpg";
 import frSeventh from "../Images/frames/7.jpg";
+import frEight from "../Images/frames/8.jpg";
 
 //BALCONIES
 import bFirst from "../Images/balconies/1.jpg";
@@ -146,8 +147,19 @@ export const projects = [
     id: 0,
     projectTitle: "Episodes Of Feelings",
     title: "Episodes Of Feelings",
-    text: "Text needed",
-    paragraph: `Paragraph needed`,
+    text: "Narrative driven Design, Master of Architecture",
+    paragraph: `How can Architecture act as a medium of storytelling ? Architecture has been used as a physical
+    medium that goes beyond providing shelter, but also to tell stories or document historical epochs.
+    The architectural structures of old were designed to give its visitors an experience steeped in
+    narrative such as biblical scriptures or even engender feelings of awe as they passed through a
+    space. This is evident in the well established culture of architecture being something you
+    experience, not merely a thing viewed through images. A building can not speak to you without
+    you being beside or inside it. Architecture is an experience, an adventure and it is storytelling.
+    Understanding nor organising are not enough nor necessary (John Hejduk). This project was an
+    opportunity for me to go after my dreams and passion of exploring storytelling through
+    architecture. My love for film and cinema, fairy tales, magic and myths. To somehow connect
+    architecture to my passion of storytelling, whilst being challenging, has taken me to places
+    unknown and helped me rediscover architecture, space and the human itself`,
     photos: [
       eof1,
       eof2,
@@ -196,10 +208,18 @@ export const projects = [
   },
   {
     id: 1,
-    projectTitle: "Paper Tubes",
-    title: "Paper Tubes",
-    text: "A house made of cardboard tubes.",
-    paragraph: `The location of this house is in a villa district in southern Stockholm. The aim was to increase housing in Stockholm by building on land owned by someone else, this way housing would increase with maximum use of property. The land owner could either sell or rent his property. I tried to create a generous house for one or two students, with courtesy, non extravagant touch on this shared land. Just like a butterfly, the house was supposed to be gentle without any harsh intervention on the ground, It was going to be spacious and affordable. These were my primary criterias. My references were taken from Shigeru Ban and his use of Cardboard tubes on different edifices around the world. Hence my construction is formed by the help of paper tube constructions by Shigeru Ban. This project has taught me loads and allowed me to experiment and invent new construction elements that can serve to cardboard tube architecture.`,
+    projectTitle: "Tube House",
+    title: "Tube House",
+    text: "House of Cardboard tubes",
+    paragraph: `The location of this house is in a villa district in southern Stockholm. The project aimed to
+    increase housing in Stockholm by building on land owned by someone else. The landowner
+    could either sell or rent his property. I tried to create a generous and flexible house for one or two
+    occupants, with the courtesy, non-extravagant touch on this shared land. Just like a butterfly, the
+    house was supposed to be gentle without any harsh intervention on the ground. It was going to be
+    spacious and affordable. My references were taken from Shigeru Ban and his use of Cardboard
+    tubes for structures used as shelters. This project has taught me loads and allowed me to
+    experiment and invent new construction elements that could potentially facilitate affordable
+    architecture for the future.`,
     photos: [
       ptFirst,
       ptSecond,
@@ -219,15 +239,17 @@ export const projects = [
     id: 2,
     projectTitle: "Boring Architecture",
     title: "Boring Architecture",
-    text: `Explore the role of architecture with our feelings and reactions to certain rooms and urban spaces.`,
-    paragraph: `Boring architecture is a research and experimentation that explores the role of architecture in regards to
-    how we feel and react to certain rooms and urban spaces. What triggers boring architecture, can architecture affect our mood
-    and emotions? This is a research project that aims to understand the links between architecture and human psychology.
-    Starting off with getting to know myself and what I find boring and what boring means to me.
-    Resulting with a model of my childhood bedroom has led me into understanding typologies around my neighborhood and
-    why some of them speak boring to me. I found myself in the middle of this more aware of my own architecture and
-    a widening knowledge of my surroundings. In the end I appreciate and understand ​Invisible Cities b​y Italo Calvino
-    and in the end I found the cities and neighborhoods that I would like to live in in some reality different than this.`,
+    text: `Exploring Boring Architecture`,
+    paragraph: `Boring architecture is a research and experimentation that explores the role of architecture in
+    regards to how we feel and react to certain rooms and urban spaces. What triggers boring
+    architecture, can architecture affect our mood and emotions? This is a research project that aims
+    to understand the links between architecture and human psychology. Starting off with getting to
+    know me and what I find boring and what boring means to me. Resulting with a model of my
+    childhood bedroom has led me to understand typologies around my neighborhood and why some
+    of them speak boring to me. I found myself in the middle of this more aware of my own
+    architecture and widening knowledge of my surroundings. In the end, I appreciate and
+    understand Invisible Cities by Italo Calvino, and in the end, I found the cities and neighborhoods
+    that I would like to live in some reality different from this.`,
     photos: [baFirst, baSecond, baThird, baFourth, baFifth, baSixth],
     active: false,
   },
@@ -235,13 +257,16 @@ export const projects = [
     id: 3,
     projectTitle: "Gamla Stan",
     title: "Gamla Stan",
-    text: `Capturing a culture.`,
-    paragraph: `This is a project aimed to lift and ​strengthen​ the character of this urban area, located at the central of Stockholm city. Gamla Stan has been the spot for skinheads since 1980.
-    A place where skinheads would come to listen to music, make graffiti and simply spend time together.
-    Although Skinheads is a culture that has been neglected and denied for years, with my design of my graffiti walls I am to increase their visibility and get their voices heard, from pedestrians to the sea, the graffiti walls will be visible on all urban levels.
-    The concrete walls which will create unsafe semi-private rooms will be used for Graffiti painting.
-    By activating the place in this way I strongly believe I will catch a broader audience to the place (Skinheads, Hipsters, Gothics and indie kids etc).
-    By dedicating such a central place in Stockholm to subcultures I believe it can give the smaller groups a chance to integrate with the rest of the society and get their voices heard.`,
+    text: `Antidesign`,
+    paragraph: `This project aims to strengthen the character of this area, located at the center of Stockholm city.
+    Gamla Stan has been the spot for skinheads since 1980. A place where skinheads would come to
+    listen to music, make graffiti, and spend time together. Although Skinheads is a culture that has
+    been outcast for years, with the graffiti walls I aim to increase their visibility in the city. from
+    pedestrians to the sea, the graffiti walls will be visible on all urban levels. The concrete walls
+    which will create semi-private rooms will be used for Graffiti painting. By activating the place
+    this way, I believe I will attract a broader audience to the area. By dedicating such a central place
+    in Stockholm to subcultures I believe can give the smaller groups a chance to integrate with the
+    rest of the society and get their voices heard.`,
     photos: [
       gsFirst,
       gsSecond,
@@ -259,8 +284,20 @@ export const projects = [
     projectTitle: "Frames",
     title: "Frames",
     text: `To tell stories`,
-    paragraph: `To tell stories, through film, paintings, photography or architecture. To tell stories is my passion. In this day and age there are immense ways of expressing oneself and creating art. I am trying to find my own way to tell stories. Feelings, thoughts, people, buildings, words, the sun and the skies. To create something that tells a story must be the most satisfying thing so here I am experimenting with hand drawings, paintings and sketches and computer aided design. To experiment and explore ways to tell thoughts, express feelings, understand the surrounding and ultimately tell a story.`,
-    photos: [frFirst, frSecond, frThird, frFourth, frFifth, frSixth, frSeventh],
+    paragraph: `To tell a story, through film, paintings, photography, or architecture. In this day and age, there
+    are a variety of ways of expressing oneself and creating art. I am trying to find my way to tell
+    stories. To experiment and explore ways to express feelings, understand the surroundings, and
+    create a narrative-driven design.`,
+    photos: [
+      frFirst,
+      frSecond,
+      frThird,
+      frFourth,
+      frFifth,
+      frSixth,
+      frSeventh,
+      frEight,
+    ],
     active: false,
   },
   {
@@ -268,7 +305,11 @@ export const projects = [
     projectTitle: "Balconies",
     title: "Balconies",
     text: `Balcony additions for the concrete facade`,
-    paragraph: `The Balconies project is an experimentation of how to work and play with an existing element / building. It is not necessarily aimed to fix anything but rather understand the existing beauty and brutality of a concrete structure and work with extending and creating new opportunities to its plan and facade. This project is proposing ways to add balconies to an existing concrete structure that is undergoing an interior change from office space to a hotel.
+    paragraph: `The Balconies project aims to strengthen the facade of brutalist Architecture. It is not necessarily
+    aimed to fix anything but rather understand the existing beauty and brutality of a concrete
+    structure and work with extending and creating new opportunities to its plan and facade. This
+    project is proposing ways to add balconies to an existing concrete structure that is undergoing an
+    interior change from office space to a hotel.
     `,
     photos: [bFirst, bSecond, bThird, bFourth, bFifth, bSixth],
     active: false,
@@ -278,7 +319,11 @@ export const projects = [
     projectTitle: "Furniture",
     title: "Furniture",
     text: `Outdoor seating, outdoor furniture`,
-    paragraph: `From baking bread to sketching, from tango dancing to understanding human motion, from sketching to model iteration and from the model to real life construction resulting in an outdoor seating. This is a creative journey that resulted in outdoor seating for the whole summer of 2020. This is a furniture project done for a restaurant in Stockholm. The owner wanted designer furniture for his outdoor seating that would highlight the essence of his restaurant and brand. The furniture was designed, made and constructed by me and my colleague.`,
+    paragraph: `From baking bread to sketching, from tango to understanding human motion, and from model to
+    real-life construction. This is a creative journey that resulted in outdoor seating for the whole
+    summer of 2020.
+    A piece of outdoor furniture for a restaurant in Stockholm. The furniture was designed, made,
+    and constructed by me and my colleague.`,
     photos: [
       fFirst,
       fSecond,
@@ -294,11 +339,16 @@ export const projects = [
   },
   {
     id: 7,
-    projectTitle: "Living On Edge",
-    title: "Living On Edge",
+    projectTitle: "Living On The Edge",
+    title: "Living On The Edge",
     text: `A promenade on the edge of a mountain`,
-    paragraph: `The yoros castle is situated in a mountain chain in Istanbul overlooking the black sea. Tourists and visitors come to visit the castle and enjoy the extraordinary experience of the view. A
-    structure primarily made because of the need for a public bathroom, Living on the edge aims to not only provide public restrooms but to also give that little extra to its visitors. By placing niches just on the edge of the mountain, sitting will now feel like floating, and the view will be experienced through a birds-eye view. How would you like to live like a bird for a while, floating on the edge of this mountain.`,
+    paragraph: `The Yoros castle is situated in a mountain chain in Istanbul overlooking the black sea. Tourists
+    and visitors come to visit the castle and enjoy the extraordinary experience of the view. A
+    structure primarily made because of the need for a public bathroom, Living on the Edge aims to
+    not only provide public restrooms but to also give that little extra to its visitors. By placing
+    niches just on the edge of the mountain, sitting will now feel like floating, and the view will be
+    experienced through a birds-eye view. How would you like to live like a bird for a while,
+    floating on the edge of this mountain?`,
     photos: [
       loeFirst,
       loeSecond,
@@ -315,16 +365,39 @@ export const projects = [
     projectTitle: "Pantheon",
     title: "Pantheon",
     text: `Exploring the undiscovered`,
-    paragraph: `This is an experiment based on discovering hidden architecture in Pantheon. What if we exaggerate, change, reorder and disorder certain elements. How can we rediscover Pantheon. Symbolism and architecture, Pantheon and Rome. Learning 3D printing and ways to connect facade, plan and section, we can continue endlessly to learn and rediscover treasures.`,
+    paragraph: `This is an experiment based on discovering hidden architecture within Pantheon, Rome. What if
+    we exaggerate, change, reorder and disorder certain elements. How can we rediscover Pantheon?
+    Symbolism and architecture, Pantheon and Rome. Learning 3D printing and ways to connect
+    facade, plan, and section, we can continue endlessly to learn and rediscover treasures.`,
     photos: [pFirst, pSecond],
     active: false,
   },
   {
     id: 9,
-    projectTitle: "Scampia",
-    title: "Scampia",
-    text: `text needed`,
-    paragraph: `Paragraph needed`,
+    projectTitle: "Non Siamo Gomorrah",
+    title: "Non Siamo Gomorrah",
+    text: `The slums of Napoli needs a new chance`,
+    paragraph: `Le Vele Verde: A symbol of Italy’s failure of modern-day social housing (The Guardian).
+    Le Vele Verde, four high rise blocks of concrete, interrelated through courtyards Each block
+    formed as a pyramid shape to allow terraces of greenery for cultivation and socializing. Lofts and
+    inner pathways as a means of circulation in between this concrete jungle to make sure people run
+    into each other and socialize at all instants. Minimize time spent indoors to maximize time spent
+    outdoors.
+    Each concrete block turned into a zone of drug marketing. The pyramid-shaped blocks were
+    perfect to shadow the police and alert the neighboring dealers to run if police were approaching.
+    One zone would alert the other, by the time police approached the crime scene the dealers would
+    have managed to escape and hide inside the inner pathways that once were designed to elevate
+    the concept of social housing. The mafia had given jobs and opportunities to the inhabitants of
+    Le Vele Verde, it had come to save those people that were less fortunate and make the
+    neighborhood of Scampia well known and prosperous to the world.
+    
+    Le Vele Verde is to be demolished, and the inhabitants need another chance for survival. The
+    Mafia has sure brought anguish and suffering, but it has undoubtedly provided jobs and a sense
+    of belonging. This project aims to propose a new social housing that can learn and provide the
+    way the mafia did, but in a greenway. I am proposing to create social housing where you can pay
+    your rent with the money you earn from cultivating and selling your vegetables in your front
+    yard. A meeting point of households and business. This proposal aims to create households with
+    their own cultivating business.`,
     photos: [
       s1,
       s2,
@@ -351,10 +424,18 @@ export const projects = [
   },
   {
     id: 10,
-    projectTitle: "Opera Two",
-    title: "Opera Two",
-    text: `text needed`,
-    paragraph: `Paragraph needed`,
+    projectTitle: "Royal Opera",
+    title: "Royal Opera",
+    text: `Modern Art Nouveau`,
+    paragraph: `The Opera has a reputation of an extraordinary, non-daily social activity, catering to people of
+    the higher class of society. This is a study of a black box extension for the Royal Opera in
+    Stockholm, and the primary goal is to increase availability and interest in the
+    opera from the younger generation. The black box is attached to the opera through glass walls
+    aiming to create an interior that has the exterior of the Art Nouveau Architecture of the current
+    Opera. With the beautiful exterior staircases of the opera becoming interior staircases for the
+    black box, I am experimenting ways to increase the usage of the exterior staircases and the
+    exterior facade in a way that could invite more engagement between the exterior facade and the
+    human daily touch.`,
     photos: [o1, o2],
     active: false,
   },

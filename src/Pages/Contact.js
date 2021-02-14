@@ -1,19 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 //PAGES
 import Navbar from "../Components/Navbar";
 
 //IMAGES
-import pageCover from "../Images/paperTubes/ContactCover.jpg";
+import pageCover from "../Images/contactImage.jpg";
 import email from "../Icons/contactIcon.svg";
 import phone from "../Icons/phoneIcon.svg";
 import signature from "../SVGs/Signature.svg";
+import copyImage from "../SVGs/copyToClipboard.svg";
 //ADDITIONALS
 import { motion, useAnimation } from "framer-motion";
 
 export default function Contact({ toggle, transition }) {
   const { menuOpen, setMenuOpen } = toggle;
   const { tranSwipe, tranSmooth } = transition;
-
+  const [copyAlert, setCopyAlert] = useState(false);
   //PAGE-IN ANIMATION
   const c = useAnimation();
   useEffect(() => {
@@ -24,6 +26,13 @@ export default function Contact({ toggle, transition }) {
     }
     pageInAnimation();
   }, []);
+
+  const handleCopy = () => {
+    setCopyAlert(true);
+    setTimeout(() => {
+      setCopyAlert(false);
+    }, 2000);
+  };
   return (
     <div className="contact-page">
       <motion.div
@@ -53,16 +62,37 @@ export default function Contact({ toggle, transition }) {
           <div className="email-container">
             <img src={email} alt="email" />
             <p>diana.guney.93@gmail.com</p>
+            <CopyToClipboard
+              text={"diana.guney.93@gmail.com"}
+              onCopy={handleCopy}
+            >
+              <button>
+                <img className="copy" src={copyImage} />
+              </button>
+            </CopyToClipboard>
           </div>
+
           <div className="phone-container">
             <img src={phone} alt="phone" />
             <p>+46 73 779 99 93</p>
+            <CopyToClipboard text={"+46737799993"} onCopy={handleCopy}>
+              <button>
+                <img className="copy" src={copyImage} />
+              </button>
+            </CopyToClipboard>
           </div>
         </div>
         <div className="image-container">
-          <div className="overlay"></div>
           <img src={pageCover} alt="contact-cover" />
         </div>
+        {copyAlert && (
+          <motion.h4
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+          >
+            Copied succesfully
+          </motion.h4>
+        )}
       </motion.div>
     </div>
   );

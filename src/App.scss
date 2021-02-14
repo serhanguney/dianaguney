@@ -21,12 +21,20 @@ html {
   color: $text-color;
   height: 100%;
   width: 100%;
+  overflow-x: hidden;
 }
 body {
+  position: relative;
   margin: 0;
   overscroll-behavior: none;
   height: 100%;
   width: 100%;
+  overflow-x: hidden;
+}
+button {
+  outline: none;
+  border: none;
+  background: none;
 }
 
 h1 {
@@ -773,10 +781,9 @@ svg {
         margin-bottom: 100px;
         .image-container {
           position: relative;
-          margin-top: auto;
           height: 0;
           width: 100%;
-          padding-top: calc(366 / 375 * 100%);
+          padding-top: calc(366 / 305 * 100%);
           overflow: hidden;
           img {
             position: absolute;
@@ -899,14 +906,29 @@ svg {
       .email-container {
         display: flex;
         width: 100%;
+        p {
+          display: inline-block;
+        }
+        button {
+          margin: 0 5% 0 auto;
+          .copy {
+            margin: 0;
+          }
+        }
       }
       .phone-container {
         display: flex;
         width: 100%;
         margin-top: auto;
+        button {
+          margin: 0 5% 0 auto;
+          .copy {
+            margin: 0;
+          }
+        }
       }
       img {
-        margin: 0 40px;
+        margin: 0 30px;
       }
     }
 
@@ -934,11 +956,21 @@ svg {
         bottom: 0;
       }
     }
+    h4 {
+      position: fixed;
+      padding: 20px;
+      z-index: 999;
+      text-align: center;
+      bottom: 20px;
+      width: 100%;
+      background-color: #ffd1ae;
+    }
   }
 }
 //DESKTOP VIEW
 @media (min-width: 501px) {
   .home-page {
+    overflow: hidden;
     width: 100vw;
     height: 100vh;
     .content {
@@ -1049,6 +1081,7 @@ svg {
             background-color: $brand-color;
             transform-origin: 50% 50%;
             overflow: hidden;
+            border: 1px solid transparent;
             border-radius: 50%;
             .circle-2-interior {
               margin: auto;
@@ -1061,13 +1094,14 @@ svg {
             }
             .image-container {
               position: relative;
-
               width: 100%;
-              padding-top: 21%;
+              padding-top: calc(9 / 12.79 * 100%);
+              height: 0;
               margin: 10px;
               border-radius: 5px;
               box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.3);
               overflow: hidden;
+              border: -1px solid transparent;
               img {
                 width: 100%;
                 position: absolute;
@@ -1340,9 +1374,10 @@ svg {
             .slider-image-container {
               position: relative;
               height: 0;
-              padding-top: calc(2 / 3 * 100%);
+              padding-top: calc(9 / 12.7 * 100%);
               overflow: hidden;
               border-radius: 5px;
+              border: 0px solid;
               box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
               .slider-image {
                 position: absolute;
@@ -1351,6 +1386,8 @@ svg {
                 bottom: 0;
                 right: 0;
                 width: 100%;
+                border: 0px solid;
+                border-radius: 5px;
                 cursor: pointer;
               }
             }
