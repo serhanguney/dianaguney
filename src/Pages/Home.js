@@ -49,7 +49,6 @@ export default function Home({ toggle, transition }) {
   //we set the scroll motionvalue to window.scrollY so it doesn't scroll from the top everytime.
   useEffect(() => {
     let targetElement = document.querySelector("html");
-
     if (!preview) {
       window.addEventListener("scroll", setScroll);
 

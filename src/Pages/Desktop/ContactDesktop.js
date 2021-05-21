@@ -10,7 +10,7 @@ export default function ContactDesktop({ transition }) {
   const contact = {
     email: "diana.guney.93@gmail.com",
     emailIcon: emailIcon,
-    phone: "+46 73 779 99 93",
+    phone: "+44 7737 882175",
     phoneIcon: phoneIcon,
   };
 

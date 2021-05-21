@@ -3,7 +3,8 @@ import Slider from "../../Components/Desktop/Slider";
 import { projects } from "../../Projects/Projects";
 import NavbarDesktop from "../../Components/Desktop/NavbarDesktop";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+import Loader from "../../Components/Loader";
 
 export default function ProjectsDesktop({ transition }) {
   //load is required for page loading animations
@@ -76,8 +77,6 @@ export default function ProjectsDesktop({ transition }) {
 
   //imgRef is required to hold until the images are loaded
   const projectRef = useRef(0);
-  const loaderColors = ["#6E6E6E", "#FFD1AE", "#6E6E6E"];
-
   function handleImageLoad() {
     setLoad(handleLoading);
   }
@@ -93,57 +92,7 @@ export default function ProjectsDesktop({ transition }) {
   return (
     <div className="projects" onLoad={handleImageLoad} ref={projectRef}>
       <NavbarDesktop tranSwipe={tranSwipe} />
-      <AnimatePresence>
-        {!load && (
-          <motion.div
-            className="page-loader"
-            initial={{ opacity: 1 }}
-            // animate={load && { opacity: 0, transition: { duration: 0.1 } }}
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              width: "100vw",
-              height: "100vh",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column",
-              overflow: "hidden",
-            }}
-            exit={{ opacity: 0 }}
-          >
-            <>
-              <p>Please wait until the images are loaded</p>
-              <motion.div>
-                {loaderColors.map((color, n) => (
-                  <motion.div
-                    key={n}
-                    style={{
-                      display: "inline-block",
-                      borderRadius: "50%",
-                      width: "15px",
-                      height: "15px",
-                      backgroundColor: color,
-                      margin: "5px",
-                    }}
-                    initial={{ y: 0 }}
-                    animate={{
-                      y: [0, 7, 0],
-                      transition: {
-                        loop: Infinity,
-                        duration: 0.8,
-                        delay: n * 0.3,
-                      },
-                    }}
-                    exit={{ opacity: 0 }}
-                  ></motion.div>
-                ))}
-              </motion.div>
-            </>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <AnimatePresence>{!load && <Loader />}</AnimatePresence>
       {projects.map((project, index) => (
         <Slider
           key={index}

@@ -126,6 +126,13 @@ export default function Preview({
       if (element.active) {
         let container = refContainer.current.getBoundingClientRect();
         const total = container.top + window.scrollY - window.innerHeight / 6;
+        console.log(
+          scroll.current,
+          total,
+          container.top,
+          window.scrollY,
+          window.innerHeight / 6
+        );
         animate(scroll, total, {
           ...tranSwipe(1.2),
           onComplete: () => {

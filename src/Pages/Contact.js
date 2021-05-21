@@ -54,6 +54,17 @@ export default function Contact({ toggle, transition }) {
               Thank you for taking the time to browse through what I’ve been
               doing. You can reach me using the contact information below.
             </p>
+            <p>
+              You can also find my designs at{" "}
+              <a
+                href="https://www.designersofcolour.co.uk"
+                target="_blank"
+                onClick={() => console.log("clicked")}
+                style={{ textDecoration: "underline" }}
+              >
+                www.designersofcolour.co.uk
+              </a>
+            </p>
           </div>
           <div className="signature">
             <img src={signature} alt="signature" />
@@ -74,8 +85,8 @@ export default function Contact({ toggle, transition }) {
 
           <div className="phone-container">
             <img src={phone} alt="phone" />
-            <p>+46 73 779 99 93</p>
-            <CopyToClipboard text={"+46737799993"} onCopy={handleCopy}>
+            <p>+44 7737 882175</p>
+            <CopyToClipboard text={"+447737882175"} onCopy={handleCopy}>
               <button>
                 <img className="copy" src={copyImage} />
               </button>

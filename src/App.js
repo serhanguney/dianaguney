@@ -13,7 +13,6 @@ import SkillsDesktop from "./Pages/Desktop/SkillsDesktop";
 import ContactDesktop from "./Pages/Desktop/ContactDesktop";
 //COMPONENTs
 import Landscape from "./Components/Landscape";
-
 //ADDITIONALS
 import { AnimatePresence } from "framer-motion";
 
@@ -33,7 +32,6 @@ function App() {
   const tranSmooth = (duration) => {
     return { duration: duration, ease: [0.43, 0.13, 0.23, 0.96] };
   };
-
   useEffect(() => {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("$vh", `${vh}px`);

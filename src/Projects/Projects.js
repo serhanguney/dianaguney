@@ -81,7 +81,6 @@ import frFourth from "../Images/frames/4.jpg";
 import frFifth from "../Images/frames/5.jpg";
 import frSixth from "../Images/frames/6.jpg";
 import frSeventh from "../Images/frames/7.jpg";
-import frEight from "../Images/frames/8.jpg";
 
 //BALCONIES
 import bFirst from "../Images/balconies/1.jpg";
@@ -141,6 +140,7 @@ import s20 from "../Images/scampia/20.jpeg";
 
 import o1 from "../Images/operaTwo/1.jpeg";
 import o2 from "../Images/operaTwo/2.jpeg";
+import o3 from "../Images/operaTwo/3.jpg";
 
 export const projects = [
   {
@@ -296,7 +296,6 @@ export const projects = [
       frFifth,
       frSixth,
       frSeventh,
-      frEight,
     ],
     active: false,
   },
@@ -436,7 +435,7 @@ export const projects = [
     black box, I am experimenting ways to increase the usage of the exterior staircases and the
     exterior facade in a way that could invite more engagement between the exterior facade and the
     human daily touch.`,
-    photos: [o1, o2],
+    photos: [o1, o2,o3],
     active: false,
   },
 ];
