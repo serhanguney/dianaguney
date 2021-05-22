@@ -72,7 +72,7 @@ export default function Contact({ toggle, transition }) {
           <h2>Contact Information</h2>
           <div className="email-container">
             <img src={email} alt="email" />
-            <p>diana.guney.93@gmail.com</p>
+            <p>diana.guney93@gmail.com</p>
             <CopyToClipboard
               text={"diana.guney.93@gmail.com"}
               onCopy={handleCopy}
