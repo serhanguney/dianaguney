@@ -11,6 +11,8 @@ import HomeDesktop from "./Pages/Desktop/HomeDesktop";
 import ProjectsDesktop from "./Pages/Desktop/ProjectsDesktop";
 import SkillsDesktop from "./Pages/Desktop/SkillsDesktop";
 import ContactDesktop from "./Pages/Desktop/ContactDesktop";
+import FilmDesktop from "./Pages/Desktop/FilmDesktop";
+import Film from "./Pages/Film";
 //COMPONENTs
 import Landscape from "./Components/Landscape";
 //ADDITIONALS
@@ -81,7 +83,21 @@ function App() {
                   />
                   <Route
                     exact
-                    path="/projects"
+                    path="/film"
+                    render={() =>
+                      isDesktop ? (
+                        <FilmDesktop transition={{ tranSwipe, tranSmooth }} />
+                      ) : (
+                        <Film
+                          toggle={{ menuOpen, setMenuOpen }}
+                          transition={{ tranSwipe, tranSmooth }}
+                        />
+                      )
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/architecture"
                     render={() =>
                       isDesktop ? (
                         <ProjectsDesktop

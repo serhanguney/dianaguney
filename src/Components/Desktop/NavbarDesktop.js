@@ -12,16 +12,16 @@ export default function NavbarDesktop({ tranSwipe, tranSmooth }) {
   //ICON MATCH - we'll use the icon state to match the global menu icon with the appropriate page icon
   const [icon, setIcon] = useState(null);
 
-  //TITLE MATCH - we'll send the page title to MenuTitle component to animate it.
-  const filteredItems = menuItems.filter((item) => `/${item.link}` === "/");
-  const mainTitle = filteredItems[0].text.split("");
-
   //ICON MATCH - we'll use location to do the icon matchin via useEffect
   useEffect(() => {
-    const item = menuItems.filter(
-      (item) => `/${item.link}` === location.pathname
+    const item = menuItems.filter((item) =>
+      location.pathname.includes(item.link)
     );
-    setIcon(<img src={item[0].icon} alt={item[0].title} />);
+    if (location.pathname === "/") {
+      setIcon(<img src={item[0].icon} alt={item[0].title} />);
+    } else {
+      setIcon(<img src={item[1].icon} alt={item[1].title} />);
+    }
   }, []);
 
   return (

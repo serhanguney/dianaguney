@@ -14,6 +14,7 @@ import contactIcon from "../Icons/contactIcon.svg";
 import projectsIcon from "../Icons/projectsIcon.svg";
 import skillsIcon from "../Icons/skillsIcon.svg";
 import homeIcon from "../SVGs/Signature.svg";
+import filmIcon from "../SVGs/film.svg";
 
 export const menuItems = [
   {
@@ -24,10 +25,17 @@ export const menuItems = [
     fromDashboard: true,
   },
   {
+    icon: filmIcon,
+    title: "Film",
+    text: "FILM",
+    link: "film",
+    fromDashboard: false,
+  },
+  {
     icon: projectsIcon,
-    title: "Projects",
-    text: "PROJECTS",
-    link: "projects",
+    title: "Architecture",
+    text: "ARCHITECTURE",
+    link: "architecture",
     fromDashboard: false,
   },
   {
@@ -114,7 +122,6 @@ export default function Navbar({ toggle, tranSwipe, tranSmooth, preview }) {
       navbarColor.start({ backgroundColor: "#fff8f0" });
     }
   }, []);
-  // useEffect(() => console.log(preview), [preview]);
 
   return (
     <motion.div className="navbar-container">

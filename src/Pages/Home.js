@@ -99,7 +99,7 @@ export default function Home({ toggle, transition }) {
       >
         <div className="cover-image">
           <div className="overlay"></div>
-          <img src={`${baseUrl}/balconies_1.jpg`} alt="Cover" />
+          <img src={`${baseUrl}/balconies_4.jpg`} alt="Cover" />
         </div>
         <motion.div className="introduction-section" animate={hide}>
           <h1>Architecture</h1>
