@@ -94,8 +94,7 @@ export default function Film({ toggle, transition }) {
             <img src={pageCover} />
           </div>
           <p>
-            Below you'll find the projects I've been involved throughout career
-            in film production
+            Below you'll find the projects I've been involved in as a creative in the film industry.
           </p>
           <div className="scroll-container">
             <p>scroll for projects</p>
