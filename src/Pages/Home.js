@@ -3,7 +3,6 @@ import { useLocation, useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 //IMAGES
-import homeCover from "../Images/balconies/1.jpg";
 import sign from "../SVGs/Signature.svg";
 import ArrowDown from "../Components/ArrowDown";
 import ArrowRight from "../Components/ArrowRight";
@@ -15,7 +14,7 @@ import Preview from "../Components/Preview";
 
 //ADDITIONAL
 import { motion, useAnimation, useCycle, useMotionValue } from "framer-motion";
-import { projects } from "../Projects/Projects";
+import { baseUrl, projects } from "../Projects/Projects";
 
 export default function Home({ toggle, transition }) {
   //STATES
@@ -100,7 +99,7 @@ export default function Home({ toggle, transition }) {
       >
         <div className="cover-image">
           <div className="overlay"></div>
-          <img src={homeCover} alt="Cover" />
+          <img src={`${baseUrl}/balconies_1.jpg`} alt="Cover" />
         </div>
         <motion.div className="introduction-section" animate={hide}>
           <h1>Architecture</h1>
