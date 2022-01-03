@@ -25,4 +25,3 @@ jobs:
           projectId: diana-guney
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
-          process.env.CI : false
