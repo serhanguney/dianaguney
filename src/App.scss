@@ -621,7 +621,6 @@ svg {
     }
     .button-section {
       position: relative;
-      margin: 0 65px 0 auto;
       width: 130px;
       height: 30px;
       flex-shrink: 0;
@@ -644,6 +643,7 @@ svg {
 
       .slider-container {
         position: absolute;
+        padding-bottom: 20px;
         display: flex;
         overflow: auto;
         scroll-snap-type: x proximity;
@@ -657,15 +657,13 @@ svg {
         flex-shrink: 0;
         .image-layout {
           position: relative;
-          width: 100%;
-          height: 0;
-          padding-top: calc(9 / 12.8 * 100%);
+          height: 100%;
           border-radius: 5px;
           box-shadow: 4px 6px 16px rgba(0, 0, 0, 0.3);
           overflow: hidden;
           img {
-            width: 100%;
-            position: absolute;
+            height: 100%;
+            //position: absolute;
             top: 0;
             left: 0;
             right: 0;
@@ -1079,31 +1077,23 @@ svg {
             border-radius: 50%;
             .circle-2-interior {
               margin: auto;
-              display: grid;
-              grid-template-columns: repeat(3, 1fr);
-              grid-template-rows: repeat(3, 1fr);
-              gap: 5px;
+              display:flex;
+              flex-wrap: wrap;
               height: 80%;
               width: 90%;
             }
             .image-container {
               position: relative;
-              width: 100%;
-              padding-top: calc(9 / 12.79 * 100%);
-              height: 0;
+              //width: 100%;
+              height: 27%;
               margin: 10px;
               border-radius: 5px;
               box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.3);
               overflow: hidden;
               border: -1px solid transparent;
               img {
-                width: 100%;
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                object-fit: cover;
+                height: 100%;
+
               }
             }
           }
@@ -1196,24 +1186,22 @@ svg {
               position: relative;
               width: 60%;
               max-width: 110vh;
+              height: 70vh;
               display: block;
               margin: 50px auto;
               .image-container {
                 position: absolute;
-                width: 100%;
+                //width: 100%;
+                height: 100%;
                 overflow: hidden;
-                padding-top: calc(9 / 13 * 100%);
+                //padding-top: calc(9 / 13 * 100%);
                 border-radius: 5px;
-                height: 0;
+                //height: 0;
                 z-index: 4;
                 box-shadow: 8px 8px 36px rgba(0, 0, 0, 0.4);
                 img {
-                  position: absolute;
-                  top: 0;
-                  bottom: 0;
-                  left: 0;
-                  right: 0;
-                  width: 100%;
+                  max-width: 100%;
+                  height: 100%;
                   object-fit: contain;
                 }
               }
@@ -1355,8 +1343,7 @@ svg {
         }
         .slider-mask {
           flex-shrink: 0;
-          display: inline-block;
-          width: 90%;
+          display: flex;
           &:nth-of-type(1) {
             padding-left: 5%;
           }
@@ -1364,22 +1351,16 @@ svg {
             position: relative;
             box-sizing: border-box;
             display: inline-block;
-            padding: 0 0.5%;
+            margin: 0 5px;
             .slider-image-container {
               position: relative;
-              height: 0;
-              padding-top: calc(9 / 12.7 * 100%);
+              height: 150px;
               overflow: hidden;
               border-radius: 5px;
               border: 0px solid;
               box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
               .slider-image {
-                position: absolute;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
-                width: 100%;
+                height: 100%;
                 border: 0px solid;
                 border-radius: 5px;
                 cursor: pointer;
