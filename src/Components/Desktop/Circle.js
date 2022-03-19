@@ -28,6 +28,9 @@ export default function Circle({
     }
   }
 
+  function getFeaturedPhotos(index){
+    return index > 7 && index < 18
+  }
   return (
     <div className="circle-container">
       <motion.div
@@ -46,7 +49,7 @@ export default function Circle({
           {projects &&
             projects[0].photos.map(
               (photo, index) =>
-                index < 9 && (
+                  getFeaturedPhotos(index) && (
                   <motion.div
                     key={index}
                     className="image-container"
