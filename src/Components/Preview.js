@@ -168,7 +168,7 @@ export default function Preview({
             ? { opacity: 1, transition: tranSwipe(0.8) }
             : { opacity: 0, transition: { delay: 0.5, ...tranSwipe(0.8) } }
         }
-      ></motion.div>
+      />
       <motion.div className="text-container">
         <h2>{element.title}</h2>
         <p>{element.text}</p>
@@ -222,7 +222,7 @@ export default function Preview({
               key={i}
               className="image-container"
               transition={tranSwipe(0.8)}
-              style={{ maxWidth: enlargeWidth }}
+              // style={{ maxWidth: enlargeWidth }}
               layout
             >
               <div className="image-layout">
@@ -241,7 +241,7 @@ export default function Preview({
       <motion.div
         className="description-background"
         style={{ opacity: dFadeIn }}
-      ></motion.div>
+      />
       <AnimatePresence>
         {element.active && (
           <motion.div
@@ -259,7 +259,7 @@ export default function Preview({
             <motion.div
               className="description-overlay"
               style={{ opacity: dFadeOut }}
-            ></motion.div>
+            />
             <div className="description-title">
               <h3>Description</h3>
               <div className="info-container">
