@@ -37,9 +37,9 @@ export default function Preview({
   const height = useTransform(
     t,
     [0, 500],
-    [window.innerWidth < 425 ? 420 : 480, window.innerHeight]
+    [window.innerWidth < 425 ? 440 : 480, window.innerHeight]
   );
-  const sliderHeight = useTransform(t, [0, 500], ["70%", "59%"]);
+  const sliderHeight = useTransform(t, [0, 500], ["50%", "59%"]);
   const enlargeWidth = useTransform(t, [0, 500], ["70%", "125%"]);
   const fadeOut = useTransform(t, [0, 500], [1, 0]);
   const slideOut = useTransform(t, [0, 500], [0, 30]);
@@ -222,7 +222,7 @@ export default function Preview({
               key={i}
               className="image-container"
               transition={tranSwipe(0.8)}
-              style={{ width: enlargeWidth }}
+              style={{ maxWidth: enlargeWidth }}
               layout
             >
               <div className="image-layout">

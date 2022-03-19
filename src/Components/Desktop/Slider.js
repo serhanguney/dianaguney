@@ -52,16 +52,16 @@ export default function Slider({ tranSwipe, project, block, load }) {
   useEffect(() => {
     //set width of slider mask
     if (load && sliderCount.length > 0) {
-      const target = document.getElementById(`${project.title}-slider`);
-      const children = Array.from(target.querySelectorAll(".slider-mask"));
-      slideLimit.current = children.length;
-      width.current =
-        children[0].getBoundingClientRect().width - window.innerWidth * 0.05;
-    } else {
-      return;
+      getSliderWidth();
     }
   }, [load, sliderCount]);
 
+  function getSliderWidth (){
+    const target = document.getElementById(`${project.title}-slider`);
+    const children = Array.from(target.querySelectorAll(".slider-mask"));
+    slideLimit.current = children.length;
+    width.current = children[0].getBoundingClientRect().width - window.innerWidth * 0.05;
+  }
   useEffect(() => {
     const target = document.querySelector("html");
     if (modal.active) {
@@ -73,6 +73,7 @@ export default function Slider({ tranSwipe, project, block, load }) {
   function slideAway(direction) {
     //animate the slider mask slidings within set limitations
     //using maskIndex I set the limits for the user's swipe actions
+    getSliderWidth();
     maskIndex.current = clamp(
       -1,
       maskIndex.current - direction,
@@ -200,7 +201,7 @@ export default function Slider({ tranSwipe, project, block, load }) {
                     <div
                       key={index}
                       className="card"
-                      style={{ width: block.width }}
+                      // style={{ width: block.width }}
                       onClick={() =>
                         setModal({
                           active: true,

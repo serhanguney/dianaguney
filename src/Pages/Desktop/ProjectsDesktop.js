@@ -78,7 +78,7 @@ export default function ProjectsDesktop({ transition }) {
   //imgRef is required to hold until the images are loaded
   const projectRef = useRef(0);
   function handleImageLoad() {
-    setLoad(handleLoading);
+    setLoad(handleLoading());
   }
   function handleLoading() {
     const arr = projectRef.current.querySelectorAll("img");

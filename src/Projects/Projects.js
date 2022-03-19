@@ -3,8 +3,8 @@ export const baseUrl = "https://yuivae.mo.cloudinary.net";
 export const projects = [
     {
         id: 0,
-        projectTitle: 'Nyoi Sushi & Ramen Restaurant',
-        title: 'Nyoi Sushi & Ramen Restaurant',
+        projectTitle: 'Nyoi Sushi & Ramen',
+        title: 'Nyoi Sushi & Ramen',
         text: 'Co Architect with Paulina Aydin',
         paragraph: 'NYOi is a sushi and ramen restaurant designed by myself and Paulina aydin. From inception to completion, a creative journey.',
         photos: [
