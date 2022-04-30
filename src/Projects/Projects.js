@@ -24,7 +24,6 @@ export const projects = [
             `${baseUrl}/nyoi_14.jpg`,
             `${baseUrl}/nyoi_15.jpg`,
             `${baseUrl}/nyoi_16.jpg`,
-            `${baseUrl}/nyoi_17.jpg`,
 
         ]
     },
