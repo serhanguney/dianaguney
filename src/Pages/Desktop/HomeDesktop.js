@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import NavbarDesktop from "../../Components/Desktop/NavbarDesktop";
 import Circle from "../../Components/Desktop/Circle";
 import { projects } from "../../Projects/Projects";
-// import { Helmet } from "react-helmet";
-// import metaCover from "../../Images/episodesOfFeelings/0.jpeg";
 
 import { motion, useAnimation, useIsPresent } from "framer-motion";
 
@@ -119,7 +117,7 @@ export default function HomeDesktop({ transition }) {
                   }}
                   exit={{ scale: 0.4, opacity: 0 }}
                 >
-                  <Link to={{ pathname: "/projects", state: false }}>
+                  <Link to={{ pathname: "/architecture", state: false }}>
                     <button>
                       <span>MY PORTFOLIO</span>
                     </button>

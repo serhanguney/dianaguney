@@ -29,7 +29,7 @@ export default function Circle({
   }
 
   function getFeaturedPhotos(index){
-    return index > 7 && index < 18
+    return index < 11
   }
   return (
     <div className="circle-container">
