@@ -28,6 +28,7 @@ function App() {
   const [isDesktop, setDesktop] = useState(
     window.innerWidth > 500 && window.innerHeight > 500
   );
+
   const tranSwipe = (duration) => {
     return { duration: duration, ease: [0.6, 0.01, -0.05, 0.9] };
   };

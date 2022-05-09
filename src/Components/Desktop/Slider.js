@@ -12,10 +12,9 @@ import {
 } from "framer-motion";
 import { clamp } from "lodash-es";
 
-export default function Slider({ tranSwipe, project, block, load }) {
+export default function Slider({ tranSwipe, project, block, load ,projectImages}) {
   const [sliderCount, setSliderCount] = useState([]);
   const [modal, setModal] = useState({ active: false, element: null });
-
   //load is required to hold on until DOM is loaded
   // const [load, setLoad] = useState(false);
 
@@ -38,7 +37,7 @@ export default function Slider({ tranSwipe, project, block, load }) {
     // setLoad(true);
     if (block.count) {
       //set the image block thresholds for how many slider-masks we'll have
-      const division = project.photos.reduce((thresholds, photo, index) => {
+      const division = projectImages.reduce((thresholds, photo, index) => {
         if ((index / block.count) % 1 === 0) {
           thresholds.push(index);
         }
@@ -57,7 +56,7 @@ export default function Slider({ tranSwipe, project, block, load }) {
   }, [load, sliderCount]);
 
   function getSliderWidth (){
-    const target = document.getElementById(`${project.title}-slider`);
+    const target = document.getElementById(`${project.heading}-slider`);
     const children = Array.from(target.querySelectorAll(".slider-mask"));
     slideLimit.current = children.length;
     width.current = children[0].getBoundingClientRect().width - window.innerWidth * 0.05;
@@ -137,7 +136,7 @@ export default function Slider({ tranSwipe, project, block, load }) {
             </button>
           </div>
           <h2>Description</h2>
-          <p>{project.paragraph}</p>
+          <p>{project.body}</p>
         </motion.div>
 
         <div className="text-container">
@@ -154,7 +153,7 @@ export default function Slider({ tranSwipe, project, block, load }) {
                   transition: { delay: 0.2, ...tranSwipe(0.8) },
                 }}
               >
-                {project.title}
+                {project.heading}
               </motion.h2>
             </span>
             <span>
@@ -166,14 +165,14 @@ export default function Slider({ tranSwipe, project, block, load }) {
                 }}
                 exit={{ y: "-100%", transition: tranSwipe(0.8) }}
               >
-                {project.text}
+                {project.superHeading}
               </motion.p>
             </span>
           </div>
         </div>
         <motion.div
           className="slider-container"
-          id={`${project.title}-slider`}
+          id={`${project.heading}-slider`}
           initial={{ y: "10%", opacity: 0 }}
           animate={{
             y: "0%",
@@ -194,7 +193,7 @@ export default function Slider({ tranSwipe, project, block, load }) {
           )}
           {sliderCount.map((slider, i) => (
             <motion.div key={i} className="slider-mask" style={{ x: slide }}>
-              {project.photos.map(
+              {projectImages.map(
                 (photo, index) =>
                   index < block.count + slider &&
                   index > slider - 1 && (
@@ -218,7 +217,7 @@ export default function Slider({ tranSwipe, project, block, load }) {
                           zIndex: 5,
                         }}
                       >
-                        <img className="slider-image" src={photo} alt={index} />
+                        <img className="slider-image" src={`${photo.url}?w=500`} alt={index} loading={'lazy'}/>
                       </motion.div>
                     </div>
                   )

@@ -6,7 +6,7 @@ import AdvancedIcon from "../AdvancedIcon";
 import checkIcon from "../../SVGs/CheckIcon.svg";
 import Signature from "../Signature";
 export default function Circle({
-  projects,
+                                 project,
   skills,
   contact,
   tranSwipe,
@@ -43,11 +43,11 @@ export default function Circle({
           duration: 20,
           ease: "linear",
         }}
-      ></motion.div>
+      />
       <div className="circle-2">
         <div ref={ref} className="circle-2-interior">
-          {projects &&
-            projects[0].photos.map(
+          {project &&
+          project.images.map(
               (photo, index) =>
                   getFeaturedPhotos(index) && (
                   <motion.div
@@ -59,7 +59,7 @@ export default function Circle({
                     }
                     transition={{ delay: 0.1 * index }}
                   >
-                    <img src={photo} alt={index} onLoad={handleImageChange} />
+                    <img src={`${photo.url}?w=500`} alt={index} onLoad={handleImageChange} loading={'lazy'}/>
                   </motion.div>
                 )
             )}

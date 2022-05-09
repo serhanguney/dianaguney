@@ -1,4 +1,7 @@
+import {getFormattedImages} from "../utils/cms";
+
 export const baseUrl = "https://yuivae.mo.cloudinary.net";
+
 
 export const projects = [
     {
@@ -7,25 +10,7 @@ export const projects = [
         title: 'Nyoi Sushi & Ramen',
         text: 'Co Architect with Paulina Aydin',
         paragraph: 'NYOi is a sushi and ramen restaurant designed by myself and Paulina aydin. From inception to completion, a creative journey.',
-        photos: [
-            `${baseUrl}/nyoi_1.jpg`,
-            `${baseUrl}/nyoi_2.jpg`,
-            `${baseUrl}/nyoi_3.jpg`,
-            `${baseUrl}/nyoi_4.jpg`,
-            `${baseUrl}/nyoi_5.jpg`,
-            `${baseUrl}/nyoi_6.jpg`,
-            `${baseUrl}/nyoi_7.jpg`,
-            `${baseUrl}/nyoi_8.jpg`,
-            `${baseUrl}/nyoi_9.jpg`,
-            `${baseUrl}/nyoi_10.jpg`,
-            `${baseUrl}/nyoi_11.jpg`,
-            `${baseUrl}/nyoi_12.jpg`,
-            `${baseUrl}/nyoi_13.jpg`,
-            `${baseUrl}/nyoi_14.jpg`,
-            `${baseUrl}/nyoi_15.jpg`,
-            `${baseUrl}/nyoi_16.jpg`,
-
-        ]
+        photos: [],
     },
     {
         id: 1,
