@@ -15,12 +15,13 @@ import Preview from "../Components/Preview";
 //ADDITIONAL
 import { motion, useAnimation, useCycle, useMotionValue } from "framer-motion";
 import { baseUrl, projects } from "../Projects/Projects";
+import {getAllAssets, getAllEntriesByType, getFormattedImages} from "../utils/cms";
 
 export default function Home({ toggle, transition }) {
   //STATES
   const { menuOpen, setMenuOpen } = toggle;
 
-  const [elements, setElements] = useState(projects);
+  const [elements, setElements] = useState([]);
   const [preview, setPreview] = useState(false);
 
   //VARIABLES
@@ -75,17 +76,32 @@ export default function Home({ toggle, transition }) {
   }, []);
 
   useEffect(() => {
+      async function handleImageLoad() {
+        let projectsArray = []
+        const entries= await getAllEntriesByType('dianaGuneyProject', {order: 'fields.order', 'fields.type' : 'architecture'});
+        const assets = await getAllAssets();
+        for(const entry of entries.items){
+          const images = await getFormattedImages(entry.fields.projectIndex,assets)
+          projectsArray = [...projectsArray, {...entry.fields, images }];
+        }
+        console.log('projects',projectsArray);
+        setElements(projectsArray);
+        document.fonts.ready.then(()=> setIsLoaded(true));
+      }
+      handleImageLoad();
     //clear history on component mount
     history.replace();
   }, []);
-  return (
+  const coverImageUrl = elements[5]?.images[5]?.url;
+  console.log('??',coverImageUrl);
+  return !coverImageUrl ? null : (
     <motion.div className="home-page" transition={tranSwipe(1)}>
       <motion.div
         className="page-transition-element"
         initial={location.state ? { width: "100%" } : ""}
         animate={c}
         exit={{ width: "100%", transition: tranSwipe(1) }}
-      ></motion.div>
+      />
 
       <Navbar
         toggle={{ menuOpen, setMenuOpen }}
@@ -98,8 +114,8 @@ export default function Home({ toggle, transition }) {
         transition={{ delay: 0.4, ...tranSwipe(0.8) }}
       >
         <div className="cover-image">
-          <div className="overlay"></div>
-          <img src={`${baseUrl}/balconies_4.jpg`} alt="Cover" />
+          <div className="overlay"/>
+          <img src={`${coverImageUrl}?w=900`} alt="Cover" />
         </div>
         <motion.div className="introduction-section" animate={hide}>
           <h1>Architecture</h1>

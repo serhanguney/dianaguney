@@ -84,15 +84,13 @@ export default function ProjectsDesktop({ transition }) {
       let projectsArray = []
       const entries= await getAllEntriesByType('dianaGuneyProject', {order: 'fields.order', 'fields.type' : 'architecture'});
       const assets = await getAllAssets();
-      console.log(entries);
       for(const entry of entries.items){
         const images = await getFormattedImages(entry.fields.projectIndex,assets)
-
         projectsArray = [...projectsArray, {...entry.fields, images }];
       }
 
       setProjects(projectsArray);
-      setIsLoaded(true)
+      document.fonts.ready.then(()=> setIsLoaded(true));
     }
     handleImageLoad();
   },[])

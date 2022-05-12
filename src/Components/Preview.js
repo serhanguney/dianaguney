@@ -126,13 +126,6 @@ export default function Preview({
       if (element.active) {
         let container = refContainer.current.getBoundingClientRect();
         const total = container.top + window.scrollY - window.innerHeight / 6;
-        console.log(
-          scroll.current,
-          total,
-          container.top,
-          window.scrollY,
-          window.innerHeight / 6
-        );
         animate(scroll, total, {
           ...tranSwipe(1.2),
           onComplete: () => {
@@ -154,7 +147,7 @@ export default function Preview({
   return (
     <motion.div
       ref={refContainer}
-      id={element.id}
+      id={element.projectIndex}
       key={index}
       className="project-container"
       animate={!element.active && hide}
@@ -170,8 +163,8 @@ export default function Preview({
         }
       />
       <motion.div className="text-container">
-        <h2>{element.title}</h2>
-        <p>{element.text}</p>
+        <h2>{element.heading}</h2>
+        <p>{element.superHeading}</p>
       </motion.div>
       <motion.div className="button-section">
         <motion.div
@@ -217,7 +210,7 @@ export default function Preview({
           transition={tranSwipe(0.8)}
           layout
         >
-          {element.photos.map((photo, i) => (
+          {element.images.map((images, i) => (
             <motion.div
               key={i}
               className="image-container"
@@ -227,10 +220,11 @@ export default function Preview({
             >
               <div className="image-layout">
                 <motion.img
-                  src={photo}
+                  src={`${images.url}?w=${element.active ? '700' : '300'}`}
                   alt={i}
                   transition={tranSwipe(0.8)}
                   layout
+                  loading={'lazy'}
                 />
               </div>
             </motion.div>
@@ -298,7 +292,7 @@ export default function Preview({
               </div>
             </div>
             <div className="description">
-              <p>{element.paragraph}</p>
+              <p>{element.body}</p>
             </div>
           </motion.div>
         )}

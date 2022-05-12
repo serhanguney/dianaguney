@@ -7,7 +7,9 @@ import Preview from "../Components/Preview";
 import ArrowDown from "../Components/ArrowDown";
 import pageCover from "../Images/ProjectsCover.jpg";
 //ADDITIONALS
-import { motion, useAnimation, useCycle, useMotionValue } from "framer-motion";
+import {AnimatePresence, motion, useAnimation, useCycle, useMotionValue} from "framer-motion";
+import {getAllAssets, getAllEntriesByType, getFormattedImages} from "../utils/cms";
+import Loader from "../Components/Loader";
 
 //PROJECTS
 import { projects } from "../Projects/Projects";
@@ -17,7 +19,7 @@ export default function Projects({ toggle, transition }) {
   const [preview, setPreview] = useState(false);
   const { menuOpen, setMenuOpen } = toggle;
   const { tranSwipe, tranSmooth } = transition;
-  const [elements, setElements] = useState(projects);
+  const [elements, setElements] = useState([]);
 
   //the cyle animation is for inactive elements to disappear when an element is activated.
   //it needs to be defined in the parent component this way we only have one toggle that controls all children separately.
@@ -72,6 +74,21 @@ export default function Projects({ toggle, transition }) {
     pageInAnimation();
   }, [c]);
 
+  useEffect(()=> {
+    async function handleImageLoad() {
+      let projectsArray = []
+      const entries= await getAllEntriesByType('dianaGuneyProject', {order: 'fields.order', 'fields.type' : 'architecture'});
+      const assets = await getAllAssets();
+      for(const entry of entries.items){
+        const images = await getFormattedImages(entry.fields.projectIndex,assets)
+        projectsArray = [...projectsArray, {...entry.fields, images }];
+      }
+      console.log('projects',projectsArray);
+      setElements(projectsArray);
+      document.fonts.ready.then(()=> setIsLoaded(true));
+    }
+    handleImageLoad();
+  },[])
   return (
     <div className="projects-page">
       <motion.div
@@ -80,14 +97,13 @@ export default function Projects({ toggle, transition }) {
         animate={c}
         exit={{ width: "100%", transition: tranSwipe(1) }}
         transition={tranSwipe(1)}
-      ></motion.div>
+      />
       <Navbar
         toggle={{ menuOpen, setMenuOpen }}
         tranSwipe={tranSwipe}
         tranSmooth={tranSmooth}
         preview={preview}
       />
-
       <motion.div className="projects-content">
         <motion.div className="intro-to-projects" animate={hide}>
           <div className="image-container">
@@ -116,5 +132,5 @@ export default function Projects({ toggle, transition }) {
         ))}
       </motion.div>
     </div>
-  );
+  )
 }

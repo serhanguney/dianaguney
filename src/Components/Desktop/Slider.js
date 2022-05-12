@@ -15,11 +15,6 @@ import { clamp } from "lodash-es";
 export default function Slider({ tranSwipe, project, block, load ,projectImages}) {
   const [sliderCount, setSliderCount] = useState([]);
   const [modal, setModal] = useState({ active: false, element: null });
-  //load is required to hold on until DOM is loaded
-  // const [load, setLoad] = useState(false);
-
-  //progress to prevent intervening animate() in progress
-  const [progress, setProgress] = useState(false);
 
   const slide = useMotionValue(0);
 
@@ -89,7 +84,6 @@ export default function Slider({ tranSwipe, project, block, load ,projectImages}
       maskIndex.current > -1 &&
       maskIndex.current < slideLimit.current
     ) {
-      setProgress(true);
       //delta is the difference we set later on in winkAnimate with fallback
 
       animate(slide, slide.current + width.current * direction, tranSwipe(0.8));
@@ -217,7 +211,7 @@ export default function Slider({ tranSwipe, project, block, load ,projectImages}
                           zIndex: 5,
                         }}
                       >
-                        <img className="slider-image" src={`${photo.url}?w=500`} alt={index} loading={'lazy'}/>
+                        <img className="slider-image" src={`${photo.url}?w=300`} alt={index} loading={'lazy'}/>
                       </motion.div>
                     </div>
                   )
