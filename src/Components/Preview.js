@@ -210,25 +210,28 @@ export default function Preview({
           transition={tranSwipe(0.8)}
           layout
         >
-          {project.images.map((images, i) => (
-            <motion.div
-              key={i}
-              className="image-container"
-              transition={tranSwipe(0.8)}
-              // style={{ maxWidth: enlargeWidth }}
-              layout
-            >
-              <div className="image-layout">
-                <motion.img
-                  src={`${images.url}?w=${project.active ? '700' : '300'}`}
-                  alt={i}
-                  transition={tranSwipe(0.8)}
-                  layout
-                  loading={'lazy'}
-                />
-              </div>
-            </motion.div>
-          ))}
+          {project.images.map((image, i) => {
+            const imageUrl = project.active ? `${image.url}?w=700` : `${image.url}?w=300`;
+            return (
+                <motion.div
+                    key={i}
+                    className="image-container"
+                    transition={tranSwipe(0.8)}
+                    // style={{ maxWidth: enlargeWidth }}
+                    layout
+                >
+                  <div className="image-layout">
+                    <motion.img
+                        src={imageUrl}
+                        alt={i}
+                        loading={'lazy'}
+                        transition={tranSwipe(0.8)}
+                        layout
+                    />
+                  </div>
+                </motion.div>
+            )
+          })}
         </motion.div>
       </motion.div>
 

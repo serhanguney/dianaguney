@@ -128,7 +128,7 @@ export default function Home({ toggle, transition }) {
                 <Preview
                   key={index}
                   index={index}
-                  state={{ projects, project, setGlobalState }}
+                  state={{ projects, project, activate: (array)=> setGlobalState(prevState=> ({...prevState,projects:array})) }}
                   toggle={{ preview, setPreview }}
                   toggleHide={{ hide, cycleHide }}
                   tranSwipe={tranSwipe}
