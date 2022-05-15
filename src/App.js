@@ -17,6 +17,9 @@ import Film from "./Pages/Film";
 import Landscape from "./Components/Landscape";
 //ADDITIONALS
 import { AnimatePresence } from "framer-motion";
+import {useAppContext} from "./utils/hooks";
+import {getAllAssets, getAllEntriesByType, getFormattedImages} from "./utils/cms";
+import Loader from "./Components/Loader";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -28,6 +31,7 @@ function App() {
   const [isDesktop, setDesktop] = useState(
     window.innerWidth > 500 && window.innerHeight > 500
   );
+  const [{isLoaded},setGlobalState] = useAppContext();
 
   const tranSwipe = (duration) => {
     return { duration: duration, ease: [0.6, 0.01, -0.05, 0.9] };
@@ -46,6 +50,27 @@ function App() {
       );
       setDesktop(window.innerWidth > 500 && window.innerHeight > 500);
     });
+
+    async function handleImageLoad() {
+      let architectureProjects = [];
+      let filmProjects = [];
+      const architectureEntries= await getAllEntriesByType('dianaGuneyProject', {order: 'fields.order', 'fields.type' : 'architecture'});
+      const filmEntries= await getAllEntriesByType('dianaGuneyProject', {order: 'fields.order', 'fields.type' : 'film'});
+      const assets = await getAllAssets();
+
+      for(const entry of architectureEntries.items){
+        const images = await getFormattedImages(entry.fields.projectIndex,assets)
+        architectureProjects = [...architectureProjects, {...entry.fields, images }];
+      }
+      for(const entry of filmEntries.items){
+        const images = await getFormattedImages(entry.fields.projectIndex,assets)
+        filmProjects = [...filmProjects, {...entry.fields, images }];
+      }
+
+      document.fonts.ready.then(()=> setGlobalState({projects: architectureProjects,films: filmProjects, isLoaded: true}));
+
+    }
+    handleImageLoad();
     return () => {
       window.removeEventListener("resize", () => {
         setLandscape(
@@ -58,7 +83,7 @@ function App() {
     };
   }, []);
 
-  return (
+  return !isLoaded ? <AnimatePresence><Loader /></AnimatePresence> : (
     <>
       {landscape ? (
         <Landscape />

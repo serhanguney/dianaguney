@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 //IMAGES
@@ -14,20 +14,19 @@ import Preview from "../Components/Preview";
 
 //ADDITIONAL
 import { motion, useAnimation, useCycle, useMotionValue } from "framer-motion";
-import { baseUrl, projects } from "../Projects/Projects";
-import {getAllAssets, getAllEntriesByType, getFormattedImages} from "../utils/cms";
+import {useAppContext} from "../utils/hooks";
 
 export default function Home({ toggle, transition }) {
   //STATES
   const { menuOpen, setMenuOpen } = toggle;
 
-  const [elements, setElements] = useState([]);
+  const [{projects},setGlobalState] = useAppContext();
   const [preview, setPreview] = useState(false);
 
   //VARIABLES
   const { tranSwipe, tranSmooth } = transition;
   const location = useLocation();
-  const history = useHistory();
+
 
   const [hide, cycleHide] = useCycle(
     {
@@ -75,25 +74,9 @@ export default function Home({ toggle, transition }) {
     pageInAnimation();
   }, []);
 
-  useEffect(() => {
-      async function handleImageLoad() {
-        let projectsArray = []
-        const entries= await getAllEntriesByType('dianaGuneyProject', {order: 'fields.order', 'fields.type' : 'architecture'});
-        const assets = await getAllAssets();
-        for(const entry of entries.items){
-          const images = await getFormattedImages(entry.fields.projectIndex,assets)
-          projectsArray = [...projectsArray, {...entry.fields, images }];
-        }
-        console.log('projects',projectsArray);
-        setElements(projectsArray);
-        document.fonts.ready.then(()=> setIsLoaded(true));
-      }
-      handleImageLoad();
-    //clear history on component mount
-    history.replace();
-  }, []);
-  const coverImageUrl = elements[5]?.images[5]?.url;
-  console.log('??',coverImageUrl);
+
+  const coverImageUrl = projects[5]?.images[5]?.url;
+
   return !coverImageUrl ? null : (
     <motion.div className="home-page" transition={tranSwipe(1)}>
       <motion.div
@@ -139,13 +122,13 @@ export default function Home({ toggle, transition }) {
           </div>
         </motion.div>
         <div className="home-projects-section">
-          {elements.map(
-            (element, index) =>
+          {projects.map(
+            (project, index) =>
               index < 3 && (
                 <Preview
                   key={index}
                   index={index}
-                  state={{ elements, element, setElements }}
+                  state={{ projects, project, setGlobalState }}
                   toggle={{ preview, setPreview }}
                   toggleHide={{ hide, cycleHide }}
                   tranSwipe={tranSwipe}
@@ -158,14 +141,14 @@ export default function Home({ toggle, transition }) {
             src={projectsIcon}
             alt="projects-icon"
           />
-          <Link to={{ pathname: "/projects", state: true }}>
+          <Link to={{ pathname: "/architecture", state: true }}>
             <motion.button className="link-button" whileTap={{ scale: 0.9 }}>
               <span>Go to Projects</span>
             </motion.button>
             <ArrowRight />
           </Link>
         </div>
-        <div className="footer"></div>
+        <div className="footer"/>
       </motion.div>
     </motion.div>
   );

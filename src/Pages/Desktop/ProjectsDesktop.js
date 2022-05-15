@@ -1,16 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import Slider from "../../Components/Desktop/Slider";
 import NavbarDesktop from "../../Components/Desktop/NavbarDesktop";
-
-import { AnimatePresence } from "framer-motion";
-import Loader from "../../Components/Loader";
-import {getAllAssets, getAllEntriesByType, getFormattedImages} from "../../utils/cms";
+import {useAppContext} from "../../utils/hooks";
 
 export default function ProjectsDesktop({ transition }) {
   //load is required for page loading animations
-  const [isLoaded, setIsLoaded] = useState(false);
+
   const { tranSwipe } = transition;
-  const[projects,setProjects] = useState([])
+  const [{projects,isLoaded}] = useAppContext();
   //windowBlocks is for determining the available types of sliders.
   const windowBlocks = [
     { size: 800, width: `${100 / 4}%`, count: 4 },
@@ -78,23 +75,7 @@ export default function ProjectsDesktop({ transition }) {
   //imgRef is required to hold until the images are loaded
   const projectRef = useRef(0);
 
-
-  useEffect(()=> {
-    async function handleImageLoad() {
-      let projectsArray = []
-      const entries= await getAllEntriesByType('dianaGuneyProject', {order: 'fields.order', 'fields.type' : 'architecture'});
-      const assets = await getAllAssets();
-      for(const entry of entries.items){
-        const images = await getFormattedImages(entry.fields.projectIndex,assets)
-        projectsArray = [...projectsArray, {...entry.fields, images }];
-      }
-
-      setProjects(projectsArray);
-      document.fonts.ready.then(()=> setIsLoaded(true));
-    }
-    handleImageLoad();
-  },[])
-  return isLoaded ? (
+  return (
     <div className="projects"  ref={projectRef}>
       <NavbarDesktop tranSwipe={tranSwipe} />
       {projects.map((project, index) => (
@@ -108,5 +89,5 @@ export default function ProjectsDesktop({ transition }) {
         />
       ))}
     </div>
-  ) : <AnimatePresence><Loader/></AnimatePresence>;
+  );
 }

@@ -34,7 +34,7 @@ export default function Modal({ modalObject, tranSwipe }) {
       exit="exit"
       variants={containerVariants}
     >
-      <motion.div className="background" variants={bgVariants}></motion.div>
+      <motion.div className="background" variants={bgVariants}/>
       <div className="content-container">
         <div className="visual-content">
           <motion.div
@@ -44,13 +44,13 @@ export default function Modal({ modalObject, tranSwipe }) {
             variants={imageContainer}
             inherit={false}
           >
-            {modal.element.photos.map((item, index) => (
+            {modal.element.images.map((item, index) => (
               <ModalImage
                 key={index}
                 i={index}
                 slideIndex={slideIndex}
                 modal={modal}
-                photo={item}
+                photo={`${item.url}?w=800`}
                 tranSwipe={tranSwipe}
                 direction={direction}
               />
@@ -61,7 +61,7 @@ export default function Modal({ modalObject, tranSwipe }) {
           <motion.a
             onClick={() => {
               setSlideIndex(
-                clamp(slideIndex - 1, 0, modal.element.photos.length - 1)
+                clamp(slideIndex - 1, 0, modal.element.images.length - 1)
               );
               direction.current = 1;
             }}
@@ -69,7 +69,7 @@ export default function Modal({ modalObject, tranSwipe }) {
           <motion.a
             onClick={() => {
               setSlideIndex(
-                clamp(slideIndex + 1, 0, modal.element.photos.length - 1)
+                clamp(slideIndex + 1, 0, modal.element.images.length - 1)
               );
               direction.current = -1;
             }}

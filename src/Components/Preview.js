@@ -25,7 +25,7 @@ export default function Preview({
   //STATES
   const refContainer = useRef(null);
   const refSlider = useRef(null);
-  const { element, elements, setElements } = state;
+  const { project, projects, activate } = state;
   const { preview, setPreview } = toggle;
   const { hide, cycleHide } = toggleHide;
 
@@ -37,7 +37,7 @@ export default function Preview({
   const height = useTransform(
     t,
     [0, 500],
-    [window.innerWidth < 425 ? 440 : 480, window.innerHeight]
+    [ 480, window.innerHeight]
   );
   const sliderHeight = useTransform(t, [0, 500], ["50%", "59%"]);
   const enlargeWidth = useTransform(t, [0, 500], ["70%", "125%"]);
@@ -64,7 +64,7 @@ export default function Preview({
     navbar.classList.add("behind");
     //Element activation is required to handle animations of the page.
     //Whichever element is active thats what we'll animate.
-    const array = elements.map((el, i) => {
+    const array = projects.map((el, i) => {
       if (index === i) {
         if (el.active) {
           return { ...el, active: false };
@@ -76,7 +76,7 @@ export default function Preview({
       }
     });
 
-    setElements(array);
+    activate(array);
 
     //preview is required for the page elements outisde element.map(); like navbar.
     //We can't send the element.active information simply because these elements are outside the map loop.
@@ -86,7 +86,7 @@ export default function Preview({
 
   function handleClose() {
     if (preview) {
-      const array = elements.map((el) => {
+      const array = projects.map((el) => {
         if (el.active) {
           return { ...el, active: false };
         } else;
@@ -94,7 +94,7 @@ export default function Preview({
       });
 
       cycleHide();
-      setElements(array);
+      activate(array);
       setPreview(false);
     }
     setTimeout(() => {
@@ -105,13 +105,13 @@ export default function Preview({
   //trigger animation and handlescroll in preview
 
   useEffect(() => {
-    if (!element.active) {
+    if (!project.active) {
       animate(t, 0, { delay: 0.5, ...tranSwipe(0.8) });
       animate(tDelay, 0, tranSwipe(0.8));
     } else {
       handleScroll();
     }
-  }, [element]);
+  }, [project]);
 
   function handleScroll() {
     const unsubscribe = scroll.onChange((value) => {
@@ -123,7 +123,7 @@ export default function Preview({
     //when pressed see more handles the scroll so that the element is in the middle of the screen
     //triggers the rest of the animations.
     if (refContainer.current) {
-      if (element.active) {
+      if (project.active) {
         let container = refContainer.current.getBoundingClientRect();
         const total = container.top + window.scrollY - window.innerHeight / 6;
         animate(scroll, total, {
@@ -147,24 +147,24 @@ export default function Preview({
   return (
     <motion.div
       ref={refContainer}
-      id={element.projectIndex}
+      id={project.projectIndex}
       key={index}
       className="project-container"
-      animate={!element.active && hide}
+      animate={!project.active && hide}
       style={{ height, marginTop: slideUp }}
       layout
     >
       <motion.div
         className="preview-background"
         animate={
-          element.active
+          project.active
             ? { opacity: 1, transition: tranSwipe(0.8) }
             : { opacity: 0, transition: { delay: 0.5, ...tranSwipe(0.8) } }
         }
       />
       <motion.div className="text-container">
-        <h2>{element.heading}</h2>
-        <p>{element.superHeading}</p>
+        <h2>{project.heading}</h2>
+        <p>{project.superHeading}</p>
       </motion.div>
       <motion.div className="button-section">
         <motion.div
@@ -183,7 +183,7 @@ export default function Preview({
         </motion.div>
         <motion.div
           className={
-            element.active ? "button-container" : "button-container freeze"
+            project.active ? "button-container" : "button-container freeze"
           }
           style={{ x: delaySlideIn, opacity: delayFadeIn }}
         >
@@ -210,7 +210,7 @@ export default function Preview({
           transition={tranSwipe(0.8)}
           layout
         >
-          {element.images.map((images, i) => (
+          {project.images.map((images, i) => (
             <motion.div
               key={i}
               className="image-container"
@@ -220,7 +220,7 @@ export default function Preview({
             >
               <div className="image-layout">
                 <motion.img
-                  src={`${images.url}?w=${element.active ? '700' : '300'}`}
+                  src={`${images.url}?w=${project.active ? '700' : '300'}`}
                   alt={i}
                   transition={tranSwipe(0.8)}
                   layout
@@ -237,7 +237,7 @@ export default function Preview({
         style={{ opacity: dFadeIn }}
       />
       <AnimatePresence>
-        {element.active && (
+        {project.active && (
           <motion.div
             className="project-description"
             initial={{ x: 30, opacity: 0 }}
@@ -292,7 +292,7 @@ export default function Preview({
               </div>
             </div>
             <div className="description">
-              <p>{element.body}</p>
+              <p>{project.body}</p>
             </div>
           </motion.div>
         )}

@@ -1,13 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
-import { films } from "../../Projects/Films";
+import React, { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import NavbarDesktop from "../../Components/Desktop/NavbarDesktop";
 import Loader from "../../Components/Loader";
 import Slider from "../../Components/Desktop/Slider";
+import {useAppContext} from "../../utils/hooks";
 export default function FilmDesktop({ transition }) {
-  //load is required for page loading animations
-  const [load, setLoad] = useState(false);
   const { tranSwipe } = transition;
+  const [{films,isLoaded}, setGlobalState] =useAppContext();
 
   //windowBlocks is for determining the available types of sliders.
   const windowBlocks = [
@@ -73,31 +72,17 @@ export default function FilmDesktop({ transition }) {
     };
   }, []);
 
-  //imgRef is required to hold until the images are loaded
-  const projectRef = useRef(0);
-  function handleImageLoad() {
-    setLoad(handleLoading);
-  }
-  function handleLoading() {
-    const arr = projectRef.current.querySelectorAll("img");
-    for (const img of arr) {
-      if (!img.complete) {
-        return false;
-      }
-      return true;
-    }
-  }
-  return (
-    <div className="projects" onLoad={handleImageLoad} ref={projectRef}>
+  return !isLoaded ?  <AnimatePresence><Loader /></AnimatePresence>:(
+    <div className="projects">
       <NavbarDesktop tranSwipe={tranSwipe} />
-      <AnimatePresence>{!load && <Loader />}</AnimatePresence>
       {films.map((project, index) => (
         <Slider
           key={index}
           project={project}
           tranSwipe={tranSwipe}
           block={block}
-          load={load}
+          load={isLoaded}
+          projectImages={project.images}
         />
       ))}
     </div>

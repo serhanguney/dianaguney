@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import NavbarDesktop from "../../Components/Desktop/NavbarDesktop";
@@ -6,26 +6,13 @@ import Circle from "../../Components/Desktop/Circle";
 
 import {AnimatePresence, motion, useAnimation} from "framer-motion";
 import Loader from "../../Components/Loader";
-import {getAllAssets, getAllEntriesByType, getFormattedImages} from "../../utils/cms";
+import {useAppContext} from "../../utils/hooks";
 
 export default function HomeDesktop({ transition }) {
   const { tranSwipe, tranSmooth } = transition;
   const hover = useAnimation();
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [project, setProject] = useState({});
-
-  useEffect(() => {
-    async function getFeaturedProject(){
-      const entries = await getAllEntriesByType('dianaGuneyProject' , {'fields.featured': true});
-      let featuredProject = entries.items[0].fields;
-      const assets = await getAllAssets();
-      const images = getFormattedImages(featuredProject.projectIndex,assets);
-      featuredProject = {...featuredProject , images}
-      setProject(featuredProject);
-    }
-    getFeaturedProject();
-    document.fonts.ready.then(()=> setIsLoaded(true))
-  }, []);
+  const [{projects,isLoaded}] = useAppContext();
+  const project = projects.filter(item => item.featured)[0];
   const text = [
     "My background is in architecture and design and I have a major interest for film and set design.",
     "Combining digital media and physcial modeling I love to come up with new designs, scenes and stories",
@@ -148,20 +135,20 @@ export default function HomeDesktop({ transition }) {
             </div>
             <motion.div
               className="visual-column"
-              initial={{ x: 200, scale: 0.7, opacity: 0, y: -50 }}
+              initial={{ x: 100, scale: 0.7, opacity: 0, y: -50 }}
               animate={{
                 x: 0,
                 scale: 1,
                 opacity: 1,
                 y: 0,
-                transition: tranSwipe(1),
+                transition: tranSmooth(1),
               }}
               exit={{
-                x: 1000,
-                scale: 0.4,
+                x: 100,
+                scale: 0.8,
                 opacity: 0,
                 y: -50,
-                transition: { delay: 0.2, ...tranSwipe(2) },
+                transition: { duration: 1, ease: 'easeIn' },
               }}
             >
               {project.images && <Circle project={project}/>}

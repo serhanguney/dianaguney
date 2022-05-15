@@ -12,14 +12,14 @@ import {getAllAssets, getAllEntriesByType, getFormattedImages} from "../utils/cm
 import Loader from "../Components/Loader";
 
 //PROJECTS
-import { projects } from "../Projects/Projects";
+import {useAppContext} from "../utils/hooks";
 
 export default function Projects({ toggle, transition }) {
   //STATES
   const [preview, setPreview] = useState(false);
   const { menuOpen, setMenuOpen } = toggle;
   const { tranSwipe, tranSmooth } = transition;
-  const [elements, setElements] = useState([]);
+  const [{projects},setGlobalState] = useAppContext();
 
   //the cyle animation is for inactive elements to disappear when an element is activated.
   //it needs to be defined in the parent component this way we only have one toggle that controls all children separately.
@@ -74,21 +74,7 @@ export default function Projects({ toggle, transition }) {
     pageInAnimation();
   }, [c]);
 
-  useEffect(()=> {
-    async function handleImageLoad() {
-      let projectsArray = []
-      const entries= await getAllEntriesByType('dianaGuneyProject', {order: 'fields.order', 'fields.type' : 'architecture'});
-      const assets = await getAllAssets();
-      for(const entry of entries.items){
-        const images = await getFormattedImages(entry.fields.projectIndex,assets)
-        projectsArray = [...projectsArray, {...entry.fields, images }];
-      }
-      console.log('projects',projectsArray);
-      setElements(projectsArray);
-      document.fonts.ready.then(()=> setIsLoaded(true));
-    }
-    handleImageLoad();
-  },[])
+
   return (
     <div className="projects-page">
       <motion.div
@@ -119,10 +105,10 @@ export default function Projects({ toggle, transition }) {
             <ArrowDown />
           </div>
         </motion.div>
-        {elements.map((element, index) => (
+        {projects.map((project, index) => (
           <Preview
             key={index}
-            state={{ element, elements, setElements }}
+            state={{ project, projects, activate: (array)=> setGlobalState(prevState=> ({...prevState,projects: array})) }}
             toggle={{ preview, setPreview }}
             index={index}
             toggleHide={{ hide, cycleHide }}
