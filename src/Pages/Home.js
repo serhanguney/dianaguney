@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 //IMAGES
@@ -14,19 +14,19 @@ import Preview from "../Components/Preview";
 
 //ADDITIONAL
 import { motion, useAnimation, useCycle, useMotionValue } from "framer-motion";
-import { baseUrl, projects } from "../Projects/Projects";
+import {useAppContext} from "../utils/hooks";
 
 export default function Home({ toggle, transition }) {
   //STATES
   const { menuOpen, setMenuOpen } = toggle;
 
-  const [elements, setElements] = useState(projects);
+  const [{projects},setGlobalState] = useAppContext();
   const [preview, setPreview] = useState(false);
 
   //VARIABLES
   const { tranSwipe, tranSmooth } = transition;
   const location = useLocation();
-  const history = useHistory();
+
 
   const [hide, cycleHide] = useCycle(
     {
@@ -74,18 +74,17 @@ export default function Home({ toggle, transition }) {
     pageInAnimation();
   }, []);
 
-  useEffect(() => {
-    //clear history on component mount
-    history.replace();
-  }, []);
-  return (
+
+  const coverImageUrl = projects[5]?.images[5]?.url;
+
+  return !coverImageUrl ? null : (
     <motion.div className="home-page" transition={tranSwipe(1)}>
       <motion.div
         className="page-transition-element"
         initial={location.state ? { width: "100%" } : ""}
         animate={c}
         exit={{ width: "100%", transition: tranSwipe(1) }}
-      ></motion.div>
+      />
 
       <Navbar
         toggle={{ menuOpen, setMenuOpen }}
@@ -98,8 +97,8 @@ export default function Home({ toggle, transition }) {
         transition={{ delay: 0.4, ...tranSwipe(0.8) }}
       >
         <div className="cover-image">
-          <div className="overlay"></div>
-          <img src={`${baseUrl}/balconies_4.jpg`} alt="Cover" />
+          <div className="overlay"/>
+          <img src={`${coverImageUrl}?w=900`} alt="Cover" />
         </div>
         <motion.div className="introduction-section" animate={hide}>
           <h1>Architecture</h1>
@@ -123,13 +122,13 @@ export default function Home({ toggle, transition }) {
           </div>
         </motion.div>
         <div className="home-projects-section">
-          {elements.map(
-            (element, index) =>
+          {projects.map(
+            (project, index) =>
               index < 3 && (
                 <Preview
                   key={index}
                   index={index}
-                  state={{ elements, element, setElements }}
+                  state={{ projects, project, activate: (array)=> setGlobalState(prevState=> ({...prevState,projects:array})) }}
                   toggle={{ preview, setPreview }}
                   toggleHide={{ hide, cycleHide }}
                   tranSwipe={tranSwipe}
@@ -142,14 +141,14 @@ export default function Home({ toggle, transition }) {
             src={projectsIcon}
             alt="projects-icon"
           />
-          <Link to={{ pathname: "/projects", state: true }}>
+          <Link to={{ pathname: "/architecture", state: true }}>
             <motion.button className="link-button" whileTap={{ scale: 0.9 }}>
               <span>Go to Projects</span>
             </motion.button>
             <ArrowRight />
           </Link>
         </div>
-        <div className="footer"></div>
+        <div className="footer"/>
       </motion.div>
     </motion.div>
   );

@@ -7,17 +7,19 @@ import Preview from "../Components/Preview";
 import ArrowDown from "../Components/ArrowDown";
 import pageCover from "../Images/ProjectsCover.jpg";
 //ADDITIONALS
-import { motion, useAnimation, useCycle, useMotionValue } from "framer-motion";
+import {AnimatePresence, motion, useAnimation, useCycle, useMotionValue} from "framer-motion";
+import {getAllAssets, getAllEntriesByType, getFormattedImages} from "../utils/cms";
+import Loader from "../Components/Loader";
 
 //PROJECTS
-import { projects } from "../Projects/Projects";
+import {useAppContext} from "../utils/hooks";
 
 export default function Projects({ toggle, transition }) {
   //STATES
   const [preview, setPreview] = useState(false);
   const { menuOpen, setMenuOpen } = toggle;
   const { tranSwipe, tranSmooth } = transition;
-  const [elements, setElements] = useState(projects);
+  const [{projects},setGlobalState] = useAppContext();
 
   //the cyle animation is for inactive elements to disappear when an element is activated.
   //it needs to be defined in the parent component this way we only have one toggle that controls all children separately.
@@ -72,6 +74,7 @@ export default function Projects({ toggle, transition }) {
     pageInAnimation();
   }, [c]);
 
+
   return (
     <div className="projects-page">
       <motion.div
@@ -80,14 +83,13 @@ export default function Projects({ toggle, transition }) {
         animate={c}
         exit={{ width: "100%", transition: tranSwipe(1) }}
         transition={tranSwipe(1)}
-      ></motion.div>
+      />
       <Navbar
         toggle={{ menuOpen, setMenuOpen }}
         tranSwipe={tranSwipe}
         tranSmooth={tranSmooth}
         preview={preview}
       />
-
       <motion.div className="projects-content">
         <motion.div className="intro-to-projects" animate={hide}>
           <div className="image-container">
@@ -103,10 +105,10 @@ export default function Projects({ toggle, transition }) {
             <ArrowDown />
           </div>
         </motion.div>
-        {elements.map((element, index) => (
+        {projects.map((project, index) => (
           <Preview
             key={index}
-            state={{ element, elements, setElements }}
+            state={{ project, projects, activate: (array)=> setGlobalState(prevState=> ({...prevState,projects: array})) }}
             toggle={{ preview, setPreview }}
             index={index}
             toggleHide={{ hide, cycleHide }}
@@ -116,5 +118,5 @@ export default function Projects({ toggle, transition }) {
         ))}
       </motion.div>
     </div>
-  );
+  )
 }

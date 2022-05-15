@@ -19,11 +19,11 @@ export default function ContactDesktop({ transition }) {
       <NavbarDesktop tranSwipe={tranSwipe} />
       <motion.div
         className="visual-column"
-        initial={{ scale: 0.7, opacity: 0, x: 1000, y: -50 }}
+        initial={{ scale: 0.7, opacity: 0, x: 100, y: -50 }}
         animate={{
           scale: 1,
           opacity: 1,
-          x: [1000, -200, 0],
+          x: [100, -100, 0],
           y: [-50, 50, 0],
           transition: tranSmooth(2),
         }}

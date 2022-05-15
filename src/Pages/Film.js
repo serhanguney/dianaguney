@@ -10,14 +10,15 @@ import pageCover from "../Images/ProjectsCover.jpg";
 import { motion, useAnimation, useCycle, useMotionValue } from "framer-motion";
 
 //PROJECTS
-import { films } from "../Projects/Films";
+import {useAppContext} from "../utils/hooks";
 
 export default function Film({ toggle, transition }) {
   //STATES
   const [preview, setPreview] = useState(false);
   const { menuOpen, setMenuOpen } = toggle;
   const { tranSwipe, tranSmooth } = transition;
-  const [elements, setElements] = useState(films);
+  // const [elements, setElements] = useState(films);
+  const [{films}, setGlobalState] =useAppContext();
 
   //the cyle animation is for inactive elements to disappear when an element is activated.
   //it needs to be defined in the parent component this way we only have one toggle that controls all children separately.
@@ -80,7 +81,7 @@ export default function Film({ toggle, transition }) {
         animate={c}
         exit={{ width: "100%", transition: tranSwipe(1) }}
         transition={tranSwipe(1)}
-      ></motion.div>
+      />
       <Navbar
         toggle={{ menuOpen, setMenuOpen }}
         tranSwipe={tranSwipe}
@@ -101,10 +102,10 @@ export default function Film({ toggle, transition }) {
             <ArrowDown />
           </div>
         </motion.div>
-        {elements.map((element, index) => (
+        {films.map((film, index) => (
           <Preview
             key={index}
-            state={{ element, elements, setElements }}
+            state={{ project: film, projects: films, activate: (array) => setGlobalState(prevState=> ({...prevState,films: array})) }}
             toggle={{ preview, setPreview }}
             index={index}
             toggleHide={{ hide, cycleHide }}

@@ -24,6 +24,6 @@ yarn-error.log*
 .eslintcache
 .idea
 .npmrc
-
+.firebase
 # images
 src/Images

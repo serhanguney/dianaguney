@@ -1,20 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import NavbarDesktop from "../../Components/Desktop/NavbarDesktop";
 import Circle from "../../Components/Desktop/Circle";
-import { projects } from "../../Projects/Projects";
 
-import { motion, useAnimation, useIsPresent } from "framer-motion";
+import {AnimatePresence, motion, useAnimation} from "framer-motion";
+import Loader from "../../Components/Loader";
+import {useAppContext} from "../../utils/hooks";
 
 export default function HomeDesktop({ transition }) {
   const { tranSwipe, tranSmooth } = transition;
   const hover = useAnimation();
-  const isPresent = useIsPresent();
-  const [isLoaded, setIsLoaded] = useState(false);
-  useEffect(() => {
-    isPresent && setIsLoaded(true);
-  }, []);
+  const [{projects,isLoaded}] = useAppContext();
+  const project = projects.filter(item => item.featured)[0];
   const text = [
     "My background is in architecture and design and I have a major interest for film and set design.",
     "Combining digital media and physcial modeling I love to come up with new designs, scenes and stories",
@@ -36,7 +34,7 @@ export default function HomeDesktop({ transition }) {
   };
 
   useEffect(() => {
-    setTimeout(
+    isLoaded && setTimeout(
       () =>
         hover.start({
           opacity: 1,
@@ -46,12 +44,12 @@ export default function HomeDesktop({ transition }) {
           scale: 1.05,
           transition: { duration: 0.5 },
         }),
-      2000
+      1000
     );
-  }, []);
+  }, [isLoaded]);
   return (
     <>
-      {isLoaded && (
+      {isLoaded ? (
         <div className="home-page">
           <div className="navbar-container">
             <NavbarDesktop tranSmooth={tranSmooth} tranSwipe={tranSwipe} />
@@ -83,7 +81,7 @@ export default function HomeDesktop({ transition }) {
                   </motion.h3>
                 </div>
                 {text.map((item, index) => (
-                  <div className="animation-container">
+                  <div key={index} className="animation-container">
                     <motion.p custom={index} variants={variantChild}>
                       {item}
                     </motion.p>
@@ -94,11 +92,9 @@ export default function HomeDesktop({ transition }) {
                 <motion.div
                   className="button"
                   whileHover={() =>
-                    isPresent &&
                     hover.start({ x: 0, y: 0, rotateZ: 0, scale: 1 })
                   }
                   onHoverEnd={() =>
-                    isPresent &&
                     hover.start({
                       x: -2,
                       y: 3,
@@ -134,32 +130,32 @@ export default function HomeDesktop({ transition }) {
                   }}
                   exit={{ opacity: 0 }}
                   animate={hover}
-                ></motion.div>
+                />
               </motion.div>
             </div>
             <motion.div
               className="visual-column"
-              initial={{ x: 200, scale: 0.7, opacity: 0, y: -50 }}
+              initial={{ x: 100, scale: 0.7, opacity: 0, y: -50 }}
               animate={{
                 x: 0,
                 scale: 1,
                 opacity: 1,
                 y: 0,
-                transition: tranSwipe(1),
+                transition: tranSmooth(1),
               }}
               exit={{
-                x: 1000,
-                scale: 0.4,
+                x: 100,
+                scale: 0.8,
                 opacity: 0,
                 y: -50,
-                transition: { delay: 0.2, ...tranSwipe(2) },
+                transition: { duration: 1, ease: 'easeIn' },
               }}
             >
-              <Circle projects={projects} />
+              {project.images && <Circle project={project}/>}
             </motion.div>
           </motion.div>
         </div>
-      )}
+      ): <AnimatePresence><Loader /></AnimatePresence>}
     </>
   );
 }
