@@ -211,7 +211,7 @@ export default function Slider({ tranSwipe, project, block, load ,projectImages}
                           zIndex: 5,
                         }}
                       >
-                        <img className="slider-image" src={`${photo.url}?w=300`} alt={index} loading={'lazy'}/>
+                        <img className="slider-image" src={`https:${photo.url}?w=300`} alt={index} loading={'lazy'}/>
                       </motion.div>
                     </div>
                   )

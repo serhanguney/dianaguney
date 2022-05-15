@@ -211,13 +211,13 @@ export default function Preview({
           layout
         >
           {project.images.map((image, i) => {
-            const imageUrl = project.active ? `${image.url}?w=700` : `${image.url}?w=300`;
+
+            const imageUrl = project.active ? `https:${image.url}?w=700` : `https:${image.url}?w=300`;
             return (
                 <motion.div
                     key={i}
                     className="image-container"
                     transition={tranSwipe(0.8)}
-                    // style={{ maxWidth: enlargeWidth }}
                     layout
                 >
                   <div className="image-layout">
